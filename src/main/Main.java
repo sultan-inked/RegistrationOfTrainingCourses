@@ -20,7 +20,7 @@ public class Main {
         boolean stop = true;
         boolean stop2 = true;
         
-        CourseStudentList courseList = new CourseStudentList();
+        CourseStudentList courseStudentList = new CourseStudentList();
         
         println("Hello there!");
         println("It's 'Registration of training courses' programm.");
@@ -33,20 +33,19 @@ public class Main {
             println("3. Enrolled in a course");
             print("Just write a number whith your choice:");
             stop2 = true;
-//            if(choice.equals("stop")) break;
             while(stop2){
                 String choice = scan.nextLine();
                 switch(choice){
                     case "1":
-                        courseList.addCourse(makeCourse());
+                    	courseStudentList.addCourse(makeCourse());
                         stop2 = false;
                         break;
                     case "2":
-                        createStudentCard();
+                    	courseStudentList.addStudent(createStudentCard());
                         stop2 = false;
                         break;
                     case "3":
-                        enrolledInCourse();
+                        enrolledInCourse(courseStudentList);
                         stop2 = false;
                         break;
                     case "stop":
@@ -73,6 +72,14 @@ public class Main {
     }
     
 //    Methods:
+    public static void mainMenu() {
+    	
+    }
+    
+    public static void scanChoiceMunu() {
+    	
+    }
+    
     public static Course makeCourse(){
         Scanner scan = new Scanner(System.in);
         print("Name of coure: ");
@@ -83,11 +90,22 @@ public class Main {
         return course;
     }
     
-    public static void createStudentCard(){
-        
+    public static Student createStudentCard(){
+    	Scanner scan = new Scanner(System.in);
+    	print("Name of student: ");
+        String courseName = scan.nextLine();
+        print("Student ID: ");
+        String courseId = scan.nextLine();
+        Student student = new Student(courseId, courseName);
+        return null;
     }
     
-    public static void enrolledInCourse(){
-        
+    public static void enrolledInCourse(CourseStudentList courseStudentList){
+    	Scanner scan = new Scanner(System.in);
+    	print("Write student name:");
+    	String studentName = scan.nextLine();
+    	print("Write student ID:");
+    	String studentId = scan.nextLine();
+    	
     }
 }
