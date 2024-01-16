@@ -8,10 +8,6 @@ import objects.Course;
 import objects.Student;
 import objects.CourseStudentList;
 
-/**
- *
- * @author Симон
- */
 public class Main {
     public static void println(String str){
         System.out.println(str);
