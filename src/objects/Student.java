@@ -44,6 +44,10 @@ public class Student {
     	this.studentId = newStudentId;
     }
     
+    public String getStudentPassword() {
+    	return password;
+    }
+    
 //    Methods:
     public void showStudentInfo() {
     	println("Name: " + firstName);

@@ -44,6 +44,10 @@ public class Teacher {
     public void setTeacherId(String newTeacherId) {
     	this.teacherId = newTeacherId;
     }
+    
+    public String getTeacherPassword() {
+    	return password;
+    }
 	
 //	Methods:
     public void showTeacherInfo() {

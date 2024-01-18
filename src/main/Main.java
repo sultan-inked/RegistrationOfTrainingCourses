@@ -22,7 +22,6 @@ public class Main {
         
         menu.loginOrSignUp(mainList);
         
-        mainList.showStudentList();
     }
     
 //    Methods:

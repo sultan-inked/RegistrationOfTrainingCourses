@@ -79,7 +79,31 @@ public class MainList {
     	}
     }
     
-    public void searchStudent(Student student) {
-    	
+    public Student searchStudentById(String studentId) {
+    	if(studentList.size() == 0) {
+    		println("Student cards list is empty!");
+    		return null;
+    	}
+    	for(int i = 0; i < studentList.size(); i++) {
+    		if(studentList.get(i).getStudentId().equals(studentId)) {
+    			return studentList.get(i);
+    		}
+    	}
+    	println("Student with id:" + studentId + " is not found!");
+    	return null;
+    }
+    
+    public Teacher searchTeacherById(String teacherId) {
+    	if(teacherList.size() == 0) {
+    		println("Teacher cards list is empty!");
+    		return null;
+    	}
+    	for(int i = 0; i < teacherList.size(); i++) {
+    		if(teacherList.get(i).getTeacherId().equals(teacherId)) {
+    			return teacherList.get(i);
+    		}
+    	}
+    	println("Teacher with id:" + teacherId + " is not found!");
+    	return null;
     }
 }
