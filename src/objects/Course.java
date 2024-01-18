@@ -8,16 +8,18 @@ public class Course {
         System.out.println(str);
     }
 //    Parameters:
-    private String courseId;
-    private String courseName;
-//    private Student[] student;
-    private ArrayList<Student> student = new ArrayList<Student>();
-//    private ArrayList<Student> student;
+    private String courseName, courseDescription, courseId;
+    private Teacher courseCreator;
+
+    private ArrayList<Student> studentInCrsList = new ArrayList<Student>();
+
     
 //    Constructors:
-    public Course(String courseId, String courseName){
-        this.courseId = courseId;
+    public Course(Teacher courseCreator, String courseName, String courseDescription){
+    	this.courseCreator = courseCreator;
+//        this.courseId = courseId;
         this.courseName = courseName;
+        this.courseDescription = courseDescription;
     }
 //    Getters and Setters:
     public String getCourseName(){
@@ -26,17 +28,63 @@ public class Course {
         }
         else return this.courseName;
     }
+    
+    public String getCourseId(){
+        if(this.courseId.trim().equals("")){
+            return "Error: The student Id is empty!";
+        }
+        else return this.courseId;
+    }
+    public void setCourseId(String newCourseId) {
+    	this.courseId = newCourseId;
+    }
+    
 //    Methods:
+    public void showCourseInfo() {
+    	println("Course name: " + courseName);
+    	println("Course Id:" + courseId);
+    	println("Creator: " + courseCreator.getTeacherFirstName());
+    	println("Course description: ");
+    }
+    
     public void registerStudent(Student student){
-//        if(student == null) student = new ArrayList<Student>();
-        this.student.add(student);
-        println("The student: " + student.getStudentName() + " is register on " + getCourseName() + " course!");
+    	if(student == null) {
+    		println("Error: Student card is empty!");
+    		return;
+    	}
+    	for(int i = 0; i < studentInCrsList.size(); i++) {
+    		if(studentInCrsList.get(i).getStudentId().equals(student.getStudentId())) {
+    			println("Sturdent with Id:" + student.getStudentId() + " is already registered!");
+    		}
+    	}
+        studentInCrsList.add(student);
+        println("The student: " + student.getStudentLastName() + " is register on " + getCourseName() + " course!");
+    }
+    
+    public void unregisterStudent(Student student) {
+    	if(student == null) {
+    		println("Error: Student card is empty!");
+    		return;
+    	}
+    	if(studentInCrsList.size() == 0) {
+    		println("Students list is empty!");
+    		return;
+    	}
+    	for(int i = 0; i < studentInCrsList.size(); i++) {
+    		if(studentInCrsList.get(i).getStudentId().equals(student.getStudentId())) {
+    			println("Student with Id:" + student.getStudentId() + " is unregistered of " + this.courseName);
+    			studentInCrsList.remove(i);
+    			return;
+    		}
+    	}
+    	println("Student with Id:" + student.getStudentId() + " is not registered in course " + this.courseName);
+    	
     }
     
     public void showStudentList(){
-        println("There are " + this.student.size() +" students enrolled in the " + getCourseName() + " course:");
-        for(int i = 0; i < this.student.size(); i++){
-            println("" + this.student.get(i).getStudentName());
+        println("There are " + studentInCrsList.size() +" students enrolled in the " + getCourseName() + " course:");
+        for(int i = 0; i < studentInCrsList.size(); i++){
+            println("" + studentInCrsList.get(i).getStudentLastName() + studentInCrsList.get(i).getStudentLastName());
         }
     }
 }
