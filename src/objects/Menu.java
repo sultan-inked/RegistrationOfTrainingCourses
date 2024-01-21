@@ -9,7 +9,10 @@ public class Menu {
 	public void print(String str) {
 		System.out.print(str);
 	}
-	
+	public String scan() {
+		var scan = new Scanner(System.in);
+		return scan.nextLine();
+	}
 	public void loginOrSignUp(MainList mainList) {
 		Scanner scan = new Scanner(System.in);
 		println("Hello there!");
@@ -42,28 +45,32 @@ public class Menu {
 		for(int i = 0; i == 0;) {
 			print("Your id:");
 			String id = scan.nextLine();
-			String shortId = id.substring(0, 2);
+			String shortId = id.substring(0, 3);
 			switch(shortId) {
 			case "STD":
-				Student student = mainList.searchStudentById(shortId);
+				Student student = mainList.searchStudentById(id);
 				if(student == null) {
 					break;
 				}
 				studentValidator(mainList, student);
+				i++;
+				break;
 			case "TCH":
-				Teacher teacher = mainList.searchTeacherById(shortId);
+				Teacher teacher = mainList.searchTeacherById(id);
 				if(teacher == null) {
 					break;
 				}
 				teacherValidator(mainList, teacher);
-			case "back":
+				i++;
+				break;
+			case "bac":
 				i++;
 				loginOrSignUp(mainList);
 				break;
+			default:
+				println("Incorrect id!");
 			}
 		}
-		
-		
 	}
 	
 	public void studentValidator(MainList mainList, Student student) {
@@ -74,7 +81,8 @@ public class Menu {
 			String studentPassword = scan.nextLine();
 			if(student.getStudentPassword().equals(studentPassword)) {
 				i++;
-				studentMenu(mainList, student);
+				println("Hello " + student.getStudentFirstName());
+				userMenu(mainList, student);
 			}
 			else {
 				println("Unvalid password!");
@@ -90,7 +98,8 @@ public class Menu {
 			String teacherPswrd = scan.nextLine();
 			if(teacher.getTeacherPassword().equals(teacherPswrd)) {
 				i++;
-				teacherMenu(mainList, teacher);
+				println("Hello " + teacher.getTeacherFirstName());
+				userMenu(mainList, teacher);
 			}
 			else {
 				println("Unvalid password!");
@@ -98,13 +107,166 @@ public class Menu {
 		}
 	}
 	
-//	Student MENU ############################################
-	public void studentMenu(MainList mainList, Student student) {
+//	Users MENU ############################################
+	public void userMenu(MainList mainList, Student student) {
+		var scan = new Scanner(System.in);
+		for(int m = 0; m == 0;) {
+			int lN = 3;
+			if(student instanceof Student) {
+				println("Student menu...");
+			}
+			if(student instanceof Teacher) {
+				println("Teacher menu...");
+			}
+			println("1. Course");
+			println("2. Student");
+			println("3. Teacher");
+			if(student instanceof Teacher) {
+				println("4. Create course");
+			}
+			println("Or 'exite'");
+			for(int i = 0; i == 0;) {
+				println("Here:");
+				String choice = scan.nextLine();
+				switch (choice) {
+				case "1":
+					course(mainList, student);
+					i++;
+					break;
+				case "2":
+					println("Sorry: This feature has not yet been implemented.");
+					i++;
+					break;
+				case "3":
+					println("Sorry: This feature has not yet been implemented.");
+					i++;
+					break;
+				case "4":
+					createCourse(mainList, (Teacher)student);
+					i++;
+					break;
+				case "exite":
+					i++;
+					m++;
+					loginOrSignUp(mainList);
+					break;
+				default:
+					println("Error: Write number with your choice!");
+				}
+			}
+		}
 		
 	}
 	
-//	Teacher MENU ############################################
-	public void teacherMenu(MainList mainList, Teacher teacher) {
+//	SearchinG ##########################################
+	public void course(MainList mainList, Student student) {
+		for(int m = 0; m == 0;) {
+			println("Course");
+			println("1. Search");
+			println("2. Show list");
+			println("Or 'back'");
+			for(int i = 0; i == 0;) {
+				print("Here:");
+				var choice = scan();
+				switch (choice) {
+				case "1":
+					searchCourse(mainList, student);
+					i++;
+					break;
+				case "2":
+					mainList.showCourseList();
+					i++;
+					break;
+				case "back":
+					i++;
+					m++;
+					break;
+				default:
+					println("Error: Write number with your choice!");
+				}
+			}
+		}
+		
+	}
+	public void searchCourse(MainList mainList, Student student) {
+		println("Search course");
+		print("Name: ");
+		var name = scan();
+		print("Id: ");
+		var id = scan();
+		Course course = mainList.searchCourseNameId(name, id);
+		if(course != null) {
+			for(int m = 0; m == 0;) {
+				println("Course with the name: " + course.getCourseName() + " finded!");
+				println("Id:" + course.getCourseId());
+				println("Author: " + course.getCourseAutorFullName());
+				println("Description: " + course.getCourseDescription());
+				println("Option for interacting with the course:");
+				println("1. Enrolling");
+				println("2. Unenrolling");
+				println("Or 'back'");
+				for(int i = 0; i == 0;) {
+					print("Here:");
+					var choice = scan();
+					switch (choice) {
+					case "1":
+						if(student instanceof Teacher) {
+							student.enrollInCourse(course, (Teacher)student);
+							i++;
+							break;
+						}
+						student.enrollInCourse(course, student);
+						i++;
+						break;
+					case "2":
+						student.unenrollInCourse(course, student);
+						i++;
+						break;
+					case "back":
+						i++;
+						m++;
+						break;
+					default:
+						println("Error: Write number with your choice!");
+					}
+				}
+			}
+			
+		}
+	}
+	
+	public void Student(MainList mainList) {
+		
+	}
+	
+	public void Teacher(MainList mainList) {
+		
+	}
+//	Course CREATE ######################################
+	public void createCourse(MainList mainList, Teacher teacher) {
+		println("Course creator");
+		String name = "", description = "";
+		for(int i = 0; i == 0;) {
+			print("Name: ");
+			name = scan().trim();
+			if(!name.equals("")) {
+				i++;
+			}
+			else{
+				println("Name cannot be empty!");
+			}
+		}
+		for(int i = 0; i == 0;) {
+			print("Description: ");
+			description = scan().trim();
+			if(!description.equals("")) {
+				i++;
+			}
+			println("Description cannot be empty!");
+		}
+		Course course = new Course(teacher, name, description);
+		mainList.addCourse(course);
+		teacher.addCourseToList(course);
 		
 	}
 	
@@ -114,6 +276,7 @@ public class Menu {
 		println("Just write number whith youre choice:");
 		println("1. Student");
 		println("2. Teacher");
+		println("Or 'back'");
 		for(int i = 0; i == 0;) {
 			print("Here:");
 			String choice = scan.nextLine();
@@ -126,6 +289,10 @@ public class Menu {
 				signUpTeacher(mainList);
 				i++;
 				break;
+			case "back":
+				loginOrSignUp(mainList);
+				i++;
+				return;
 			default:
 				println("Error: Write number with youre choice!");
 			}
@@ -133,38 +300,114 @@ public class Menu {
 	}
 	
 	public void signUpStudent(MainList mainList) {
-		Scanner scan = new Scanner(System.in);
-		print("First name: ");
-		var fName = scan.nextLine();
-		print("Last name: ");
-		var lName = scan.nextLine();
-		print("Password: ");
-		var pswd = scan.nextLine();
-		var std = new Student(fName, lName, pswd);
-		mainList.addStudent(std);
+		Student std = new Student();
+		enterUserInfoAndAddToMainList(mainList, std);
 		loginOrSignUp(mainList);
 	}
 	
 	public void signUpTeacher(MainList mainList) {
 		String passCode = "1234";
-		Scanner scan = new Scanner(System.in);
-		print("Enter pass code:");
-		var str = scan.nextLine();
-		if(str.equals(passCode)) {
+		String passCodeAnswer = "";
+		for(int i = 0; i == 0;) {
+			print("Enter the pass code:");
+			passCodeAnswer = scan().trim();
+			if(passCodeAnswer.equals(passCode)) {
+				i++;
+				break;
+			}
+			if(passCodeAnswer.equals("back")) {
+				i++;
+				signUp(mainList);
+				return;
+			}
+			println("Error: Pass code not valid! Write 'back' for back.");
+		}
+		Teacher tch = new Teacher();
+		enterUserInfoAndAddToMainList(mainList, tch);
+		loginOrSignUp(mainList);
+		
+	}
+	public void enterUserInfoAndAddToMainList(MainList mainList, Student student) {
+		var user = student;
+		String userType = "student's";
+		if(user instanceof Teacher) {
+			user = new Teacher();
+			userType = "teacher's";
+		}
+		for(int i = 0; i == 0;) {
+		    if(user instanceof Teacher) {
+		    	user = new Teacher(enterFirstName(), enterLastName(), enterPassword());
+		    }
+		    else if (user instanceof Teacher) {
+		    	user = new Student(enterFirstName(), enterLastName(), enterPassword());
+		    }
+			println("You wrote the following information:");
+			boolean userStudent = true;
+			if(user instanceof Teacher) {
+				((Teacher) user).showTeacherInfo();
+				userStudent = false;
+			}
+			if(userStudent) {
+				user.showStudentInfo();
+			}
+			println("Save the " + userType + " card?");
+			print("yes/no/back:");
+			var answer = scan().trim();
+			if(answer.equals("yes")) {
+				i++;
+			}
+			if(answer.equals("back")) {
+				i++;
+				signUp(mainList);
+				return;
+			}
+		}
+		if(student instanceof Teacher) {
+			mainList.addTeacher((Teacher)user);
+			return;
+		}
+		if(user instanceof Student) {
+			mainList.addStudent(user);
+		}
+	}
+	public String enterFirstName() {
+		String fName = "";
+		for(int i = 0; i == 0;) {
 			print("First name: ");
-			var fName = scan.nextLine();
+			fName = scan().trim();
+			if(!fName.equals("")) {
+				i++;
+				return fName;
+			}
+			println("Error: Parameter first name cannot be empty!");
+		}
+		return fName;
+	}
+	public String enterLastName() {
+		String lName = "";
+		for(int i = 0; i == 0;) {
 			print("Last name: ");
-			var lName = scan.nextLine();
+			lName = scan().trim();
+			if(!lName.equals("")) {
+				i++;
+				return lName;
+			}
+			println("Error: Parameter last name cannot be empty!");
+		}
+		return lName;
+	}
+	public String enterPassword() {
+		String pswd = "";
+		for(int i = 0; i == 0;) {
 			print("Password: ");
-			var pswd = scan.nextLine();
-			var tch = new Teacher(fName, lName, pswd);
-			mainList.addTeacher(tch);
-			loginOrSignUp(mainList);
+			pswd = scan().trim();
+			if(!pswd.equals("")) {
+				i++;
+				return pswd;
+			}
+			println("Error: Password cannot be empty!");
 		}
-		else {
-			println("Error: Pass code is not valid!");
-			loginOrSignUp(mainList);
-		}
+		return pswd;
 	}
 	
 }

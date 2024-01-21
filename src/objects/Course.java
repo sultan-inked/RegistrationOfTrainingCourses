@@ -29,6 +29,10 @@ public class Course {
         else return this.courseName;
     }
     
+    public String getCourseDescription() {
+    	return courseDescription;
+    }
+    
     public String getCourseId(){
         if(this.courseId.trim().equals("")){
             return "Error: The student Id is empty!";
@@ -39,12 +43,16 @@ public class Course {
     	this.courseId = newCourseId;
     }
     
+    public String getCourseAutorFullName() {
+    	return (courseCreator.getTeacherFirstName() + " " + courseCreator.getTeacherLastName());
+    }
+    
 //    Methods:
     public void showCourseInfo() {
     	println("Course name: " + courseName);
     	println("Course Id:" + courseId);
     	println("Creator: " + courseCreator.getTeacherFirstName());
-    	println("Course description: ");
+    	println("Course description: " + courseDescription);
     }
     
     public void registerStudent(Student student){

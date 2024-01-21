@@ -2,10 +2,10 @@ package objects;
 
 import java.util.ArrayList;
 
-public class Teacher {
-	public void println(String str) {
-		System.out.println(str);
-	}
+public class Teacher extends Student {
+//	public void println(String str) {
+//		System.out.println(str);
+//	}
 	
 //	Parameters:
 	private String teacherId, firstName, lastName, password;
@@ -13,10 +13,12 @@ public class Teacher {
 	private ArrayList<Course> createdCoursesList = new ArrayList<Course>();
 	
 //	Constructors:
+	public Teacher() {
+		
+	}
 	public Teacher(String firstName, String lastName, String password){
     	this.lastName = lastName;
     	this.firstName = firstName;
-//        this.teacherId = teacherId;
         this.password = password;        
     }
 	
@@ -53,7 +55,7 @@ public class Teacher {
     public void showTeacherInfo() {
     	println("Name: " + firstName);
     	println("Last name: " + lastName);
-    	println("Teacher Id:" + teacherId);
+//    	println("Teacher Id:" + teacherId);
     }
     
     public void addCourseToList(Course course) {

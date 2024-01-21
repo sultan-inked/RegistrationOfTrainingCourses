@@ -11,7 +11,13 @@ public class Student {
     
     private ArrayList<Course> enrollCourseList = new ArrayList<Course>();
     
+    
+    
 //    Constructors:
+    public Student() {
+    	
+    }
+    
     public Student(String firstName, String lastName, String password){
     	this.lastName = lastName;
     	this.firstName = firstName;
@@ -52,23 +58,34 @@ public class Student {
     public void showStudentInfo() {
     	println("Name: " + firstName);
     	println("Last name: " + lastName);
-    	println("Student Id:" + studentId);
+//    	println("Student Id:" + studentId);
     }
     
-    public void enrollInCourse(Course course){
-        println("Enroll in course: " + course.getCourseName());
-        course.registerStudent(this);
-        enrollCourseList.add(course);
-    }
-    
-    public void unenrollInCourse(Course course) {
-    	println("Unenroll in course: " + course.getCourseName());
-    	course.unregisterStudent(this);
-    	for(int i = 0; i < enrollCourseList.size(); i++) {
-    		if(enrollCourseList.get(i).getCourseId().equals(course.getCourseId())) {
-    			println(course.getCourseName() + " was deleted of course list!");
-    		}
+    public void enrollInCourse(Course course, Student student){
+    	if(enrollCourseList.size() != 0) {
+    		for(int i = 0; i < enrollCourseList.size(); i++) {
+        		if(enrollCourseList.get(i).equals(course)) {
+        			println("You are already enrolling on that course!");
+        			return;
+        		}
+        	}
     	}
+        println("Enroll in course: " + course.getCourseName());
+        enrollCourseList.add(course);
+        course.registerStudent(student);
+    }
+    
+    public void unenrollInCourse(Course course, Student student) {
+    	if(enrollCourseList.size() != 0) {
+    		for(int i = 0; i < enrollCourseList.size(); i++) {
+        		if(enrollCourseList.get(i).getCourseId().equals(course.getCourseId())) {
+        			println(course.getCourseName() + " was deleted of course list!");
+        			enrollCourseList.remove(i);
+        			course.unregisterStudent(student);
+        		}
+        	}
+    	}
+    	println("You enroll list is empty!");
     }
     
     public void showEnrollCourse() {
