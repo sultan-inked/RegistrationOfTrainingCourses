@@ -1,0 +1,10 @@
+# Ignored macOS files:
+.DS_Store
+
+# Ignored eclipse files:
+.setting/
+.classpath
+.project
+
+# Ignored comlile files:
+bin/
