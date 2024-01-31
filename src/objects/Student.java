@@ -85,11 +85,11 @@ public class Student implements User{
         		if(enrollCourseList.get(i).getCourseId().equals(course.getCourseId())) {
         			println(course.getCourseName() + " was deleted of course list!");
         			enrollCourseList.remove(i);
-        			course.unregisterStudent((Student)user);
+        			course.unregisterUser((Student)user);
         		}
         	}
     	}
-    	println("You enroll list is empty!");
+    	println("Your enroll list is empty!");
     }
     
     @Override

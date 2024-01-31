@@ -81,7 +81,16 @@ public class Teacher implements User{
 	}
 	@Override
 	public void unenrollInCourse(Course course, User user) {
-		// TODO Auto-generated method stub
+		if(enrollCourseList.size() != 0) {
+    		for(int i = 0; i < enrollCourseList.size(); i++) {
+        		if(enrollCourseList.get(i).getCourseId().equals(course.getCourseId())) {
+        			println(course.getCourseName() + " was deleted of course list!");
+        			enrollCourseList.remove(i);
+        			course.unregisterUser((Teacher)user);
+        		}
+        	}
+    	}
+    	println("Your enroll list is empty!");
 		
 	}
 	@Override

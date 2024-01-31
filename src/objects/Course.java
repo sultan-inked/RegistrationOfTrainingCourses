@@ -66,7 +66,7 @@ public class Course {
     		}
     		println("Error: " + userDefinition + " card is empty!");
     		return;
-    	}//#####################################################
+    	}
     	
     	if(user instanceof Student) {
     		for(int i = 0; i < studentInCrsList.size(); i++) {
@@ -90,23 +90,46 @@ public class Course {
     	
     }
     
-    public void unregisterStudent(Student student) {
-    	if(student == null) {
-    		println("Error: Student card is empty!");
+    public void unregisterUser(User user) {
+    	String userDefinition = "Student";
+    	if(user instanceof Teacher) {
+    		userDefinition = "Teacher";
+    	}
+    	if(user == null) {
+    		println("Error: " + userDefinition + " card is empty!");
     		return;
     	}
-    	if(studentInCrsList.size() == 0) {
-    		println("Students list is empty!");
-    		return;
+    	
+    	if(user instanceof Student) {
+    		if(studentInCrsList.size() == 0) {
+        		println(userDefinition + " list is empty!");
+        		return;
+        	}
+        	for(int i = 0; i < studentInCrsList.size(); i++) {
+        		if(studentInCrsList.get(i).getStudentId().equals(((Student)user).getStudentId())) {
+        			println(userDefinition + " with Id:" + ((Student)user).getStudentId() + " is unregistered of " + this.courseName);
+        			studentInCrsList.remove(i);
+        			return;
+        		}
+        	}
+        	println(userDefinition + " with Id:" + ((Student)user).getStudentId() + " is not registered in course " + this.courseName);
     	}
-    	for(int i = 0; i < studentInCrsList.size(); i++) {
-    		if(studentInCrsList.get(i).getStudentId().equals(student.getStudentId())) {
-    			println("Student with Id:" + student.getStudentId() + " is unregistered of " + this.courseName);
-    			studentInCrsList.remove(i);
-    			return;
-    		}
+    	
+    	if(user instanceof Teacher) {
+    		if(teacherInCrsList.size() == 0) {
+        		println(userDefinition + " list is empty!");
+        		return;
+        	}
+        	for(int i = 0; i < teacherInCrsList.size(); i++) {
+        		if(teacherInCrsList.get(i).getTeacherId().equals(((Teacher)user).getTeacherId())) {
+        			println(userDefinition + " with Id:" + ((Teacher)user).getTeacherId() + " is unregistered of " + this.courseName);
+        			teacherInCrsList.remove(i);
+        			return;
+        		}
+        	}
+        	println(userDefinition + " with Id:" + ((Teacher)user).getTeacherId() + " is not registered in course " + this.courseName);
     	}
-    	println("Student with Id:" + student.getStudentId() + " is not registered in course " + this.courseName);
+    	
     	
     }
     
