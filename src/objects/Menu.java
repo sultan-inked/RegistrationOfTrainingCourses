@@ -348,7 +348,7 @@ public class Menu {
 				userStudent = false;
 			}
 			if(userStudent) {
-				user.showStudentInfo();
+				user.showUserInfo();
 			}
 			println("Save the " + userType + " card?");
 			print("yes/no/back:");

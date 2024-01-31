@@ -1,8 +1,9 @@
 package objects;
 
 import java.util.ArrayList;
+import interfaces.User;
 
-public class Student {
+public class Student implements User{
     public static void println(String str){
         System.out.println(str);
     }
@@ -55,13 +56,15 @@ public class Student {
     }
     
 //    Methods:
-    public void showStudentInfo() {
+    @Override
+    public void showUserInfo() {
     	println("Name: " + firstName);
     	println("Last name: " + lastName);
 //    	println("Student Id:" + studentId);
     }
     
-    public void enrollInCourse(Course course, Student student){
+    @Override
+    public void enrollInCourse(Course course, User user){
     	if(enrollCourseList.size() != 0) {
     		for(int i = 0; i < enrollCourseList.size(); i++) {
         		if(enrollCourseList.get(i).equals(course)) {
@@ -72,23 +75,25 @@ public class Student {
     	}
         println("Enroll in course: " + course.getCourseName());
         enrollCourseList.add(course);
-        course.registerStudent(student);
+        course.registerStudent((Student)user);
     }
     
-    public void unenrollInCourse(Course course, Student student) {
+    @Override
+    public void unenrollInCourse(Course course, User user) {
     	if(enrollCourseList.size() != 0) {
     		for(int i = 0; i < enrollCourseList.size(); i++) {
         		if(enrollCourseList.get(i).getCourseId().equals(course.getCourseId())) {
         			println(course.getCourseName() + " was deleted of course list!");
         			enrollCourseList.remove(i);
-        			course.unregisterStudent(student);
+        			course.unregisterStudent((Student)user);
         		}
         	}
     	}
     	println("You enroll list is empty!");
     }
     
-    public void showEnrollCourse() {
+    @Override
+    public void showEnrollCourseList() {
     	if(enrollCourseList.size() == 0) {
     		println("Course list is empty.");
     	}
