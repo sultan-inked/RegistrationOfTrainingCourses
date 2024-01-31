@@ -1,6 +1,7 @@
 package objects;
 
 import java.util.Scanner;
+import interfaces.User;
 
 public class Menu {
 	public void println(String str) {
@@ -40,7 +41,7 @@ public class Menu {
 	
 //	Log IN ############################################
 	public void logIn(MainList mainList) {
-		Scanner scan = new Scanner(System.in);
+		Scanner scan = new Scanner(System.in); // TODO: Have to delete this line******************
 		println("Log in");
 		for(int i = 0; i == 0;) {
 			print("Your id:");
@@ -108,29 +109,29 @@ public class Menu {
 	}
 	
 //	Users MENU ############################################
-	public void userMenu(MainList mainList, Student student) {
-		var scan = new Scanner(System.in);
+	public void userMenu(MainList mainList, User user) {
+		
 		for(int m = 0; m == 0;) {
 			int lN = 3;
-			if(student instanceof Student) {
+			if(user instanceof Student) {
 				println("Student menu...");
 			}
-			if(student instanceof Teacher) {
+			if(user instanceof Teacher) {
 				println("Teacher menu...");
 			}
 			println("1. Course");
 			println("2. Student");
 			println("3. Teacher");
-			if(student instanceof Teacher) {
+			if(user instanceof Teacher) {
 				println("4. Create course");
 			}
 			println("Or 'exite'");
 			for(int i = 0; i == 0;) {
 				println("Here:");
-				String choice = scan.nextLine();
+				String choice = scan();
 				switch (choice) {
 				case "1":
-					course(mainList, student);
+					course(mainList, user);
 					i++;
 					break;
 				case "2":
@@ -142,16 +143,22 @@ public class Menu {
 					i++;
 					break;
 				case "4":
-					createCourse(mainList, (Teacher)student);
-					i++;
-					break;
+					if(user instanceof Teacher) {
+						createCourse(mainList, (Teacher)user);
+						i++;
+						break;
+					}
+					else {
+						println("Error: Write the number with your choice!");
+						break;
+					}
 				case "exite":
 					i++;
 					m++;
 					loginOrSignUp(mainList);
 					break;
 				default:
-					println("Error: Write number with your choice!");
+					println("Error: Write the number with your choice!");
 				}
 			}
 		}
@@ -159,7 +166,7 @@ public class Menu {
 	}
 	
 //	SearchinG ##########################################
-	public void course(MainList mainList, Student student) {
+	public void course(MainList mainList, User user) {
 		for(int m = 0; m == 0;) {
 			println("Course");
 			println("1. Search");
@@ -170,7 +177,7 @@ public class Menu {
 				var choice = scan();
 				switch (choice) {
 				case "1":
-					searchCourse(mainList, student);
+					searchCourse(mainList, user);
 					i++;
 					break;
 				case "2":
@@ -188,7 +195,7 @@ public class Menu {
 		}
 		
 	}
-	public void searchCourse(MainList mainList, Student student) {
+	public void searchCourse(MainList mainList, User user) {
 		println("Search course");
 		print("Name: ");
 		var name = scan();
@@ -210,18 +217,27 @@ public class Menu {
 					var choice = scan();
 					switch (choice) {
 					case "1":
-						if(student instanceof Teacher) {
-							student.enrollInCourse(course, (Teacher)student);
+						if(user instanceof Teacher) {
+							((Teacher)user).enrollInCourse(course, (Teacher)user);
 							i++;
 							break;
 						}
-						student.enrollInCourse(course, student);
-						i++;
-						break;
+						if(user instanceof Student) {
+							((Student)user).enrollInCourse(course, (Student)user);
+							i++;
+							break;
+						}
 					case "2":
-						student.unenrollInCourse(course, student);
-						i++;
-						break;
+						if(user instanceof Teacher) {
+							((Teacher)user).unenrollInCourse(course, (Teacher)user);
+							i++;
+							break;
+						}
+						if(user instanceof Student) {
+							((Student)user).unenrollInCourse(course, (Student)user);
+							i++;
+							break;
+						}
 					case "back":
 						i++;
 						m++;
@@ -235,13 +251,6 @@ public class Menu {
 		}
 	}
 	
-	public void Student(MainList mainList) {
-		
-	}
-	
-	public void Teacher(MainList mainList) {
-		
-	}
 //	Course CREATE ######################################
 	public void createCourse(MainList mainList, Teacher teacher) {
 		println("Course creator");
@@ -323,32 +332,32 @@ public class Menu {
 			println("Error: Pass code not valid! Write 'back' for back.");
 		}
 		Teacher tch = new Teacher();
-		enterUserInfoAndAddToMainList(mainList, tch);
+		enterUserInfoAndAddToMainList(mainList, (Teacher)tch);
 		loginOrSignUp(mainList);
 		
 	}
-	public void enterUserInfoAndAddToMainList(MainList mainList, Student student) {
-		var user = student;
+	public void enterUserInfoAndAddToMainList(MainList mainList, User user) {
+//		var user = student;
 		String userType = "student's";
 		if(user instanceof Teacher) {
-			user = new Teacher();
+//			user = new Teacher();
 			userType = "teacher's";
 		}
 		for(int i = 0; i == 0;) {
 		    if(user instanceof Teacher) {
 		    	user = new Teacher(enterFirstName(), enterLastName(), enterPassword());
 		    }
-		    else if (user instanceof Teacher) {
+		    else if (user instanceof Student) {
 		    	user = new Student(enterFirstName(), enterLastName(), enterPassword());
 		    }
 			println("You wrote the following information:");
-			boolean userStudent = true;
+//			boolean userStudent = true;
 			if(user instanceof Teacher) {
-				((Teacher) user).showTeacherInfo();
-				userStudent = false;
+				((Teacher)user).showUserInfo();
+//				userStudent = false;
 			}
-			if(userStudent) {
-				user.showStudentInfo();
+			if(user instanceof Student) {
+				((Student)user).showUserInfo();
 			}
 			println("Save the " + userType + " card?");
 			print("yes/no/back:");
@@ -362,12 +371,12 @@ public class Menu {
 				return;
 			}
 		}
-		if(student instanceof Teacher) {
+		if(user instanceof Teacher) {
 			mainList.addTeacher((Teacher)user);
 			return;
 		}
 		if(user instanceof Student) {
-			mainList.addStudent(user);
+			mainList.addStudent((Student)user);
 		}
 	}
 	public String enterFirstName() {
