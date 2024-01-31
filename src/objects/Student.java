@@ -75,7 +75,7 @@ public class Student implements User{
     	}
         println("Enroll in course: " + course.getCourseName());
         enrollCourseList.add(course);
-        course.registerStudent((Student)user);
+        course.registerUser((Student)user);
     }
     
     @Override

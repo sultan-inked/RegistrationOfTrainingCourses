@@ -2,15 +2,18 @@ package objects;
 
 import java.util.ArrayList;
 
-public class Teacher extends Student {
-//	public void println(String str) {
-//		System.out.println(str);
-//	}
+import interfaces.User;
+
+public class Teacher implements User{
+	public void println(String str) {
+		System.out.println(str);
+	}
 	
 //	Parameters:
 	private String teacherId, firstName, lastName, password;
 	
-	private ArrayList<Course> createdCoursesList = new ArrayList<Course>();
+	private ArrayList<Course> enrollCourseList = new ArrayList<>();
+	private ArrayList<Course> createdCoursesList = new ArrayList<>();
 	
 //	Constructors:
 	public Teacher() {
@@ -52,14 +55,42 @@ public class Teacher extends Student {
     }
 	
 //	Methods:
-    public void showTeacherInfo() {
+    
+    @Override
+    public void showUserInfo() {
     	println("Name: " + firstName);
     	println("Last name: " + lastName);
 //    	println("Teacher Id:" + teacherId);
     }
     
-    public void addCourseToList(Course course) {
+    
+	@Override
+	public void enrollInCourse(Course course, User user) {
+		if(enrollCourseList.size() != 0) {
+    		for(int i = 0; i < enrollCourseList.size(); i++) {
+        		if(enrollCourseList.get(i).equals(course)) {
+        			println("You are already enrolling on that course!");
+        			return;
+        		}
+        	}
+    	}
+        println("Enroll in course: " + course.getCourseName());
+        enrollCourseList.add(course);
+        course.registerUser((Teacher)user);
+		
+	}
+	@Override
+	public void unenrollInCourse(Course course, User user) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void showEnrollCourseList() {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	public void addCourseToList(Course course) {
     	createdCoursesList.add(course);
     }
-    
 }
