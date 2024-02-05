@@ -6,5 +6,7 @@
 package controller;
 
 public class MainController {
-
+	public static String createStudentAndSaveReturnId(String[] formArray) {
+		return StudentController.createAndSaveStudentReturnId(formArray);
+	}
 }

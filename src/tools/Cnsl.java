@@ -27,6 +27,6 @@ public abstract class Cnsl {
 //	.scan:
 	public static String scan() {
 		Scanner scan = new Scanner(System.in);
-		return scan.nextLine();
+		return scan.nextLine().trim();
 	}
 }

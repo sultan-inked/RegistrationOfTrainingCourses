@@ -19,23 +19,28 @@ public class Database {
 	private static List<Course> courseList = new ArrayList<>();
 	
 //	Methods:
+	// Show lists []->{ )
+	public static void showList() {
+		// TODO: Show list feature!
+	}
+	
 	// Add to list ->[]
-	public void addStudentToList(Student student) {
+	public static void addStudentToList(Student student) {
 		if(!listAlreadyContain(student)){
 			studentList.add(student);
 		}
 	}
-	public void addTeacherToList(Teacher teacher) {
+	public static void addTeacherToList(Teacher teacher) {
 		if(!listAlreadyContain(teacher)) {
 			teacherList.add(teacher);
 		}
 	}
-	public void addCourseToList(Course course) {
+	public static void addCourseToList(Course course) {
 		if(!listAlreadyContain(course)) {
 			courseList.add(course);
 		}
 	}
-	public boolean listAlreadyContain(Object object) { // TODO:	Method requires optimization!
+	private static boolean listAlreadyContain(Object object) { // TODO:	Method requires optimization!
 		if(object instanceof Student && studentList.size() != 0) {
 			for(int i = 0; i < studentList.size(); i++) {
 				if(studentList.get(i).getUserId().equals(((Student)object).getUserId())){
@@ -64,7 +69,7 @@ public class Database {
 	}
 	
 	// Remove from list X<-[]
-	public void removeStudentFromList(Student student) {
+	public static void removeStudentFromList(Student student) {
 		if(student != null && studentList.size() != 0) {
 			for(int i = 0; i < studentList.size(); i++) {
 				if(studentList.get(i).getUserId().equals(student.getUserId())) {
@@ -76,7 +81,7 @@ public class Database {
 			Cnsl.println("Error: " + student + " card or list are empty!");
 		}
 	}
-	public void removeTeacherFromList(Teacher teacher) {
+	public static void removeTeacherFromList(Teacher teacher) {
 		if(teacher != null && teacherList.size() != 0) {
 			for(int i = 0; i < teacherList.size(); i++) {
 				if(teacherList.get(i).getUserId().equals(teacher.getUserId())) {
@@ -88,7 +93,7 @@ public class Database {
 			Cnsl.println("Error: " + teacher + " card or list are empty!");
 		}
 	}
-	public void removeCourseFromList(Course course) {
+	public static void removeCourseFromList(Course course) {
 		if(course != null && courseList.size() != 0) {
 			for(int i = 0; i < courseList.size(); i++) {
 				if(courseList.get(i).getCourseId().equals(course.getCourseId())) {

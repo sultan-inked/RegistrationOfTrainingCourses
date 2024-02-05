@@ -16,7 +16,7 @@ public class Student extends User {
 		setFirstName(firstName);
 		setLastName(lastName);
 		setPassword(password);
-		setUserId(Id.create(studentIdSignature, studentIdCounter++));
+		setUserId(Id.create(studentIdSignature, ++studentIdCounter));
 	}
     
     @Override
