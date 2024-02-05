@@ -16,9 +16,9 @@ public class MainList {
     	return scan.nextLine();
     }
 	
-	static private ArrayList<Course> courseList = new ArrayList<Course>();
-    static private ArrayList<Student> studentList = new ArrayList<Student>();
-    static private ArrayList<Teacher> teacherList = new ArrayList<Teacher>();
+	static private ArrayList<Course1> courseList = new ArrayList<Course1>();
+    static private ArrayList<Student1> studentList = new ArrayList<Student1>();
+    static private ArrayList<Teacher1> teacherList = new ArrayList<Teacher1>();
     
     private static int courseIdCount = 0, studentIdCount = 0, teacherIdCount = 0;
     
@@ -48,7 +48,7 @@ public class MainList {
     	return null;
     }
     
-    public void addCourse(Course course){
+    public void addCourse(Course1 course){
         if(course != null) {
         	course.setCourseId(idGen("CRS00000"));
         	courseList.add(course);
@@ -59,7 +59,7 @@ public class MainList {
         }
     }
     
-    public void addStudent(Student student){
+    public void addStudent(Student1 student){
         if(student != null) {
         	student.setStudentId(idGen("STD00000"));
         	studentList.add(student);
@@ -70,7 +70,7 @@ public class MainList {
         }
     }
     
-    public void addTeacher(Teacher teacher) {
+    public void addTeacher(Teacher1 teacher) {
     	if(teacher != null) {
     		teacher.setTeacherId(idGen("TCH00000"));
     		teacherList.add(teacher);
@@ -119,7 +119,7 @@ public class MainList {
     }
     
 //    course:
-    public Course searchCourseNameId(String name, String id) {
+    public Course1 searchCourseNameId(String name, String id) {
     	if(courseList.size() == 0) {
     		println("Course list is empty!");
     		return null;
@@ -136,9 +136,9 @@ public class MainList {
     	println("Course with id:" + id + " is not found!");
     	return searchCourseName(name);
     }
-    public Course searchCourseName(String name) {
+    public Course1 searchCourseName(String name) {
     	int cntr = 1;
-		ArrayList<Course> courseListTemp = new ArrayList<Course>();
+		ArrayList<Course1> courseListTemp = new ArrayList<Course1>();
 		for(int i = 0; i < courseList.size(); i++) {
 			if(courseList.get(i).getCourseName().equals(name)) {
 				println(cntr + ". " + courseList.get(i).getCourseName() + " " +
@@ -174,7 +174,7 @@ public class MainList {
     
     
 //    login search:
-    public Student searchStudentById(String studentId) {
+    public Student1 searchStudentById(String studentId) {
     	if(studentList.size() == 0) {
     		println("Student cards list is empty!");
     		return null;
@@ -188,7 +188,7 @@ public class MainList {
     	return null;
     }
     
-    public Teacher searchTeacherById(String teacherId) {
+    public Teacher1 searchTeacherById(String teacherId) {
     	if(teacherList.size() == 0) {
     		println("Teacher cards list is empty!");
     		return null;

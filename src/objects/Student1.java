@@ -3,23 +3,23 @@ package objects;
 import java.util.ArrayList;
 import interfaces.User;
 
-public class Student implements User{
+public class Student1 implements User{
     public static void println(String str){
         System.out.println(str);
     }
 //    Parameters:
     private String firstName, lastName, studentId, password;
     
-    private ArrayList<Course> enrollCourseList = new ArrayList<Course>();
+    private ArrayList<Course1> enrollCourseList = new ArrayList<Course1>();
     
     
     
 //    Constructors:
-    public Student() {
+    public Student1() {
     	
     }
     
-    public Student(String firstName, String lastName, String password){
+    public Student1(String firstName, String lastName, String password){
     	this.lastName = lastName;
     	this.firstName = firstName;
 //        this.studentId = studentId;
@@ -64,7 +64,7 @@ public class Student implements User{
     }
     
     @Override
-    public void enrollInCourse(Course course, User user){
+    public void enrollInCourse(Course1 course, User user){
     	if(enrollCourseList.size() != 0) {
     		for(int i = 0; i < enrollCourseList.size(); i++) {
         		if(enrollCourseList.get(i).equals(course)) {
@@ -75,17 +75,17 @@ public class Student implements User{
     	}
         println("Enroll in course: " + course.getCourseName());
         enrollCourseList.add(course);
-        course.registerUser((Student)user);
+        course.registerUser((Student1)user);
     }
     
     @Override
-    public void unenrollInCourse(Course course, User user) {
+    public void unenrollInCourse(Course1 course, User user) {
     	if(enrollCourseList.size() != 0) {
     		for(int i = 0; i < enrollCourseList.size(); i++) {
         		if(enrollCourseList.get(i).getCourseId().equals(course.getCourseId())) {
         			println(course.getCourseName() + " was deleted of course list!");
         			enrollCourseList.remove(i);
-        			course.unregisterUser((Student)user);
+        			course.unregisterUser((Student1)user);
         		}
         	}
     	}

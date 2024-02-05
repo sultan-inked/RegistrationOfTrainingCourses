@@ -1,12 +1,12 @@
 package interfaces;
 
-import objects.Course;
+import objects.Course1;
 
 public interface User {
 	
 	void showUserInfo();
-	void enrollInCourse(Course course, User user);
-	void unenrollInCourse(Course course, User user);
+	void enrollInCourse(Course1 course, User user);
+	void unenrollInCourse(Course1 course, User user);
 	void showEnrollCourseList();
 	
 }

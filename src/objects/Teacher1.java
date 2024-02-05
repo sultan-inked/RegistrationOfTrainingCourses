@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import interfaces.User;
 
-public class Teacher implements User{
+public class Teacher1 implements User{
 	public void println(String str) {
 		System.out.println(str);
 	}
@@ -12,14 +12,14 @@ public class Teacher implements User{
 //	Parameters:
 	private String teacherId, firstName, lastName, password;
 	
-	private ArrayList<Course> enrollCourseList = new ArrayList<>();
-	private ArrayList<Course> createdCoursesList = new ArrayList<>();
+	private ArrayList<Course1> enrollCourseList = new ArrayList<>();
+	private ArrayList<Course1> createdCoursesList = new ArrayList<>();
 	
 //	Constructors:
-	public Teacher() {
+	public Teacher1() {
 		
 	}
-	public Teacher(String firstName, String lastName, String password){
+	public Teacher1(String firstName, String lastName, String password){
     	this.lastName = lastName;
     	this.firstName = firstName;
         this.password = password;        
@@ -65,7 +65,7 @@ public class Teacher implements User{
     
     
 	@Override
-	public void enrollInCourse(Course course, User user) {
+	public void enrollInCourse(Course1 course, User user) {
 		if(enrollCourseList.size() != 0) {
     		for(int i = 0; i < enrollCourseList.size(); i++) {
         		if(enrollCourseList.get(i).equals(course)) {
@@ -76,17 +76,17 @@ public class Teacher implements User{
     	}
         println("Enroll in course: " + course.getCourseName());
         enrollCourseList.add(course);
-        course.registerUser((Teacher)user);
+        course.registerUser((Teacher1)user);
 		
 	}
 	@Override
-	public void unenrollInCourse(Course course, User user) {
+	public void unenrollInCourse(Course1 course, User user) {
 		if(enrollCourseList.size() != 0) {
     		for(int i = 0; i < enrollCourseList.size(); i++) {
         		if(enrollCourseList.get(i).getCourseId().equals(course.getCourseId())) {
         			println(course.getCourseName() + " was deleted of course list!");
         			enrollCourseList.remove(i);
-        			course.unregisterUser((Teacher)user);
+        			course.unregisterUser((Teacher1)user);
         		}
         	}
     	}
@@ -99,7 +99,7 @@ public class Teacher implements User{
 		
 	}
 	
-	public void addCourseToList(Course course) {
+	public void addCourseToList(Course1 course) {
     	createdCoursesList.add(course);
     }
 }
