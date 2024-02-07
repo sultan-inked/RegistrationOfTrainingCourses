@@ -14,7 +14,7 @@ public class UserMenuView {
 		Cnsl.println("1. Courses");
 		Cnsl.println("2. Students");
 		Cnsl.println("3. Teachers");
-		Cnsl.println("\'exite\'");
+		Cnsl.println("\'exit\'");
 		while(true) {
 			Alerts.wrtHere();
 			String choice = Cnsl.scan();
@@ -34,7 +34,6 @@ public class UserMenuView {
 				// TODO: Make feature with Teacher
 				break;
 			case "exit":
-				WelcomeView.start();
 				return;
 				default:
 					Alerts.wrtNmbr();

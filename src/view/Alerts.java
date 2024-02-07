@@ -20,6 +20,6 @@ public class Alerts {
 	}
 	
 	public static void wrtHere() {
-		Cnsl.println("Write here: ");
+		Cnsl.print("Write here: ");
 	}
 }

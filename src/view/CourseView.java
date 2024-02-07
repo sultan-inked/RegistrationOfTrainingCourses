@@ -24,11 +24,22 @@ public class CourseView {
 			String choice = Cnsl.scan();
 			switch(choice) {
 			case "1":
-				
+				Alerts.ftrNotYet();
+				// TODO: Make feature: Search course
+				break;
 			case "2":
-				
+				Alerts.ftrNotYet();
+				// TODO: Make feature: Show course list
+				break;
 			case "3":
-				
+				if(user instanceof Teacher) {
+					Alerts.ftrNotYet();
+					// TODO: Make feature: Create course
+				}else {
+					Alerts.wrtNmbr();
+				}
+				courseMenu(user);
+				return;
 			case "back":
 				return;
 				default:

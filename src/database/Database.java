@@ -162,6 +162,7 @@ public class Database {
 		return null;
 	}
 
+//	Create default objects:
 	public static void addDefaultUserCards() {
 		addTeacherToList(new Teacher("Walter", "White", "1234"));
 		addTeacherToList(new Teacher("Gustaf", "Fring", "1234"));
@@ -178,7 +179,13 @@ public class Database {
 		addStudentToList(new Student("Christian", "Combo", "1234"));
 		addStudentToList(new Student("Tuco", "Salamanka", "1234"));
 		addStudentToList(new Student("Sultan", "Abdrakhmanov", "12345"));
-		
+	}
+	
+	public static void addDefaultCoursesCards() {
+		addCourseToList(new Course(teacherList.get(0), "MethLab", "About how to cook meht."));
+		addCourseToList(new Course(teacherList.get(1), "MethMarket", "How to delivery meth."));
+		addCourseToList(new Course(teacherList.get(2), "Lawyer", "How to behave in an interrogation."));
+		addCourseToList(new Course(teacherList.get(3), "Raid", "How to storm the house where the meth lab is."));
 	}
 	
 	
