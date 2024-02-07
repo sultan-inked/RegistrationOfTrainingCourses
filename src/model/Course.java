@@ -16,7 +16,7 @@ public class Course {
     private Teacher courseCreator;
     
     private static int courseIdCounter = 0;
-    private String courseIdSignature = "CRS000000";
+    private static final String courseIdSignature = "CRS000000";
     
     private List<Student> listOfEnrolledStudents = new ArrayList<>();
     private List<Teacher> listOfEnrolledTeachers = new ArrayList<>();
@@ -30,6 +30,11 @@ public class Course {
     }
     
 //	Getters and Setters:
+    public static String getCourseIdSignature() {
+    	return courseIdSignature;
+    	
+    }
+    
 	public String getCourseName() {
 		return courseName;
 	}

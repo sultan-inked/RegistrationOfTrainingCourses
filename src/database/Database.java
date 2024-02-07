@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 import model.Student;
 import model.Teacher;
+import model.User;
 import model.Course;
 import tools.Cnsl;
 
@@ -18,10 +19,19 @@ public class Database {
 	private static List<Teacher> teacherList = new ArrayList<>();
 	private static List<Course> courseList = new ArrayList<>();
 	
+	private static String studentIdSignature = Student.getStudentIdSignature().substring(0, 3);
+	private static String teacherIdSignature = Teacher.getTeacherIdSignature().substring(0, 3);
+	private static String courseIdSignature = Course.getCourseIdSignature().substring(0, 3);
+	
 //	Methods:
 	// Show lists []->{ )
 	public static void showList() {
 		// TODO: Show list feature!
+	}
+	public static void showTeacherListIdName() {
+		for(Teacher teacher: teacherList) {
+			Cnsl.println(teacher.getUserId() + teacher.getFirstName());
+		}
 	}
 	
 	// Add to list ->[]
@@ -105,6 +115,73 @@ public class Database {
 			Cnsl.println("Error: " + course + " card or list are empty!");
 		}
 	}
+	
+	// Search in list and return object []->*
+	public static Object searchIdInList(String objectId) {
+		if(objectId.length() < 3) {
+			Cnsl.println("Incorrect id!");
+			return null;
+		}
+		if(objectId.substring(0, 3).equals(studentIdSignature)) {
+			return searchStudentInList(objectId);
+		}
+		if(objectId.substring(0, 3).equals(teacherIdSignature)) {
+			return searchTeacherInList(objectId);
+		}
+		return null;
+
+	}
+	
+	// Search Student:
+	public static Student searchStudentInList(String studentId){
+		if(studentList.size() == 0) {
+			Cnsl.println("Student list is empty!");
+			return null;
+		}
+		for(int i = 0; i < studentList.size(); i++) {
+			if(studentList.get(i).getUserId().equals(studentId)) {
+				return studentList.get(i);
+			}
+		}
+		Cnsl.println("Not found a student with the id: " + studentId);
+		return null;
+	}
+	
+	// Search Teacher:
+	public static Teacher searchTeacherInList(String teacherId) {
+		if(teacherList.size() == 0) {
+			Cnsl.println("Teacher list is empty!");
+			return null;
+		}
+		for(int i = 0; i < teacherList.size(); i++) {
+			if(teacherList.get(i).getUserId().equals(teacherId)) {
+				return teacherList.get(i);
+			}
+		}
+		Cnsl.println("Not found a teacher with the id:" + teacherId);
+		return null;
+	}
+
+	public static void addDefaultUserCards() {
+		addTeacherToList(new Teacher("Walter", "White", "1234"));
+		addTeacherToList(new Teacher("Gustaf", "Fring", "1234"));
+		addTeacherToList(new Teacher("Saul", "Goodman", "1234"));
+		addTeacherToList(new Teacher("Hank", "Schrader", "1234"));
+		
+		addStudentToList(new Student("Jesse", "Pinkman", "1234"));
+		addStudentToList(new Student("Flin", "White", "1234"));
+		addStudentToList(new Student("Gale", "Botticher", "1234"));
+		addStudentToList(new Student("Skyler", "White", "1234"));
+		addStudentToList(new Student("Bagher", "Dude", "1234"));
+		addStudentToList(new Student("Skinny", "Pete", "1234"));
+		addStudentToList(new Student("Hector", "Salamanka", "1234"));
+		addStudentToList(new Student("Christian", "Combo", "1234"));
+		addStudentToList(new Student("Tuco", "Salamanka", "1234"));
+		addStudentToList(new Student("Sultan", "Abdrakhmanov", "12345"));
+		
+	}
+	
+	
 	
 	
 }

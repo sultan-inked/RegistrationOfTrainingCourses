@@ -10,8 +10,9 @@ import tools.Id;
 public class Student extends User {
 //	Variables:
 	private static int studentIdCounter = 0;
-    private String studentIdSignature = "STD000000";
+    private static String studentIdSignature = "STD000000";
     
+//  Constructors:
     public Student(String firstName, String lastName, String password) {
 		setFirstName(firstName);
 		setLastName(lastName);
@@ -19,6 +20,12 @@ public class Student extends User {
 		setUserId(Id.create(studentIdSignature, ++studentIdCounter));
 	}
     
+//    Getters and Setters:
+    public static String getStudentIdSignature() {
+    	return studentIdSignature;
+    }
+    
+//    Methods:
     @Override
     public String toString() {
     	return "Student";

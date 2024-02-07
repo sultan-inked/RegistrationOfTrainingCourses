@@ -14,4 +14,12 @@ public class Alerts {
 	public static void separator() {
 		Cnsl.println("_____________________________________");
 	}
+	
+	public static void ftrNotYet() {
+		Cnsl.println("This feature has not yet been developed.");
+	}
+	
+	public static void wrtHere() {
+		Cnsl.println("Write here: ");
+	}
 }

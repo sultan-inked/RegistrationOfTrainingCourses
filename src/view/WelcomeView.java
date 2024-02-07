@@ -10,7 +10,7 @@ public class WelcomeView {
 			String logInOrRegistration = logInOrSignUp();
 			switch(logInOrRegistration) {
 			case "Login":
-				
+				LoginView.login();
 				break;
 			case "Registration":
 				RegistrationView.registration();
