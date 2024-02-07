@@ -10,22 +10,24 @@ public class LoginView {
 	public static void login() {
 		Alerts.separator();
 		Cnsl.println("Login");
-		var user = idPasswordValidator();
+		
+		var user = takeIdAndPasswordForValidating();
 		if(user != null) {
 			UserMenuView userMenu = new UserMenuView();
 			userMenu.userMenu(user);
 		}
 	}
 	
-	public static User idPasswordValidator() {
+	public static User takeIdAndPasswordForValidating() {
 		while(true) {
 			Cnsl.print("Your id: ");
 			String userId = Cnsl.scan();
-			// Back to start screen if write 'back'.
+			
+			// Back to start-screen if write 'back'.
 			if(userId.equals("back")) {
-				WelcomeView.start();
 				return null;
 			}
+			
 			Cnsl.print("Password:");
 			String userPassword = Cnsl.scan();
 			
@@ -42,6 +44,4 @@ public class LoginView {
 			}
 		}
 	}
-	
-	
 }

@@ -128,6 +128,7 @@ public class Database {
 		if(objectId.substring(0, 3).equals(teacherIdSignature)) {
 			return searchTeacherInList(objectId);
 		}
+		Cnsl.println("Incorrect id!");
 		return null;
 
 	}
