@@ -51,7 +51,7 @@ public class RegistrationView {
 		Alerts.separator();
 		Cnsl.println("Student registration");
 		var formArray = formOne();
-		String studentId = MainController.createStudentAndSaveReturnId(formArray);
+		String studentId = MainController.dataTransferToCreateStudentCardAndReturnId(formArray);
 		Cnsl.println("Student card created!");
 		Cnsl.println("Your id: " + studentId);
 	}
@@ -62,6 +62,9 @@ public class RegistrationView {
 		if(keyWordValidator()) {
 			var formArray = formOne();
 			// TODO: make teacher card and save to database
+			String teacherId = MainController.dataTransferToCreateTeacherCardAndReturnId(formArray);
+			Cnsl.println("Teacher card created!");
+			Cnsl.println("Your id: " + teacherId);
 		}
 	}
 	public static boolean keyWordValidator() {

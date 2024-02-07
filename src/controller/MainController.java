@@ -11,11 +11,16 @@ import tools.Cnsl;
 import model.Student;
 
 public class MainController {
-	public static String createStudentAndSaveReturnId(String[] formArray) {
-		return StudentController.createAndSaveStudentReturnId(formArray);
+	// It's using in RegistrationView.java
+	public static String dataTransferToCreateStudentCardAndReturnId(String[] formArray) {
+		return StudentController.createStudentCardSaveAndReturnId(formArray);
+	}
+	public static String dataTransferToCreateTeacherCardAndReturnId(String[] formArray) {
+		return TeacherController.createTeacherCardSaveAndReturnId(formArray);
 	}
 	
-	public static User idPasswordValidator(String userId, String userPassword) {
+	// It's using in LoginView.java
+	public static User idAndPasswordValidator(String userId, String userPassword) {
 		var user = (User)Database.searchIdInList(userId);
 		if(user == null) {
 			return null;

@@ -5,20 +5,27 @@ import view.*;
 
 public class WelcomeView {
 	public static void start() {
+		Cnsl.println("Hello there!");
+		Cnsl.println("Just write number with your choice");
+		Cnsl.println("1. Login");
+		Cnsl.println("2. Sign up");
 		while(true) {
-			Cnsl.println("Hello there!");
-			String logInOrRegistration = logInOrSignUp();
-			switch(logInOrRegistration) {
-			case "Login":
+			Alerts.wrtHere();
+			String choice = Cnsl.scan();
+			switch(choice) {
+			case "1":
 				LoginView.login();
-				break;
-			case "Registration":
+				start();
+				return;
+			case "2":
 				RegistrationView.registration();
-				break;
+				start();
+				return;
 			case "exit":
 				return;
 			}
 		}
+		
 		
 	}
 	

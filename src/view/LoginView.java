@@ -11,10 +11,10 @@ public class LoginView {
 		Alerts.separator();
 		Cnsl.println("Login");
 		var user = idPasswordValidator();
-		UserMenuView userMenu = new UserMenuView();
-		userMenu.userMenu(user);
-		
-		
+		if(user != null) {
+			UserMenuView userMenu = new UserMenuView();
+			userMenu.userMenu(user);
+		}
 	}
 	
 	public static User idPasswordValidator() {
@@ -29,7 +29,7 @@ public class LoginView {
 			Cnsl.print("Password:");
 			String userPassword = Cnsl.scan();
 			
-			var user = MainController.idPasswordValidator(userId, userPassword);
+			var user = MainController.idAndPasswordValidator(userId, userPassword);
 			if(user != null) {
 				if(user instanceof Student) {
 					return (Student)user;
