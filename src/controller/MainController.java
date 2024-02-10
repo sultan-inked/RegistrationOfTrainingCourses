@@ -6,9 +6,9 @@
 package controller;
 
 import database.Database;
-import model.User;
+import model.*;
 import tools.Cnsl;
-import model.Student;
+import controller.*;
 
 public class MainController {
 	// It's using in RegistrationView.java
@@ -30,6 +30,48 @@ public class MainController {
 		}else {
 			Cnsl.println("Invalid password!");
 			return null;
+		}
+	}
+	
+	// It's using in CourseView.java
+	public static Course searchCourseById(String courseId) {
+		if(courseId != null && !courseId.equals("")) {
+			return (Course)Database.searchIdInList(courseId);
+		}
+		return null;
+	}
+	
+	public static void enrollInCourse(User user, Course course) {
+		if(user == null || course == null) {
+			Cnsl.println("Error: User or Course is empty(null)");
+			return;
+		}
+		if(user instanceof Student) {
+			var studentController = new StudentController();
+			studentController.enrollInCourse(new CourseController(), course, user);
+			studentController = null;
+		}
+		if(user instanceof Teacher) {
+			var teacherController = new TeacherController();
+			teacherController.enrollInCourse(new CourseController(), course, user);
+			teacherController = null;
+		}
+	}
+	
+	public static void unenrollInCourse(User user, Course course) {
+		if(user == null || course == null) {
+			Cnsl.println("Error: User or Course is empty(null)");
+			return;
+		}
+		if(user instanceof Student) {
+			var studentController = new StudentController();
+			studentController.unenrollInCourse(new CourseController(), course, user);
+			studentController = null;		
+		}
+		if(user instanceof Teacher) {
+			var teacherController = new TeacherController();
+			teacherController.unenrollInCourse(new CourseController(), course, user);
+			teacherController = null;
 		}
 	}
 

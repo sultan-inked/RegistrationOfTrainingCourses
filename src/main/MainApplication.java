@@ -21,4 +21,5 @@ public class MainApplication {
 * 2. Optimize and remove infinite loops
 * 3. Add feature with course: search, show list and create
 * 		(Show who enrolled in every course by request)
+* 4. Fix bag with unenrolling of course when you already enrolling on another course
 */

@@ -26,7 +26,7 @@ public class Course {
     	this.courseCreator = courseCreator;
         this.courseName = courseName;
         this.courseDescription = courseDescription;
-        this.courseId = Id.create(courseIdSignature, courseIdCounter++);
+        this.courseId = Id.create(courseIdSignature, ++courseIdCounter);
     }
     
 //	Getters and Setters:

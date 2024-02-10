@@ -4,7 +4,10 @@
 
 package controller;
 
+import java.util.Arrays;
+
 import model.User;
+import tools.Cnsl;
 import model.Student;
 import model.Teacher;
 import model.Course;
@@ -13,6 +16,16 @@ public class CourseController {
 
 	
 //	Methods:
+	public static String[] getCourseInfoArray(Course course) {
+		var courseInfoArray = new String[4];
+		courseInfoArray[0] = "Author: " + course.getCourseCreator().getFirstName() + " " + course.getCourseCreator().getLastName();
+		courseInfoArray[1] = "Name: " + course.getCourseName();
+		courseInfoArray[2] = "Id: " + course.getCourseId();
+		courseInfoArray[3] = "Description: " + course.getCourseDescription();
+		return courseInfoArray;
+		
+	}
+	
 	public void registerUser(Course course, User user) {
 		if(user instanceof Student) {
 			course.addListOfEnrolledStudents((Student)user);

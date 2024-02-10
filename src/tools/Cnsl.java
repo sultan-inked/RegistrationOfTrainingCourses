@@ -10,6 +10,10 @@ import java.util.Scanner;
 public abstract class Cnsl {
 	
 //	.print:
+	public static void println() {
+		System.out.println();
+	}
+	
 	public static void println(String str) {
 		System.out.println(str);
 	}

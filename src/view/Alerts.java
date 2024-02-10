@@ -22,4 +22,8 @@ public class Alerts {
 	public static void wrtHere() {
 		Cnsl.print("Write here: ");
 	}
+	
+	public static void tryAgainOrBack() {
+		Cnsl.println("Try again or write \'back\'");
+	}
 }

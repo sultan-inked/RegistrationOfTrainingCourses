@@ -128,6 +128,9 @@ public class Database {
 		if(objectId.substring(0, 3).equals(teacherIdSignature)) {
 			return searchTeacherInList(objectId);
 		}
+		if(objectId.substring(0, 3).equals(courseIdSignature)) {
+			return searchCourseInList(objectId);
+		}
 		Cnsl.println("Incorrect id!");
 		return null;
 
@@ -162,7 +165,21 @@ public class Database {
 		Cnsl.println("Not found a teacher with the id:" + teacherId);
 		return null;
 	}
-
+	
+	// Search Course:
+	public static Course searchCourseInList(String courseId) {
+		if(courseList.size() == 0) {
+			Cnsl.println("Course list is empty!");
+			return null;
+		}
+		for(int i = 0; i < courseList.size(); i++) {
+			if(courseList.get(i).getCourseId().equals(courseId)) {
+				return courseList.get(i);
+			}
+		}
+		Cnsl.println("Not found a course with the id:" + courseId);
+		return null;
+	}
 //	Create default objects:
 	public static void addDefaultUserCards() {
 		addTeacherToList(new Teacher("Walter", "White", "1234"));

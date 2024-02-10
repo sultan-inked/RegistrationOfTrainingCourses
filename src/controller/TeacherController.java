@@ -8,7 +8,7 @@ import model.Teacher;
 import model.Course;
 import database.Database;
 
-public class TeacherController {
+public class TeacherController extends UserController {
 //	Methods:
 	public static String createTeacherCardSaveAndReturnId(String[] listArray) {
 		var teacher = new Teacher(listArray[0], listArray[1], listArray[2]);
