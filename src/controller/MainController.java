@@ -5,6 +5,8 @@
 
 package controller;
 
+import java.util.ArrayList;
+
 import database.Database;
 import model.*;
 import tools.Cnsl;
@@ -21,6 +23,7 @@ public class MainController {
 	public static String dataTransferToCreateCourseCardAndReturnId(String[] formArray, Teacher teacher) {
 		return CourseController.createCourseCardSaveAndReturnId(formArray, teacher);
 	}
+	
 	// It's using in LoginView.java
 	public static User idAndPasswordValidator(String userId, String userPassword) {
 		var user = (User)Database.searchIdInList(userId);
@@ -36,9 +39,23 @@ public class MainController {
 	}
 	
 	// It's using in CourseView.java
+	public static String getCourseIdSignature() {
+		return Database.getCourseIdSignature();
+	}
+	
 	public static Course searchCourseById(String courseId) {
 		if(courseId != null && !courseId.equals("")) {
-			return (Course)Database.searchIdInList(courseId);
+			var course = Database.searchIdInList(courseId);
+			if(course != null) {
+				return (Course)course;
+			}
+		}
+		return null;
+	}
+	
+	public static ArrayList<Course> searchCourseByNameAndReturnArrayList(String courseName){
+		if(courseName != null && !courseName.equals("")) {
+			return Database.searchCourseInListByName(courseName);
 		}
 		return null;
 	}
@@ -59,7 +76,6 @@ public class MainController {
 			teacherController = null;
 		}
 	}
-	
 	public static void unenrollInCourse(User user, Course course) {
 		if(user == null || course == null) {
 			Cnsl.println("Error: User or Course is empty(null)");

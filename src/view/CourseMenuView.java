@@ -5,6 +5,7 @@
 package view;
 
 import java.util.Arrays;
+import java.util.ArrayList;
 
 import model.User;
 import model.Student;
@@ -36,8 +37,10 @@ public class CourseMenuView {
 				return;
 			case "2":
 				Alerts.ftrNotYet();
-				// TODO: Make feature: Show course list
 				break;
+//				showCourseList();
+//				courseMenu(user);
+//				return;
 			case "3":
 				if(user instanceof Teacher) {
 					createCourseMenu((Teacher)user);
@@ -55,62 +58,8 @@ public class CourseMenuView {
 		}
 	}
 	
-	// Search course:
-	public void searchCourse(User user) {
-		Alerts.separator();
-		Cnsl.println("Search course");
-		Cnsl.println("1. by id");
-		Cnsl.println("2. by name");
-		Cnsl.println("3. by author");
-		Cnsl.println("\'back\'");
-		while(true) {
-			Alerts.wrtHere();
-			String choice = Cnsl.scan();
-			switch(choice) {
-			case "1":
-				searchCourseById(user);
-				return;
-			case "2":
-				Alerts.ftrNotYet();
-				break;
-			case "3":
-				Alerts.ftrNotYet();
-				break;
-			case "back":
-				courseMenu(user);
-				return;
-				default:
-					Alerts.wrtNmbr();
-			}
-		}
-	}
-	public void searchCourseById(User user) {
-		Alerts.separator();
-		Cnsl.println("Search course by id");
-		Course course;
-		while(true) {
-			Cnsl.print("Id: ");
-			String courseId = Cnsl.scan();
-			if(courseId != null && !courseId.equals("") && courseId.length() == 9) {
-				whatToDoWithTheCourse(course = MainController.searchCourseById(courseId), user);
-				return;
-			}
-			else if(courseId.equals("back")) {
-				searchCourse(user);
-				return;
-			}
-			else {
-				Cnsl.println("Incorrect course id!");
-				Alerts.tryAgainOrBack();
-			}
-		}
-		
-	}
-	
-	// Course action:
+//	Course action:
 	public void whatToDoWithTheCourse(Course course, User user) {
-		Alerts.separator();
-		Cnsl.println("Course found!");
 		String[] courseInfoArray = CourseController.getCourseInfoArray(course);
 		for(String info: courseInfoArray) {
 			Cnsl.println(info);
@@ -153,7 +102,124 @@ public class CourseMenuView {
 		}
 	}
 	
-	// Create course:
+//	Search course:
+	public void searchCourse(User user) {
+		Alerts.separator();
+		Cnsl.println("Search course");
+		Cnsl.println("1. by id");
+		Cnsl.println("2. by name");
+		Cnsl.println("3. by author");
+		Cnsl.println("\'back\'");
+		while(true) {
+			Alerts.wrtHere();
+			String choice = Cnsl.scan();
+			switch(choice) {
+			case "1":
+				searchCourseById(user);
+				return;
+			case "2":
+				searchCourseByName(user);
+				return;
+			case "3":
+				Alerts.ftrNotYet();
+				break;
+			case "back":
+				courseMenu(user);
+				return;
+				default:
+					Alerts.wrtNmbr();
+			}
+		}
+	}
+	public void searchCourseById(User user) {
+		Alerts.separator();
+		Cnsl.println("Search course by id");
+		Course course;
+		while(true) {
+			Cnsl.print("Id: ");
+			String courseId = Cnsl.scan();
+			if(courseId.substring(0, 3).equals(MainController.getCourseIdSignature()) 
+					&& courseId != null && !courseId.equals("") && courseId.length() == 9) {
+				course = MainController.searchCourseById(courseId);
+				if(course != null) {
+					Alerts.separator();
+					Cnsl.println("Course found!");
+					whatToDoWithTheCourse(course, user);
+					return;
+				}
+				Alerts.tryAgainOrBack();
+			}
+			else if(courseId.equals("back")) {
+				searchCourse(user);
+				return;
+			}
+			else {
+				Cnsl.println("Incorrect course id!");
+				Alerts.tryAgainOrBack();
+			}
+		}
+	}
+	public void searchCourseByName(User user) {
+		Alerts.separator();
+		Cnsl.println("Search course by name");
+		Cnsl.print("Name: ");
+		String courseName = Cnsl.scan();
+		if(courseName.equals("back")) {
+			searchCourse(user);
+			return;
+		}
+		ArrayList<Course> coursesFoundList = MainController.searchCourseByNameAndReturnArrayList(courseName);
+		if(coursesFoundList.size() == 0) {
+			Alerts.tryAgainOrBack();
+			searchCourseByName(user);
+			return;
+		}
+		if(coursesFoundList.size() == 1) {
+			Cnsl.println("1 course founded with that name!");
+			whatToDoWithTheCourse(coursesFoundList.get(0), user);
+			return;
+		}
+		if(coursesFoundList.size() > 1) {
+			Cnsl.println(coursesFoundList.size() + " courses with the name \'" + coursesFoundList.get(0).getCourseName()
+					+ "\' founded!");
+			Course course = choiceCourseInList(coursesFoundList);
+			if(course != null) {
+				Alerts.separator();
+				Cnsl.println("Your choice course");
+				whatToDoWithTheCourse(course, user);
+			}
+		}
+	}
+	public void searchCourseByAuthor(User user) {
+		
+	}
+	public Course choiceCourseInList(ArrayList<Course> coursesFoundList) {
+		for(int i = 0; i < coursesFoundList.size(); i++) {
+			Cnsl.println((i+1) + ". Id: " + coursesFoundList.get(i).getCourseId() + "\n"
+					+ "   Name: " + coursesFoundList.get(i).getCourseName() + "\n"
+					+ "   Author: " + coursesFoundList.get(i).getCourseCreator().getFirstName()
+					+ " " + coursesFoundList.get(i).getCourseCreator().getLastName());
+			Cnsl.println("   Descriprion: " + coursesFoundList.get(i).getCourseDescription());
+		}
+		while(true) {
+			Cnsl.print("Write number with your course:");
+			String choice = Cnsl.scan();
+			int choiceInt = Integer.parseInt(choice);
+			if(choiceInt > 0 && choiceInt <= coursesFoundList.size()) {
+				return coursesFoundList.get(choiceInt -1);
+			}else {
+				Cnsl.println("Wrong, write number between: 1 to " + coursesFoundList.size());
+			}
+		}
+	}
+	
+//	Show course list
+	public void showCourseList() {
+//		var courseList = MainController.returnCourseList();
+		// TODO: Make feature, show course list
+	}
+	
+//	Create course:
 	public void createCourseMenu(Teacher teacher) {
 		Alerts.separator();
 		Cnsl.println("Course creator");

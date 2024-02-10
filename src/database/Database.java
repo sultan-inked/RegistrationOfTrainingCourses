@@ -23,6 +23,11 @@ public class Database {
 	private static String teacherIdSignature = Teacher.getTeacherIdSignature().substring(0, 3);
 	private static String courseIdSignature = Course.getCourseIdSignature().substring(0, 3);
 	
+//	Getters and Setters:
+	public static String getCourseIdSignature() {
+		return courseIdSignature;
+	}
+	
 //	Methods:
 	// Show lists []->{ )
 	public static void showList() {
@@ -162,7 +167,7 @@ public class Database {
 				return teacherList.get(i);
 			}
 		}
-		Cnsl.println("Not found a teacher with the id:" + teacherId);
+		Cnsl.println("Not found a teacher with the id: " + teacherId);
 		return null;
 	}
 	
@@ -177,9 +182,26 @@ public class Database {
 				return courseList.get(i);
 			}
 		}
-		Cnsl.println("Not found a course with the id:" + courseId);
+		Cnsl.println("Not found a course with the id: " + courseId);
 		return null;
 	}
+	public static ArrayList<Course> searchCourseInListByName(String courseName){
+		ArrayList<Course> coursesFoundList = new ArrayList<>();
+		if(courseList.size() == 0) {
+			Cnsl.println("Course list is empty!");
+			return null;
+		}
+		for(int i = 0; i < courseList.size(); i++) {
+			if(courseList.get(i).getCourseName().equals(courseName)) {
+				coursesFoundList.add(courseList.get(i));
+			}
+		}
+		if(coursesFoundList.size() == 0) {
+			Cnsl.println("Not found a course with the name: " + courseName);
+		}
+		return coursesFoundList;
+	}
+	
 //	Create default objects:
 	public static void addDefaultUserCards() {
 		addTeacherToList(new Teacher("Walter", "White", "1234"));
@@ -204,6 +226,9 @@ public class Database {
 		addCourseToList(new Course(teacherList.get(1), "MethMarket", "How to delivery meth."));
 		addCourseToList(new Course(teacherList.get(2), "Lawyer", "How to behave in an interrogation."));
 		addCourseToList(new Course(teacherList.get(3), "Raid", "How to storm the house where the meth lab is."));
+		addCourseToList(new Course(teacherList.get(1), "MethLab", "About how to building must of big and proffesional meth lab."));
+		addCourseToList(new Course(teacherList.get(0), "MethLab", "About how to create temporal meth lab in the motor-house."));
+		addCourseToList(new Course(teacherList.get(3), "MethLab", "How I can hate meth lab in the motor-house."));
 	}
 	
 	
