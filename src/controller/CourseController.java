@@ -38,9 +38,12 @@ public class CourseController {
 			course.addListOfEnrolledStudents((Student)user);
 		}
 	}
-	public void unregisterUser(Course course, User user, int index) {
+	public void unregisterUser(Course course, User user) {
 		if(user instanceof Student) {
-			course.removeListOfEnrolledStudent(index);
+			course.removeListOfEnrolledStudent((Student)user);
+		}
+		if(user instanceof Teacher) {
+			course.removeListOfEnrolledTeacher((Teacher)user);
 		}
 	}
 }

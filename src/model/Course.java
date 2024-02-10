@@ -76,12 +76,20 @@ public class Course {
 		this.listOfEnrolledTeachers.add(teacher);
 	}
 	
-	public void removeListOfEnrolledStudent(int index) {
-		this.listOfEnrolledStudents.remove(index);
+	public void removeListOfEnrolledStudent(Student student) {
+		for(int i = 0; i < listOfEnrolledStudents.size(); i++) {
+			if(listOfEnrolledStudents.get(i) == student) {
+				listOfEnrolledStudents.remove(i);
+			}
+		}
 	}
 	
-	public void removeListOfEnrolledTeacher(int index) {
-		this.listOfEnrolledTeachers.remove(index);
+	public void removeListOfEnrolledTeacher(Teacher teacher) {
+		for(int i = 0; i < listOfEnrolledTeachers.size(); i++) {
+			if(listOfEnrolledTeachers.get(i) == teacher) {
+				listOfEnrolledTeachers.remove(i);
+			}
+		}
 	}
     
 	@Override

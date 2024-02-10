@@ -61,8 +61,12 @@ public abstract class User {
 		this.courseEnrollmentList.add(course);
 	}
 	
-	public void removeCourseEnrollentList(Course course, int index) {
-		this.courseEnrollmentList.remove(index);
+	public void removeCourseEnrollentList(Course course) {
+		for(int i = 0; i < courseEnrollmentList.size(); i++) {
+			if(courseEnrollmentList.get(i) == course) {
+				courseEnrollmentList.remove(i);
+			}
+		}
 	}
 	
 

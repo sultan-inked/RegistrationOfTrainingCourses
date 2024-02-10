@@ -35,7 +35,7 @@ public abstract class UserController {
         		}
         	}
     	}
-        Cnsl.println("Enroll in course: " + course.getCourseName());
+        Cnsl.println("You'r enrolled in course: " + course.getCourseName());
         user.addCourseEnrollmentList(course);
         courseController.registerUser(course, user);
     }
@@ -44,12 +44,15 @@ public abstract class UserController {
     	if(user.getCourseEnrollmentList().size() != 0) {
     		for(int i = 0; i < user.getCourseEnrollmentList().size(); i++) {
         		if(user.getCourseEnrollmentList().get(i).getCourseId().equals(course.getCourseId())) {
-        			Cnsl.println(course.getCourseName() + " was deleted of course list!");
-        			user.removeCourseEnrollentList(course, i);
-        			courseController.unregisterUser(course, user, i);
+        			user.removeCourseEnrollentList(course);
+        			courseController.unregisterUser(course, user);
+        			
+        			Cnsl.println(course.getCourseName() + " was deleted of your course list!");
+        			
         		}
         	}
+    	}else {
+    		Cnsl.println("Your enroll list is empty!");
     	}
-    	Cnsl.println("Your enroll list is empty!");
     }
 }
