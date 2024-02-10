@@ -18,7 +18,9 @@ public class MainController {
 	public static String dataTransferToCreateTeacherCardAndReturnId(String[] formArray) {
 		return TeacherController.createTeacherCardSaveAndReturnId(formArray);
 	}
-	
+	public static String dataTransferToCreateCourseCardAndReturnId(String[] formArray, Teacher teacher) {
+		return CourseController.createCourseCardSaveAndReturnId(formArray, teacher);
+	}
 	// It's using in LoginView.java
 	public static User idAndPasswordValidator(String userId, String userPassword) {
 		var user = (User)Database.searchIdInList(userId);

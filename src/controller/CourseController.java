@@ -11,11 +11,18 @@ import tools.Cnsl;
 import model.Student;
 import model.Teacher;
 import model.Course;
+import database.Database;
 
 public class CourseController {
 
 	
 //	Methods:
+	public static String createCourseCardSaveAndReturnId(String[] formArray, Teacher teacher) {
+		var course = new Course(teacher, formArray[0], formArray[1]);
+		Database.addCourseToList(course);
+		return course.getCourseId();
+	}
+	
 	public static String[] getCourseInfoArray(Course course) {
 		var courseInfoArray = new String[4];
 		courseInfoArray[0] = "Author: " + course.getCourseCreator().getFirstName() + " " + course.getCourseCreator().getLastName();

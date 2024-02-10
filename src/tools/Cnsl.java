@@ -13,6 +13,9 @@ public abstract class Cnsl {
 	public static void println() {
 		System.out.println();
 	}
+	public static void print() {
+		System.out.println();
+	}
 	
 	public static void println(String str) {
 		System.out.println(str);

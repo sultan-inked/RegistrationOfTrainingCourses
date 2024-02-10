@@ -17,7 +17,7 @@ import controller.CourseController;
 
 import tools.Cnsl;
 
-public class CourseView {
+public class CourseMenuView {
 //	Methods:
 	public void courseMenu(User user) {
 		Alerts.separator();
@@ -40,13 +40,13 @@ public class CourseView {
 				break;
 			case "3":
 				if(user instanceof Teacher) {
-					Alerts.ftrNotYet();
-					// TODO: Make feature: Create course
+					createCourseMenu((Teacher)user);
+					courseMenu(user);
+					return;
 				}else {
 					Alerts.wrtNmbr();
+					break;
 				}
-				courseMenu(user);
-				return;
 			case "back":
 				return;
 				default:
@@ -107,7 +107,6 @@ public class CourseView {
 		
 	}
 	
-	
 	// Course action:
 	public void whatToDoWithTheCourse(Course course, User user) {
 		Alerts.separator();
@@ -151,6 +150,39 @@ public class CourseView {
 					Alerts.wrtNmbr();
 			}
 			
+		}
+	}
+	
+	// Create course:
+	public void createCourseMenu(Teacher teacher) {
+		Alerts.separator();
+		Cnsl.println("Course creator");
+		var courseCreateFormArray = takeDataForCourseCreateForm(teacher);
+		if(courseCreateFormArray == null) return;
+		String courseId = MainController.dataTransferToCreateCourseCardAndReturnId(courseCreateFormArray, teacher);
+		Cnsl.println("Course with id: " + courseId + " created!");
+	}
+	public String[] takeDataForCourseCreateForm(Teacher teacher) {
+		var courseCreateFormArray = new String[2];
+		Cnsl.print("Course name: ");
+		courseCreateFormArray[0] = Cnsl.scan();
+		Cnsl.print("Description: ");
+		courseCreateFormArray[1] = Cnsl.scan();
+		while(true) {
+			Cnsl.print("Write \'confirm\', \'again\' or \'back:\'");
+			String answer = Cnsl.scan();
+			switch(answer) {
+			case "confirm":
+				return courseCreateFormArray;
+			case "again":
+				createCourseMenu(teacher);
+				return null;
+			case "back":
+				courseMenu((User)teacher);
+				return null;
+				default:
+					Cnsl.println("Wrong!");
+			}
 		}
 	}
 }

@@ -20,7 +20,7 @@ public class UserMenuView {
 			String choice = Cnsl.scan();
 			switch(choice) {
 			case "1":
-				var courseView = new CourseView();
+				var courseView = new CourseMenuView();
 				courseView.courseMenu(user);
 				courseView = null;
 				userMenu(user);
