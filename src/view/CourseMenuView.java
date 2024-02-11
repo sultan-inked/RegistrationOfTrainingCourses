@@ -60,6 +60,8 @@ public class CourseMenuView {
 	
 //	Course action:
 	public void whatToDoWithTheCourse(Course course, User user) {
+		Cnsl.println();
+		Cnsl.println("You choice this course:");
 		String[] courseInfoArray = CourseController.getCourseInfoArray(course);
 		for(String info: courseInfoArray) {
 			Cnsl.println(info);
@@ -121,8 +123,8 @@ public class CourseMenuView {
 				searchCourseByName(user);
 				return;
 			case "3":
-				Alerts.ftrNotYet();
-				break;
+				searchCourseByAuthor(user);
+				return;
 			case "back":
 				courseMenu(user);
 				return;
@@ -175,6 +177,7 @@ public class CourseMenuView {
 			return;
 		}
 		if(coursesFoundList.size() == 1) {
+			Alerts.separator();
 			Cnsl.println("1 course founded with that name!");
 			whatToDoWithTheCourse(coursesFoundList.get(0), user);
 			return;
@@ -191,7 +194,43 @@ public class CourseMenuView {
 		}
 	}
 	public void searchCourseByAuthor(User user) {
-		
+		Alerts.separator();
+		Cnsl.println("Search course by author");
+		Cnsl.print("First name: ");
+		String firstName = Cnsl.scan();
+		if(firstName.equals("back")) {
+			searchCourse(user);
+		}
+		Cnsl.print("Last name: ");
+		String lastName = Cnsl.scan();
+		Cnsl.print("Author id: ");
+		String authorId = Cnsl.scan();
+		ArrayList<Teacher> teachersFoundList = MainController.searchTeacherAndReturAllOfMatches(firstName, lastName, authorId);
+		if(teachersFoundList.size() == 0) {
+			Cnsl.println("No such author was found!");
+			Alerts.tryAgainOrBack();
+			searchCourseByAuthor(user);
+		}
+		// TODO: Search course by several authors *******
+		ArrayList<Course> coursesFoundList = MainController.searchCourseBySeveralAuthorsAndReturnArrayList(teachersFoundList);
+		if(coursesFoundList.size() == 0) {
+			Cnsl.println("Not found a course with that aouthor!");
+			Alerts.tryAgainOrBack();
+			searchCourseByAuthor(user);
+		}
+		if(coursesFoundList.size() == 1) {
+			Alerts.separator();
+			Cnsl.println("1 cours founded with that aouthor!");
+			whatToDoWithTheCourse(coursesFoundList.get(0), user);
+		}
+		if(coursesFoundList.size() > 1) {
+			Alerts.separator();
+			Cnsl.println(coursesFoundList.size() + " courses by that authors founded!");
+			Course course = choiceCourseInList(coursesFoundList);
+			if(course != null) {
+				whatToDoWithTheCourse(course, user);
+			}
+		}
 	}
 	public Course choiceCourseInList(ArrayList<Course> coursesFoundList) {
 		for(int i = 0; i < coursesFoundList.size(); i++) {
@@ -204,7 +243,16 @@ public class CourseMenuView {
 		while(true) {
 			Cnsl.print("Write number with your course:");
 			String choice = Cnsl.scan();
-			int choiceInt = Integer.parseInt(choice);
+			String numbersForCheck = "123456789";
+			int choiceInt = 0;
+			if(choice.length() == 1 && numbersForCheck.contains(choice)) {
+				choiceInt = Integer.parseInt(choice);
+			}
+			if(choice.length() == 2 && numbersForCheck.contains(choice.substring(0, 1))) {
+				if(numbersForCheck.contains(choice.substring(1, 2))) {
+					choiceInt = Integer.parseInt(choice);
+				}
+			}
 			if(choiceInt > 0 && choiceInt <= coursesFoundList.size()) {
 				return coursesFoundList.get(choiceInt -1);
 			}else {

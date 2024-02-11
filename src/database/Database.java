@@ -158,10 +158,7 @@ public class Database {
 	
 	// Search Teacher:
 	public static Teacher searchTeacherInList(String teacherId) {
-		if(teacherList.size() == 0) {
-			Cnsl.println("Teacher list is empty!");
-			return null;
-		}
+		if(teacherListIsEmpty()) return null;
 		for(int i = 0; i < teacherList.size(); i++) {
 			if(teacherList.get(i).getUserId().equals(teacherId)) {
 				return teacherList.get(i);
@@ -170,13 +167,45 @@ public class Database {
 		Cnsl.println("Not found a teacher with the id: " + teacherId);
 		return null;
 	}
+	public static ArrayList<Teacher> searchTeacherInList(String firstName, String lastName, String teacherId){
+		ArrayList<Teacher> teachersFoundListThreeMatches = new ArrayList<>();
+		ArrayList<Teacher> teachersFoundListTwoMatches = new ArrayList<>();
+		ArrayList<Teacher> teachersFoundListOneMatches = new ArrayList<>();
+		ArrayList<Teacher> teachersFoundListCommon = new ArrayList<>();
+		if(teacherListIsEmpty()) return null;
+		for(int i = 0; i < teacherList.size(); i++) {
+			int matchesCounter = 0;
+			if(firstName != null && teacherList.get(i).getFirstName().equals(firstName)) matchesCounter++;
+			if(lastName != null && teacherList.get(i).getLastName().equals(lastName)) matchesCounter++;
+			if(teacherId != null && teacherList.get(i).getUserId().equals(teacherId)) matchesCounter++;
+			
+			if(matchesCounter == 3) teachersFoundListThreeMatches.add(teacherList.get(i));
+			else if(matchesCounter == 2) teachersFoundListTwoMatches.add(teacherList.get(i));
+			else if(matchesCounter == 1) teachersFoundListOneMatches.add(teacherList.get(i));
+		}
+		for(Teacher teacher: teachersFoundListThreeMatches) {
+			teachersFoundListCommon.add(teacher);
+		}
+		for(Teacher teacher: teachersFoundListTwoMatches) {
+			teachersFoundListCommon.add(teacher);
+		}
+		for(Teacher teacher: teachersFoundListOneMatches) {
+			teachersFoundListCommon.add(teacher);
+		}
+		return teachersFoundListCommon;
+	}
+	private static boolean teacherListIsEmpty() {
+		if(teacherList.size() == 0) {
+			Cnsl.println("Teacher list is empty!");
+			return true;
+		}else {
+			return false;
+		}
+	}
 	
 	// Search Course:
 	public static Course searchCourseInList(String courseId) {
-		if(courseList.size() == 0) {
-			Cnsl.println("Course list is empty!");
-			return null;
-		}
+		if(courseListIsEmpty()) return null;
 		for(int i = 0; i < courseList.size(); i++) {
 			if(courseList.get(i).getCourseId().equals(courseId)) {
 				return courseList.get(i);
@@ -187,10 +216,7 @@ public class Database {
 	}
 	public static ArrayList<Course> searchCourseInListByName(String courseName){
 		ArrayList<Course> coursesFoundList = new ArrayList<>();
-		if(courseList.size() == 0) {
-			Cnsl.println("Course list is empty!");
-			return null;
-		}
+		if(courseListIsEmpty()) return null;
 		for(int i = 0; i < courseList.size(); i++) {
 			if(courseList.get(i).getCourseName().equals(courseName)) {
 				coursesFoundList.add(courseList.get(i));
@@ -201,14 +227,29 @@ public class Database {
 		}
 		return coursesFoundList;
 	}
+	public static ArrayList<Course> searchCourseBySeveralAuthors(ArrayList<Teacher> teachersFoundArray){
+		if(courseListIsEmpty()) return null;
+		ArrayList<Course> coursesFoundArray = new ArrayList<>();
+		for(int i = 0; i < courseList.size(); i++) {
+			for(int j = 0; j < teachersFoundArray.size(); j++) {
+				if(teachersFoundArray.get(j) == courseList.get(i).getCourseCreator()) {
+					coursesFoundArray.add(courseList.get(i));
+				}
+			}
+		}
+		return coursesFoundArray;
+	}
+	private static boolean courseListIsEmpty() {
+		if(courseList.size() == 0) {
+			Cnsl.println("Course list is empty!");
+			return true;
+		}else {
+			return false;
+		}
+	}
 	
 //	Create default objects:
 	public static void addDefaultUserCards() {
-		addTeacherToList(new Teacher("Walter", "White", "1234"));
-		addTeacherToList(new Teacher("Gustaf", "Fring", "1234"));
-		addTeacherToList(new Teacher("Saul", "Goodman", "1234"));
-		addTeacherToList(new Teacher("Hank", "Schrader", "1234"));
-		
 		addStudentToList(new Student("Jesse", "Pinkman", "1234"));
 		addStudentToList(new Student("Flin", "White", "1234"));
 		addStudentToList(new Student("Gale", "Botticher", "1234"));
@@ -219,6 +260,19 @@ public class Database {
 		addStudentToList(new Student("Christian", "Combo", "1234"));
 		addStudentToList(new Student("Tuco", "Salamanka", "1234"));
 		addStudentToList(new Student("Sultan", "Abdrakhmanov", "12345"));
+		
+		addTeacherToList(new Teacher("Walter", "White", "1234"));
+		addTeacherToList(new Teacher("Gustaf", "Fring", "1234"));
+		addTeacherToList(new Teacher("Saul", "Goodman", "1234"));
+		addTeacherToList(new Teacher("Hank", "Schrader", "1234"));
+		
+		// Teachers and courses for course searching by id testing:
+		addTeacherToList(new Teacher("Five", "Five", "1234")); // TCH000005
+		addTeacherToList(new Teacher("nothing", "Five", "1234")); // TCH000006
+		addTeacherToList(new Teacher("Five", "nothing", "1234")); // TCH000007
+		addTeacherToList(new Teacher("Five", "Five", "1234")); // TCH000008
+		
+		
 	}
 	
 	public static void addDefaultCoursesCards() {
@@ -229,6 +283,23 @@ public class Database {
 		addCourseToList(new Course(teacherList.get(1), "MethLab", "About how to building must of big and proffesional meth lab."));
 		addCourseToList(new Course(teacherList.get(0), "MethLab", "About how to create temporal meth lab in the motor-house."));
 		addCourseToList(new Course(teacherList.get(3), "MethLab", "How I can hate meth lab in the motor-house."));
+		
+		addCourseToList(new Course(teacherList.get(4), "1", "1"));
+		addCourseToList(new Course(teacherList.get(7), "2", "2"));
+		addCourseToList(new Course(teacherList.get(7), "3", "3"));
+		addCourseToList(new Course(teacherList.get(4), "4", "4"));
+		addCourseToList(new Course(teacherList.get(5), "5", "5"));
+		addCourseToList(new Course(teacherList.get(7), "6", "6"));
+		addCourseToList(new Course(teacherList.get(6), "7", "7"));
+		addCourseToList(new Course(teacherList.get(4), "8", "8"));
+		addCourseToList(new Course(teacherList.get(4), "1", "1"));
+		addCourseToList(new Course(teacherList.get(7), "2", "2"));
+		addCourseToList(new Course(teacherList.get(7), "3", "3"));
+		addCourseToList(new Course(teacherList.get(4), "4", "4"));
+		addCourseToList(new Course(teacherList.get(5), "5", "5"));
+		addCourseToList(new Course(teacherList.get(7), "6", "6"));
+		addCourseToList(new Course(teacherList.get(6), "7", "7"));
+		addCourseToList(new Course(teacherList.get(4), "8", "8"));
 	}
 	
 	

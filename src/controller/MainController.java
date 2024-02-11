@@ -38,10 +38,17 @@ public class MainController {
 		}
 	}
 	
+	// Search user:
+	public static ArrayList<Teacher> searchTeacherAndReturAllOfMatches(String firstName, String lastName, String teacherId){
+		return Database.searchTeacherInList(firstName, lastName, teacherId);
+	}
+	
 	// It's using in CourseView.java
 	public static String getCourseIdSignature() {
 		return Database.getCourseIdSignature();
 	}
+	
+	
 	
 	public static Course searchCourseById(String courseId) {
 		if(courseId != null && !courseId.equals("")) {
@@ -58,6 +65,10 @@ public class MainController {
 			return Database.searchCourseInListByName(courseName);
 		}
 		return null;
+	}
+	
+	public static ArrayList<Course> searchCourseBySeveralAuthorsAndReturnArrayList(ArrayList<Teacher> teachersFoundList){
+		return Database.searchCourseBySeveralAuthors(teachersFoundList);
 	}
 	
 	public static void enrollInCourse(User user, Course course) {
