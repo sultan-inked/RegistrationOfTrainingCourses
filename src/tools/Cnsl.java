@@ -9,6 +9,8 @@ import java.util.Scanner;
 
 public abstract class Cnsl {
 	
+	public static Scanner scan = new Scanner(System.in);
+	
 //	.print:
 	public static void println() {
 		System.out.println();
@@ -33,7 +35,7 @@ public abstract class Cnsl {
 	
 //	.scan:
 	public static String scan() {
-		Scanner scan = new Scanner(System.in);
+		
 		return scan.nextLine().trim();
 	}
 }
