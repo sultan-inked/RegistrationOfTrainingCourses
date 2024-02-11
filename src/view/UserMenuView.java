@@ -1,6 +1,7 @@
 package view;
 
 import model.User;
+import courseView.CourseMenuView;
 import model.Student;
 import model.Teacher;
 

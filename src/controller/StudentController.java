@@ -13,8 +13,5 @@ public class StudentController extends UserController {
 		var student = new Student(formArray[0], formArray[1], formArray[2]);
 		Database.addStudentToList(student);
 		return student.getUserId();
-		
 	}
-	
-	
 }

@@ -2,7 +2,7 @@
  * CourseView - class representing the form for viewing and enrollment in courses.
  */
 
-package view;
+package courseView;
 
 import java.util.Arrays;
 import java.util.ArrayList;
@@ -17,6 +17,7 @@ import controller.TeacherController;
 import controller.CourseController;
 
 import tools.Cnsl;
+import view.Alerts;
 
 public class CourseMenuView {
 //	Methods:
@@ -66,7 +67,7 @@ public class CourseMenuView {
 		for(String info: courseInfoArray) {
 			Cnsl.println(info);
 		}
-		Cnsl.println("");
+		Cnsl.println();
 		Cnsl.println("What you can do with the course:");
 		Cnsl.println("1. Enrollincourse");
 		Cnsl.println("2. Unenrollincourse");
