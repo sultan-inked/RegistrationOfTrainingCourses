@@ -1,5 +1,6 @@
 package view;
 
+import tools.Alerts;
 import tools.Cnsl;
 import view.*;
 

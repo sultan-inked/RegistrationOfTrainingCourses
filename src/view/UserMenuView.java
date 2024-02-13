@@ -4,7 +4,7 @@ import model.User;
 import courseView.CourseMenuView;
 import model.Student;
 import model.Teacher;
-
+import tools.Alerts;
 import tools.Cnsl;
 
 public class UserMenuView {

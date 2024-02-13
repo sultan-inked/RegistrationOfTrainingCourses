@@ -15,9 +15,8 @@ import controller.MainController;
 import controller.StudentController;
 import controller.TeacherController;
 import controller.CourseController;
-
+import tools.Alerts;
 import tools.Cnsl;
-import view.Alerts;
 
 public class CourseMenuView {
 //	Methods:

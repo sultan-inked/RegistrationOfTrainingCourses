@@ -2,9 +2,7 @@
  * Alerts - class with standard message for client.
  */
 
-package view;
-
-import tools.Cnsl;
+package tools;
 
 public class Alerts {
 	public static void wrtNmbr() {

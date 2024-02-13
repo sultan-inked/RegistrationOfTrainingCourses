@@ -7,7 +7,7 @@ package view;
 import java.util.Arrays;
 
 import controller.MainController;
-
+import tools.Alerts;
 import tools.Cnsl;
 
 public class RegistrationView {

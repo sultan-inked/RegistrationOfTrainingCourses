@@ -1,6 +1,7 @@
 package view;
 
 import controller.MainController;
+import tools.Alerts;
 import tools.Cnsl;
 import model.User;
 import model.Student;
