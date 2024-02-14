@@ -7,7 +7,7 @@ package tools;
 
 import java.util.Scanner;
 
-public abstract class Cnsl {
+public class Cnsl {
 	
 	public static Scanner scan = new Scanner(System.in);
 	

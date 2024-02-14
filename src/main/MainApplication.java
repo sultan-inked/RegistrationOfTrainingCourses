@@ -11,7 +11,8 @@ public class MainApplication {
 		Database.addDefaultCoursesCards();
 		
 		// Start program:
-		WelcomeView.start();
+		var welcomeView = new WelcomeView();
+		welcomeView.start();
 	}
 }
 

@@ -14,18 +14,20 @@ import controller.*;
 
 public class MainController {
 	// It's using in RegistrationView.java
-	public static String dataTransferToCreateStudentCardAndReturnId(String[] formArray) {
-		return StudentController.createStudentCardSaveAndReturnId(formArray);
+	public String dataTransferToCreateStudentCardAndReturnId(String[] formArray) {
+		var studentController = new StudentController();
+		return studentController.createStudentCardSaveAndReturnId(formArray);
 	}
-	public static String dataTransferToCreateTeacherCardAndReturnId(String[] formArray) {
-		return TeacherController.createTeacherCardSaveAndReturnId(formArray);
+	public String dataTransferToCreateTeacherCardAndReturnId(String[] formArray) {
+		var teacherController = new TeacherController();
+		return teacherController.createTeacherCardSaveAndReturnId(formArray);
 	}
-	public static String dataTransferToCreateCourseCardAndReturnId(String[] formArray, Teacher teacher) {
+	public String dataTransferToCreateCourseCardAndReturnId(String[] formArray, Teacher teacher) {
 		return CourseController.createCourseCardSaveAndReturnId(formArray, teacher);
 	}
 	
 	// It's using in LoginView.java
-	public static User idAndPasswordValidator(String userId, String userPassword) {
+	public User idAndPasswordValidator(String userId, String userPassword) {
 		var user = (User)Database.searchIdInList(userId);
 		if(user == null) {
 			return null;
@@ -39,18 +41,18 @@ public class MainController {
 	}
 	
 	// Search user:
-	public static ArrayList<Teacher> searchTeacherAndReturAllOfMatches(String firstName, String lastName, String teacherId){
+	public ArrayList<Teacher> searchTeacherAndReturAllOfMatches(String firstName, String lastName, String teacherId){
 		return Database.searchTeacherInList(firstName, lastName, teacherId);
 	}
 	
 	// It's using in CourseView.java
-	public static String getCourseIdSignature() {
+	public String getCourseIdSignature() {
 		return Database.getCourseIdSignature();
 	}
 	
 	
 	
-	public static Course searchCourseById(String courseId) {
+	public Course searchCourseById(String courseId) {
 		if(courseId != null && !courseId.equals("")) {
 			var course = Database.searchIdInList(courseId);
 			if(course != null) {
@@ -60,18 +62,18 @@ public class MainController {
 		return null;
 	}
 	
-	public static ArrayList<Course> searchCourseByNameAndReturnArrayList(String courseName){
+	public ArrayList<Course> searchCourseByNameAndReturnArrayList(String courseName){
 		if(courseName != null && !courseName.equals("")) {
 			return Database.searchCourseInListByName(courseName);
 		}
 		return null;
 	}
 	
-	public static ArrayList<Course> searchCourseBySeveralAuthorsAndReturnArrayList(ArrayList<Teacher> teachersFoundList){
+	public ArrayList<Course> searchCourseBySeveralAuthorsAndReturnArrayList(ArrayList<Teacher> teachersFoundList){
 		return Database.searchCourseBySeveralAuthors(teachersFoundList);
 	}
 	
-	public static void enrollInCourse(User user, Course course) {
+	public void enrollInCourse(User user, Course course) {
 		if(user == null || course == null) {
 			Cnsl.println("Error: User or Course is empty(null)");
 			return;
@@ -79,15 +81,13 @@ public class MainController {
 		if(user instanceof Student) {
 			var studentController = new StudentController();
 			studentController.enrollInCourse(new CourseController(), course, user);
-			studentController = null;
 		}
 		if(user instanceof Teacher) {
 			var teacherController = new TeacherController();
 			teacherController.enrollInCourse(new CourseController(), course, user);
-			teacherController = null;
 		}
 	}
-	public static void unenrollInCourse(User user, Course course) {
+	public void unenrollInCourse(User user, Course course) {
 		if(user == null || course == null) {
 			Cnsl.println("Error: User or Course is empty(null)");
 			return;

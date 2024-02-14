@@ -6,7 +6,7 @@ import tools.Cnsl;
 import view.*;
 
 public class WelcomeView {
-	public static void start() {
+	public void start() {
 		Alerts.separator();
 		Cnsl.println("Hello there!");
 		Cnsl.println("Just write number with your choice");
@@ -18,11 +18,14 @@ public class WelcomeView {
 			String choice = Cnsl.scan();
 			switch(choice) {
 			case "1":
-				LoginView.login();
+				var loginView = new LoginView();
+				loginView.login();
 				start();
 				return;
 			case "2":
-				RegistrationView.registration();
+				var registrationView = new RegistrationView();
+				registrationView.registration();
+				registrationView = null;
 				start();
 				return;
 			case "exit":

@@ -8,18 +8,18 @@ import model.Student;
 import model.Teacher;
 
 public class LoginView {
-	public static void login() {
+	public void login() {
 		Alerts.separator();
 		Cnsl.println("Login");
 		
 		var user = takeIdAndPasswordForValidating();
 		if(user != null) {
-			UserMenuView userMenu = new UserMenuView();
+			var userMenu = new UserMenuView();
 			userMenu.userMenu(user);
 		}
 	}
 	
-	public static User takeIdAndPasswordForValidating() {
+	public User takeIdAndPasswordForValidating() {
 		while(true) {
 			Cnsl.print("Your id: ");
 			String userId = Cnsl.scan();
@@ -31,8 +31,8 @@ public class LoginView {
 			
 			Cnsl.print("Password:");
 			String userPassword = Cnsl.scan();
-			
-			var user = MainController.idAndPasswordValidator(userId, userPassword);
+			var mainController = new MainController();
+			var user = mainController.idAndPasswordValidator(userId, userPassword);
 			if(user != null) {
 				if(user instanceof Student) {
 					return (Student)user;

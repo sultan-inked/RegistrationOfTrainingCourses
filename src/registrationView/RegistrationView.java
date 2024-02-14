@@ -13,7 +13,7 @@ import view.WelcomeView;
 
 public class RegistrationView {
 	
-	public static void registration() {
+	public void registration() {
 		Alerts.separator();
 		Cnsl.println("Sign up");
 		Cnsl.println("1. Student");
@@ -27,9 +27,11 @@ public class RegistrationView {
 		case "Teacher":
 			registrationTeacher();
 			break;
+		case "back":
+			return;
 		}
 	}
-	public static String studentOrTeacher() {
+	public String studentOrTeacher() {
 		while(true) {
 			Cnsl.print("Here:");
 			String choice = Cnsl.scan();
@@ -39,38 +41,37 @@ public class RegistrationView {
 			case "2":
 				return "Teacher";
 			case "back":
-				WelcomeView.start();
-				break;
+				return "back";
 				default:
 					Alerts.wrtNmbr();
 			}
 		}
 	}
 	// Student registration:
-	public static void registrationStudent() {
+	public void registrationStudent() {
 		Alerts.separator();
 		Cnsl.println("Student registration");
 		var formView = new FormView();
 		var formArray = formView.one();
-		formView = null;
-		String studentId = MainController.dataTransferToCreateStudentCardAndReturnId(formArray);
+		var mainController = new MainController();
+		String studentId = mainController.dataTransferToCreateStudentCardAndReturnId(formArray);
 		Cnsl.println("Student card created!");
 		Cnsl.println("Your id: " + studentId);
 	}
 	// Teacher registration:
-	public static void registrationTeacher() {
+	public void registrationTeacher() {
 		Alerts.separator();
 		Cnsl.println("Teacher regitration");
 		if(keyWordValidator()) {
 			var formView = new FormView();
 			var formArray = formView.one();
-			formView = null;
-			String teacherId = MainController.dataTransferToCreateTeacherCardAndReturnId(formArray);
+			var mainController = new MainController();
+			String teacherId = mainController.dataTransferToCreateTeacherCardAndReturnId(formArray);
 			Cnsl.println("Teacher card created!");
 			Cnsl.println("Your id: " + teacherId);
 		}
 	}
-	public static boolean keyWordValidator() {
+	public boolean keyWordValidator() {
 		final String teacherKeyWord = "1234";
 		while(true) {
 			Cnsl.print("Write key word:");
@@ -88,7 +89,7 @@ public class RegistrationView {
 		}
 	}
 	
-	public static String[] formOne() {
+	public String[] formOne() {
 		var formArray = new String[3];
 		while(true) {
 			Cnsl.print("First name:");

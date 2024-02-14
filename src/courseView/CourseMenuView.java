@@ -60,6 +60,7 @@ public class CourseMenuView {
 	
 //	Course action:
 	public void whatToDoWithTheCourse(Course course, User user) {
+		var mainController = new MainController();
 		Cnsl.println();
 		Cnsl.println("You choice this course:");
 		String[] courseInfoArray = CourseController.getCourseInfoArray(course);
@@ -79,11 +80,11 @@ public class CourseMenuView {
 			String choice = Cnsl.scan();
 			switch(choice) {
 			case "1":
-				MainController.enrollInCourse(user, course);
+				mainController.enrollInCourse(user, course);
 				whatToDoWithTheCourse(course, user);
 				return;
 			case "2":
-				MainController.unenrollInCourse(user, course);
+				mainController.unenrollInCourse(user, course);
 				whatToDoWithTheCourse(course, user);
 				return;
 			case "3":
@@ -140,9 +141,10 @@ public class CourseMenuView {
 		while(true) {
 			Cnsl.print("Id: ");
 			String courseId = Cnsl.scan();
-			if(courseId.substring(0, 3).equals(MainController.getCourseIdSignature()) 
+			var mainController = new MainController();
+			if(courseId.substring(0, 3).equals(mainController.getCourseIdSignature()) 
 					&& courseId != null && !courseId.equals("") && courseId.length() == 9) {
-				course = MainController.searchCourseById(courseId);
+				course = mainController.searchCourseById(courseId);
 				if(course != null) {
 					Alerts.separator();
 					Cnsl.println("Course found!");
@@ -170,7 +172,8 @@ public class CourseMenuView {
 			searchCourse(user);
 			return;
 		}
-		ArrayList<Course> coursesFoundList = MainController.searchCourseByNameAndReturnArrayList(courseName);
+		var mainController = new MainController();
+		ArrayList<Course> coursesFoundList = mainController.searchCourseByNameAndReturnArrayList(courseName);
 		if(coursesFoundList.size() == 0) {
 			Alerts.tryAgainOrBack();
 			searchCourseByName(user);
@@ -205,14 +208,14 @@ public class CourseMenuView {
 		String lastName = Cnsl.scan();
 		Cnsl.print("Author id: ");
 		String authorId = Cnsl.scan();
-		ArrayList<Teacher> teachersFoundList = MainController.searchTeacherAndReturAllOfMatches(firstName, lastName, authorId);
+		var mainController = new MainController();
+		ArrayList<Teacher> teachersFoundList = mainController.searchTeacherAndReturAllOfMatches(firstName, lastName, authorId);
 		if(teachersFoundList.size() == 0) {
 			Cnsl.println("No such author was found!");
 			Alerts.tryAgainOrBack();
 			searchCourseByAuthor(user);
 		}
-		// TODO: Search course by several authors *******
-		ArrayList<Course> coursesFoundList = MainController.searchCourseBySeveralAuthorsAndReturnArrayList(teachersFoundList);
+		ArrayList<Course> coursesFoundList = mainController.searchCourseBySeveralAuthorsAndReturnArrayList(teachersFoundList);
 		if(coursesFoundList.size() == 0) {
 			Cnsl.println("Not found a course with that aouthor!");
 			Alerts.tryAgainOrBack();
@@ -273,7 +276,8 @@ public class CourseMenuView {
 		Cnsl.println("Course creator");
 		var courseCreateFormArray = takeDataForCourseCreateForm(teacher);
 		if(courseCreateFormArray == null) return;
-		String courseId = MainController.dataTransferToCreateCourseCardAndReturnId(courseCreateFormArray, teacher);
+		var mainController = new MainController();
+		String courseId = mainController.dataTransferToCreateCourseCardAndReturnId(courseCreateFormArray, teacher);
 		Cnsl.println("Course with id: " + courseId + " created!");
 	}
 	public String[] takeDataForCourseCreateForm(Teacher teacher) {

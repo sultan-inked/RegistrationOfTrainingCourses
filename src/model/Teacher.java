@@ -13,20 +13,24 @@ import tools.Id;
 public class Teacher extends User {
 //	Variables:
 	private static int teacherIdCounter = 0;
-	private static String teacherIdSignature = "TCH000000";
+	private String teacherIdSignature = "TCH000000";
 	
 	private List<Course> createdCourse = new ArrayList<>();
 	
 //	Constructors:
+	public Teacher() {
+		
+	}
+	
 	public Teacher(String firstName, String lastName, String password) {
 		setFirstName(firstName);
 		setLastName(lastName);
 		setPassword(password);
-		setUserId(Id.create(teacherIdSignature, ++teacherIdCounter));
+		setUserId(new Id().create(teacherIdSignature, ++teacherIdCounter));
 	}
 	
 //	Getters and Setters:
-	public static String getTeacherIdSignature() {
+	public String getTeacherIdSignature() {
 		return teacherIdSignature;
 	}
 	
