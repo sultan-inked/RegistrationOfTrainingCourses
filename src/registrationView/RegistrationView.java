@@ -2,16 +2,16 @@
  * RegistrationView - class representing the registration and authorization form.
  */
 
-package view;
+package registrationView;
 
 import java.util.Arrays;
 
 import controller.MainController;
 import tools.Alerts;
 import tools.Cnsl;
+import view.WelcomeView;
 
 public class RegistrationView {
-	private final static String teacherKeyWord = "1234";
 	
 	public static void registration() {
 		Alerts.separator();
@@ -46,28 +46,32 @@ public class RegistrationView {
 			}
 		}
 	}
-	
+	// Student registration:
 	public static void registrationStudent() {
 		Alerts.separator();
 		Cnsl.println("Student registration");
-		var formArray = formOne();
+		var formView = new FormView();
+		var formArray = formView.one();
+		formView = null;
 		String studentId = MainController.dataTransferToCreateStudentCardAndReturnId(formArray);
 		Cnsl.println("Student card created!");
 		Cnsl.println("Your id: " + studentId);
 	}
-	
+	// Teacher registration:
 	public static void registrationTeacher() {
 		Alerts.separator();
 		Cnsl.println("Teacher regitration");
 		if(keyWordValidator()) {
-			var formArray = formOne();
-			// TODO: make teacher card and save to database
+			var formView = new FormView();
+			var formArray = formView.one();
+			formView = null;
 			String teacherId = MainController.dataTransferToCreateTeacherCardAndReturnId(formArray);
 			Cnsl.println("Teacher card created!");
 			Cnsl.println("Your id: " + teacherId);
 		}
 	}
 	public static boolean keyWordValidator() {
+		final String teacherKeyWord = "1234";
 		while(true) {
 			Cnsl.print("Write key word:");
 			String answer = Cnsl.scan();
@@ -80,11 +84,6 @@ public class RegistrationView {
 				return false;
 				default:
 					Cnsl.println("Wrong, try again or write \'back\'");
-			}
-			if(answer.equals(teacherKeyWord)) {
-				
-			}else {
-				
 			}
 		}
 	}
