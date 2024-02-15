@@ -13,6 +13,12 @@ import view.WelcomeView;
 
 public class RegistrationView {
 	
+	private final UserRegistrationView userRegistrationView;
+	
+	public RegistrationView(UserRegistrationView userRegistrationView) {
+		this.userRegistrationView = userRegistrationView;
+	}
+	
 	public void registration() {
 		Alerts.separator();
 		Cnsl.println("Sign up");
@@ -32,7 +38,7 @@ public class RegistrationView {
 		switch(choice) {
 		case "1":
 			// It will only be 'false' if the user was written 'back'
-			if(new UserRegistrationView().studentOrTeacherRegistration("Student")) {
+			if(userRegistrationView.student()) {
 				break;
 			}else {
 				registration();
@@ -40,7 +46,7 @@ public class RegistrationView {
 			}
 		case "2":
 			// It will only be 'false' if the user was written 'back'
-			if(new UserRegistrationView().studentOrTeacherRegistration("Teacher")) {
+			if(userRegistrationView.teacher()) {
 				break;
 			}else {
 				registration();

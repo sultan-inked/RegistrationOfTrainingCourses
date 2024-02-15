@@ -3,7 +3,7 @@ package registrationView;
 import tools.Cnsl;
 
 public class KeyWordValidatorView {
-	public boolean teacher() {
+	public boolean validateTeacherKeyWord() {
 		final String teacherKeyWord = "1234";
 		while(true) {
 			Cnsl.print("Write key word:");

@@ -4,6 +4,7 @@ import registrationView.RegistrationView;
 import tools.Alerts;
 import tools.Cnsl;
 import view.*;
+import registrationView.*;
 
 public class WelcomeView {
 	public void start() {
@@ -23,9 +24,7 @@ public class WelcomeView {
 				start();
 				return;
 			case "2":
-				var registrationView = new RegistrationView();
-				registrationView.registration();
-				registrationView = null;
+				new RegistrationView(new UserRegistrationView(new FormView(), new KeyWordValidatorView())).registration();
 				start();
 				return;
 			case "exit":

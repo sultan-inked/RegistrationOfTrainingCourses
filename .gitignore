@@ -1,3 +1,5 @@
+.gitignore
+
 # Ignored macOS files:
 .DS_Store
 
@@ -8,3 +10,6 @@
 
 # Ignored compile files:
 bin/
+
+# Ignored helper files
+src/registrationViewTestGPT/

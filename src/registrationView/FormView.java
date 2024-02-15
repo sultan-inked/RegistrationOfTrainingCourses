@@ -32,11 +32,9 @@ public class FormView {
 			String answer = Cnsl.scan();
 			switch(answer) {
 			case "confirm":
-				return "confirm";
 			case "change":
-				return "change";
 			case "back":
-				return "back";
+				return answer;
 			}
 		}
 	}

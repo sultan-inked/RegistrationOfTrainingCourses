@@ -1,17 +1,36 @@
 package registrationView;
 
 import controller.MainController;
+import tools.Alerts;
 import tools.Cnsl;
 
 public class UserRegistrationView {
-	public boolean studentOrTeacherRegistration(String userTypeString) {
-		Cnsl.println(userTypeString + " registration");
-		
-		// check if trying to register teacher card
-		// return 'false' for back to registration() if user write 'back'
-		if(userTypeString.equals("Teacher") && !(new KeyWordValidatorView().teacher())) {
+//	Variables:
+	private final FormView formView;
+	private final KeyWordValidatorView keyWordValidatorView;
+	
+//	Constructors:
+	public UserRegistrationView(FormView formView, KeyWordValidatorView keyWordValidatorView) {
+		this.formView = formView;
+		this.keyWordValidatorView = keyWordValidatorView;
+	}
+	
+//	Methods:
+	public boolean student() {
+		return studentOrTeacherRegistration("Student");
+	}
+	
+	public boolean teacher() {
+		if(keyWordValidatorView.validateTeacherKeyWord()) {
+			return studentOrTeacherRegistration("Teacher");
+		}else {
 			return false;
 		}
+	}
+	
+	private boolean studentOrTeacherRegistration(String userTypeString) {
+		Alerts.separator();
+		Cnsl.println(userTypeString + " registration");
 		
 		String[] userRegistrationFormArray = new FormView().userRegistrationFormOne();
 		
@@ -21,13 +40,9 @@ public class UserRegistrationView {
 		}
 		
 		// Take user Id for show to user
-		String userId = "";
-		if(userTypeString.equals("Student")) {
-			userId = new MainController().dataTransferToCreateStudentCardAndReturnId(userRegistrationFormArray);
-		}
-		else if(userTypeString.equals("Teacher")) {
-			userId = new MainController().dataTransferToCreateTeacherCardAndReturnId(userRegistrationFormArray);
-		}
+		String userId = userTypeString.equals("Student") ?
+				new MainController().dataTransferToCreateStudentCardAndReturnId(userRegistrationFormArray):
+					new MainController().dataTransferToCreateTeacherCardAndReturnId(userRegistrationFormArray);
 		Cnsl.println(userTypeString + " card created!");
 		Cnsl.println("Your id: " + userId);
 		
