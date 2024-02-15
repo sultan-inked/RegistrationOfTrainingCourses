@@ -4,6 +4,7 @@ import registrationView.RegistrationView;
 import tools.Alerts;
 import tools.Cnsl;
 import view.*;
+import loginView.*;
 import registrationView.*;
 
 public class WelcomeView {
@@ -19,8 +20,7 @@ public class WelcomeView {
 			String choice = Cnsl.scan();
 			switch(choice) {
 			case "1":
-				var loginView = new LoginView();
-				loginView.login();
+				new LoginView(new idAndPassword()).login();
 				start();
 				return;
 			case "2":

@@ -1,6 +1,7 @@
 package registrationView;
 
 import tools.Cnsl;
+import tools.Alerts;
 
 public class FormView {
 	public String[] userRegistrationFormOne() {
@@ -13,7 +14,7 @@ public class FormView {
 			Cnsl.print("Password:");
 			userRegistrationFormArray[2] = Cnsl.scan();
 			
-			String answer = confirmChangeOrBack();
+			String answer = new Alerts().confirmChangeOrBack();
 			
 			switch(answer) {
 			case "confirm":

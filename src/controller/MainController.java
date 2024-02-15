@@ -39,6 +39,9 @@ public class MainController {
 			return null;
 		}
 	}
+	public User transferIdForValidate(String userId) {
+		return (User)Database.searchIdInList(userId);
+	}
 	
 	// Search user:
 	public ArrayList<Teacher> searchTeacherAndReturAllOfMatches(String firstName, String lastName, String teacherId){

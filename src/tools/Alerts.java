@@ -24,4 +24,18 @@ public class Alerts {
 	public static void tryAgainOrBack() {
 		Cnsl.println("Try again or write \'back\'");
 	}
+	
+	public String confirmChangeOrBack() {
+		while(true) {
+			Cnsl.println("\'confirm\', \'change' or \'back\'");
+			Cnsl.print("Write:");
+			String answer = Cnsl.scan();
+			switch(answer) {
+			case "confirm":
+			case "change":
+			case "back":
+				return answer;
+			}
+		}
+	}
 }
