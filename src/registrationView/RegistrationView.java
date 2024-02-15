@@ -19,19 +19,28 @@ public class RegistrationView {
 		Cnsl.println("1. Student");
 		Cnsl.println("2. Teacher");
 		Cnsl.println("\'back\'");
-		String choice = studentOrTeacher();
+		String choice;
+		while(true) {
+			Alerts.wrtHere();
+			choice = Cnsl.scan();
+			if(choice.equals("1") || choice.equals("2") || choice.equals("back")) {
+				break;
+			}else {
+				Alerts.wrtNmbr();
+			}
+		}
 		switch(choice) {
-		case "Student":
+		case "1":
 			// It will only be 'false' if the user was written 'back'
-			if(new UserRegistrationView().studentOrTeacherRegistration(choice)) {
+			if(new UserRegistrationView().studentOrTeacherRegistration("Student")) {
 				break;
 			}else {
 				registration();
 				break;
 			}
-		case "Teacher":
+		case "2":
 			// It will only be 'false' if the user was written 'back'
-			if(new UserRegistrationView().studentOrTeacherRegistration(choice)) {
+			if(new UserRegistrationView().studentOrTeacherRegistration("Teacher")) {
 				break;
 			}else {
 				registration();
@@ -39,22 +48,6 @@ public class RegistrationView {
 			}
 		case "back":
 			return;
-		}
-	}
-	public String studentOrTeacher() {
-		while(true) {
-			Cnsl.print("Here:");
-			String choice = Cnsl.scan();
-			switch(choice) {
-			case "1":
-				return "Student";
-			case "2":
-				return "Teacher";
-			case "back":
-				return "back";
-				default:
-					Alerts.wrtNmbr();
-			}
 		}
 	}
 }
