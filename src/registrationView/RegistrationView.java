@@ -22,11 +22,21 @@ public class RegistrationView {
 		String choice = studentOrTeacher();
 		switch(choice) {
 		case "Student":
-			registrationStudent();
-			break;
+			// It will only be 'false' if the user was written 'back'
+			if(new UserRegistrationView().studentOrTeacherRegistration(choice)) {
+				break;
+			}else {
+				registration();
+				break;
+			}
 		case "Teacher":
-			registrationTeacher();
-			break;
+			// It will only be 'false' if the user was written 'back'
+			if(new UserRegistrationView().studentOrTeacherRegistration(choice)) {
+				break;
+			}else {
+				registration();
+				break;
+			}
 		case "back":
 			return;
 		}
@@ -47,73 +57,4 @@ public class RegistrationView {
 			}
 		}
 	}
-	// Student registration:
-	public void registrationStudent() {
-		Alerts.separator();
-		Cnsl.println("Student registration");
-		var formView = new FormView();
-		var formArray = formView.one();
-		var mainController = new MainController();
-		String studentId = mainController.dataTransferToCreateStudentCardAndReturnId(formArray);
-		Cnsl.println("Student card created!");
-		Cnsl.println("Your id: " + studentId);
-	}
-	// Teacher registration:
-	public void registrationTeacher() {
-		Alerts.separator();
-		Cnsl.println("Teacher regitration");
-		if(keyWordValidator()) {
-			var formView = new FormView();
-			var formArray = formView.one();
-			var mainController = new MainController();
-			String teacherId = mainController.dataTransferToCreateTeacherCardAndReturnId(formArray);
-			Cnsl.println("Teacher card created!");
-			Cnsl.println("Your id: " + teacherId);
-		}
-	}
-	public boolean keyWordValidator() {
-		final String teacherKeyWord = "1234";
-		while(true) {
-			Cnsl.print("Write key word:");
-			String answer = Cnsl.scan();
-			switch(answer) {
-			case teacherKeyWord:
-				Cnsl.println("Access granted!");
-				return true;
-			case "back":
-				registration();
-				return false;
-				default:
-					Cnsl.println("Wrong, try again or write \'back\'");
-			}
-		}
-	}
-	
-	public String[] formOne() {
-		var formArray = new String[3];
-		while(true) {
-			Cnsl.print("First name:");
-			formArray[0] = Cnsl.scan();
-			Cnsl.print("Last name:");
-			formArray[1] = Cnsl.scan();
-			Cnsl.print("Password:");
-			formArray[2] = Cnsl.scan();
-			while(true) {
-				Cnsl.println("\'confirm\', \'change' or \'back\'");
-				Cnsl.print("Write:");
-				String answer = Cnsl.scan();
-				switch(answer) {
-				case "confirm":
-					return formArray;
-				case "change":
-					break;
-				case "back":
-					registration();
-					return null;
-				}
-			}
-		}
-		
-	}
-	
 }
