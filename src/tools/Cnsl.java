@@ -7,7 +7,7 @@ package tools;
 
 import java.util.Scanner;
 
-public abstract class Cnsl {
+public class Cnsl {
 	
 	public static Scanner scan = new Scanner(System.in);
 	
@@ -35,7 +35,10 @@ public abstract class Cnsl {
 	
 //	.scan:
 	public static String scan() {
-		
+		return scan.nextLine().trim();
+	}
+	public static String scanWrtHere() {
+		Alerts.wrtHere();
 		return scan.nextLine().trim();
 	}
 }

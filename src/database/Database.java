@@ -5,12 +5,14 @@
 package database;
 
 import java.util.List;
+
+import models.Course;
+import models.Student;
+import models.Teacher;
+import models.User;
+
 import java.util.ArrayList;
 
-import model.Student;
-import model.Teacher;
-import model.User;
-import model.Course;
 import tools.Cnsl;
 
 public class Database {
@@ -19,9 +21,9 @@ public class Database {
 	private static List<Teacher> teacherList = new ArrayList<>();
 	private static List<Course> courseList = new ArrayList<>();
 	
-	private static String studentIdSignature = Student.getStudentIdSignature().substring(0, 3);
-	private static String teacherIdSignature = Teacher.getTeacherIdSignature().substring(0, 3);
-	private static String courseIdSignature = Course.getCourseIdSignature().substring(0, 3);
+	private static String studentIdSignature = new Student().getStudentIdSignature().substring(0, 3);
+	private static String teacherIdSignature = new Teacher().getTeacherIdSignature().substring(0, 3);
+	private static String courseIdSignature = new Course().getCourseIdSignature().substring(0, 3);
 	
 //	Getters and Setters:
 	public static String getCourseIdSignature() {
@@ -215,8 +217,8 @@ public class Database {
 		return null;
 	}
 	public static ArrayList<Course> searchCourseInListByName(String courseName){
+		if(courseListIsEmpty() || courseName.equals("")) return null;
 		ArrayList<Course> coursesFoundList = new ArrayList<>();
-		if(courseListIsEmpty()) return null;
 		for(int i = 0; i < courseList.size(); i++) {
 			if(courseList.get(i).getCourseName().equals(courseName)) {
 				coursesFoundList.add(courseList.get(i));

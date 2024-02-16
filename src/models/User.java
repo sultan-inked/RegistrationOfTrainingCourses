@@ -3,12 +3,13 @@
  * for teachers and students.
  */
 
-package model;
+package models;
 
 import java.util.List;
-import java.util.ArrayList;
 
-import model.Course;
+import models.Course;
+
+import java.util.ArrayList;
 
 public abstract class User {
 //	Variables:
@@ -68,7 +69,4 @@ public abstract class User {
 			}
 		}
 	}
-	
-
-	
 }

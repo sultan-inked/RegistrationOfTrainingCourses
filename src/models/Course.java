@@ -2,12 +2,12 @@
  * Course - a class representing courses.
  */
 
-package model;
+package models;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import model.Teacher;
+import models.Teacher;
 import tools.Id;
 
 public class Course {
@@ -16,21 +16,25 @@ public class Course {
     private Teacher courseCreator;
     
     private static int courseIdCounter = 0;
-    private static final String courseIdSignature = "CRS000000";
+    private final String courseIdSignature = "CRS000000";
     
     private List<Student> listOfEnrolledStudents = new ArrayList<>();
     private List<Teacher> listOfEnrolledTeachers = new ArrayList<>();
     
 //	Constructors:
+    public Course() {
+    	
+    }
+    
     public Course(Teacher courseCreator, String courseName, String courseDescription){
     	this.courseCreator = courseCreator;
         this.courseName = courseName;
         this.courseDescription = courseDescription;
-        this.courseId = Id.create(courseIdSignature, ++courseIdCounter);
+        this.courseId = new Id().create(courseIdSignature, ++courseIdCounter);
     }
     
 //	Getters and Setters:
-    public static String getCourseIdSignature() {
+    public String getCourseIdSignature() {
     	return courseIdSignature;
     	
     }
