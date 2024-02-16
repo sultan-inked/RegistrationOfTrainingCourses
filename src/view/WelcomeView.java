@@ -11,10 +11,8 @@ public class WelcomeView {
 	public void start() {
 		Alerts.separator();
 		Cnsl.println("Hello there!");
-		Cnsl.println("Just write number with your choice");
 		Cnsl.println("1. Login");
 		Cnsl.println("2. Sign up");
-		Cnsl.println("\'exit\'");
 		while(true) {
 			Alerts.wrtHere();
 			String choice = Cnsl.scan();

@@ -71,7 +71,7 @@ public class CourseActionView {
 			Cnsl.print("Write number with your course:");
 			String choice = Cnsl.scan();
 			int choiceInt = 0;
-			if(choice.matches(".*\\d.*")) {
+			if(choice.matches("[0-9]+")) {
 				choiceInt = Integer.parseInt(choice);
 			}
 			if(choiceInt > 0 && choiceInt <= coursesFoundList.size()) {

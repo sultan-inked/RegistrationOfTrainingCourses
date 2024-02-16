@@ -35,7 +35,10 @@ public class Cnsl {
 	
 //	.scan:
 	public static String scan() {
-		
+		return scan.nextLine().trim();
+	}
+	public static String scanWrtHere() {
+		Alerts.wrtHere();
 		return scan.nextLine().trim();
 	}
 }

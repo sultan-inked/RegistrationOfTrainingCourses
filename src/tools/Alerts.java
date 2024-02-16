@@ -6,7 +6,35 @@ package tools;
 
 public class Alerts {
 	public static void wrtNmbr() {
-		Cnsl.println("Write number with your choice!");
+		Cnsl.println("Just write number with your choice.");
+	}
+	public static void wrtNmbrOrBack() {
+		Cnsl.println("Just write number with your choice or 'back'.");
+	}
+	public static void wrtNmbrOrExit() {
+		Cnsl.println("Just write number with your choice or 'exit'.");
+	}
+	public String wrtNmbrScan(int numberOfChoices, String backOrExit) {
+		while(true) {
+			String choice = Cnsl.scanWrtHere();
+			for(int i = 1; i <= numberOfChoices; i++) {
+				if(choice.matches("[0-9]+") ? Integer.parseInt(choice) == i : choice.equals("back")) {
+					return choice;
+				}
+			}
+			
+			switch(backOrExit) {
+			case "back":
+				wrtNmbrOrBack();
+				break;
+			case "exit":
+				wrtNmbrOrExit();
+				break;
+			case "":
+				wrtNmbr();
+				break;
+			}
+		}
 	}
 	
 	public static void separator() {

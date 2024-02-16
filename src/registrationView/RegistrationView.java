@@ -25,16 +25,8 @@ public class RegistrationView {
 		Cnsl.println("1. Student");
 		Cnsl.println("2. Teacher");
 		Cnsl.println("\'back\'");
-		String choice;
-		while(true) {
-			Alerts.wrtHere();
-			choice = Cnsl.scan();
-			if(choice.equals("1") || choice.equals("2") || choice.equals("back")) {
-				break;
-			}else {
-				Alerts.wrtNmbr();
-			}
-		}
+		
+		String choice = new Alerts().wrtNmbrScan(2, "back");
 		switch(choice) {
 		case "1":
 			// It will only be 'false' if the user was written 'back'
