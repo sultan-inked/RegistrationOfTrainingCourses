@@ -17,9 +17,9 @@ public class CourseController {
 
 	
 //	Methods:
-	public String createCourseCardSaveAndReturnId(String[] formArray, Teacher teacher) {
+	public String createCourseCardSaveAndReturnId(String[] formArray, Teacher teacher, Database database) {
 		var course = new Course(teacher, formArray[0], formArray[1]);
-		Database.addCourseToList(course);
+		database.addCourseToList(course);
 		return course.getCourseId();
 	}
 	

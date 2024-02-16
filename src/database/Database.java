@@ -17,6 +17,7 @@ import tools.Cnsl;
 
 public class Database {
 //	Variables;
+	
 	private static List<Student> studentList = new ArrayList<>();
 	private static List<Teacher> teacherList = new ArrayList<>();
 	private static List<Course> courseList = new ArrayList<>();
@@ -25,39 +26,40 @@ public class Database {
 	private static String teacherIdSignature = new Teacher().getTeacherIdSignature().substring(0, 3);
 	private static String courseIdSignature = new Course().getCourseIdSignature().substring(0, 3);
 	
+//	Constructors:
+	public Database() {
+		
+		Cnsl.println("****Created*****");
+	}
+	
 //	Getters and Setters:
-	public static String getCourseIdSignature() {
+	public String getCourseIdSignature() {
 		return courseIdSignature;
 	}
 	
 //	Methods:
 	// Show lists []->{ )
-	public static void showList() {
+	public void showList() {
 		// TODO: Show list feature!
-	}
-	public static void showTeacherListIdName() {
-		for(Teacher teacher: teacherList) {
-			Cnsl.println(teacher.getUserId() + teacher.getFirstName());
-		}
 	}
 	
 	// Add to list ->[]
-	public static void addStudentToList(Student student) {
+	public void addStudentToList(Student student) {
 		if(!listAlreadyContain(student)){
 			studentList.add(student);
 		}
 	}
-	public static void addTeacherToList(Teacher teacher) {
+	public void addTeacherToList(Teacher teacher) {
 		if(!listAlreadyContain(teacher)) {
 			teacherList.add(teacher);
 		}
 	}
-	public static void addCourseToList(Course course) {
+	public void addCourseToList(Course course) {
 		if(!listAlreadyContain(course)) {
 			courseList.add(course);
 		}
 	}
-	private static boolean listAlreadyContain(Object object) { // TODO:	Method requires optimization!
+	private boolean listAlreadyContain(Object object) { // TODO:	Method requires optimization!
 		if(object instanceof Student && studentList.size() != 0) {
 			for(int i = 0; i < studentList.size(); i++) {
 				if(studentList.get(i).getUserId().equals(((Student)object).getUserId())){
@@ -86,7 +88,7 @@ public class Database {
 	}
 	
 	// Remove from list X<-[]
-	public static void removeStudentFromList(Student student) {
+	public void removeStudentFromList(Student student) {
 		if(student != null && studentList.size() != 0) {
 			for(int i = 0; i < studentList.size(); i++) {
 				if(studentList.get(i).getUserId().equals(student.getUserId())) {
@@ -98,7 +100,7 @@ public class Database {
 			Cnsl.println("Error: " + student + " card or list are empty!");
 		}
 	}
-	public static void removeTeacherFromList(Teacher teacher) {
+	public void removeTeacherFromList(Teacher teacher) {
 		if(teacher != null && teacherList.size() != 0) {
 			for(int i = 0; i < teacherList.size(); i++) {
 				if(teacherList.get(i).getUserId().equals(teacher.getUserId())) {
@@ -110,7 +112,7 @@ public class Database {
 			Cnsl.println("Error: " + teacher + " card or list are empty!");
 		}
 	}
-	public static void removeCourseFromList(Course course) {
+	public void removeCourseFromList(Course course) {
 		if(course != null && courseList.size() != 0) {
 			for(int i = 0; i < courseList.size(); i++) {
 				if(courseList.get(i).getCourseId().equals(course.getCourseId())) {
@@ -124,7 +126,7 @@ public class Database {
 	}
 	
 	// Search in list and return object []->*
-	public static Object searchIdInList(String objectId) {
+	public Object searchIdInList(String objectId) {
 		if(objectId.length() < 3) {
 			Cnsl.println("Incorrect id!");
 			return null;
@@ -144,7 +146,7 @@ public class Database {
 	}
 	
 	// Search Student:
-	public static Student searchStudentInList(String studentId){
+	public Student searchStudentInList(String studentId){
 		if(studentList.size() == 0) {
 			Cnsl.println("Student list is empty!");
 			return null;
@@ -159,7 +161,7 @@ public class Database {
 	}
 	
 	// Search Teacher:
-	public static Teacher searchTeacherInList(String teacherId) {
+	public Teacher searchTeacherInList(String teacherId) {
 		if(teacherListIsEmpty()) return null;
 		for(int i = 0; i < teacherList.size(); i++) {
 			if(teacherList.get(i).getUserId().equals(teacherId)) {
@@ -169,7 +171,7 @@ public class Database {
 		Cnsl.println("Not found a teacher with the id: " + teacherId);
 		return null;
 	}
-	public static ArrayList<Teacher> searchTeacherInList(String firstName, String lastName, String teacherId){
+	public ArrayList<Teacher> searchTeacherInList(String firstName, String lastName, String teacherId){
 		ArrayList<Teacher> teachersFoundListThreeMatches = new ArrayList<>();
 		ArrayList<Teacher> teachersFoundListTwoMatches = new ArrayList<>();
 		ArrayList<Teacher> teachersFoundListOneMatches = new ArrayList<>();
@@ -196,7 +198,7 @@ public class Database {
 		}
 		return teachersFoundListCommon;
 	}
-	private static boolean teacherListIsEmpty() {
+	private boolean teacherListIsEmpty() {
 		if(teacherList.size() == 0) {
 			Cnsl.println("Teacher list is empty!");
 			return true;
@@ -206,7 +208,7 @@ public class Database {
 	}
 	
 	// Search Course:
-	public static Course searchCourseInList(String courseId) {
+	public Course searchCourseInList(String courseId) {
 		if(courseListIsEmpty()) return null;
 		for(int i = 0; i < courseList.size(); i++) {
 			if(courseList.get(i).getCourseId().equals(courseId)) {
@@ -216,7 +218,7 @@ public class Database {
 		Cnsl.println("Not found a course with the id: " + courseId);
 		return null;
 	}
-	public static ArrayList<Course> searchCourseInListByName(String courseName){
+	public ArrayList<Course> searchCourseInListByName(String courseName){
 		if(courseListIsEmpty() || courseName.equals("")) return null;
 		ArrayList<Course> coursesFoundList = new ArrayList<>();
 		for(int i = 0; i < courseList.size(); i++) {
@@ -229,7 +231,7 @@ public class Database {
 		}
 		return coursesFoundList;
 	}
-	public static ArrayList<Course> searchCourseBySeveralAuthors(ArrayList<Teacher> teachersFoundArray){
+	public ArrayList<Course> searchCourseBySeveralAuthors(ArrayList<Teacher> teachersFoundArray){
 		if(courseListIsEmpty()) return null;
 		ArrayList<Course> coursesFoundArray = new ArrayList<>();
 		for(int i = 0; i < courseList.size(); i++) {
@@ -241,7 +243,7 @@ public class Database {
 		}
 		return coursesFoundArray;
 	}
-	private static boolean courseListIsEmpty() {
+	private boolean courseListIsEmpty() {
 		if(courseList.size() == 0) {
 			Cnsl.println("Course list is empty!");
 			return true;
@@ -251,7 +253,7 @@ public class Database {
 	}
 	
 //	Create default objects:
-	public static void addDefaultUserCards() {
+	public void addDefaultUserCards() {
 		addStudentToList(new Student("Jesse", "Pinkman", "1234"));
 		addStudentToList(new Student("Flin", "White", "1234"));
 		addStudentToList(new Student("Gale", "Botticher", "1234"));
@@ -277,7 +279,7 @@ public class Database {
 		
 	}
 	
-	public static void addDefaultCoursesCards() {
+	public void addDefaultCoursesCards() {
 		addCourseToList(new Course(teacherList.get(0), "MethLab", "About how to cook meht."));
 		addCourseToList(new Course(teacherList.get(1), "MethMarket", "How to delivery meth."));
 		addCourseToList(new Course(teacherList.get(2), "Lawyer", "How to behave in an interrogation."));

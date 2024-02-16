@@ -6,13 +6,13 @@ import database.Database;
 
 public class MainApplication {
 	public static void main(String[] args) {
-		// Add default users and courses for test:
-		Database.addDefaultUserCards();
-		Database.addDefaultCoursesCards();
+		// Create default objects for test:
+		var database = new Database();
+		database.addDefaultUserCards();
+		database.addDefaultCoursesCards();
 		
 		// Start program:
-		var welcomeView = new WelcomeView();
-		welcomeView.start();
+		new WelcomeView().start();
 	}
 }
 

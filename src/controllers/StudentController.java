@@ -9,9 +9,9 @@ import models.Student;
 
 public class StudentController extends UserController {
 //	Methods:
-	public String createStudentCardSaveAndReturnId(String[] formArray) {
+	public String createStudentCardSaveAndReturnId(String[] formArray, Database database) {
 		var student = new Student(formArray[0], formArray[1], formArray[2]);
-		Database.addStudentToList(student);
+		database.addStudentToList(student);
 		return student.getUserId();
 	}
 }

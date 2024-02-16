@@ -43,43 +43,52 @@ import models.*;
 import tools.Cnsl;
 
 public class MainController {
+//	Variables:
+	private Database database;
+	
+//	Constructors:
+	public MainController() {
+		this.database = new Database();
+	}
+	
+//	Methods:
 	// It's using in RegistrationView.java
 	public String dataTransferToCreateStudentCardAndReturnId(String[] formArray) {
-		return new StudentController().createStudentCardSaveAndReturnId(formArray);
+		return new StudentController().createStudentCardSaveAndReturnId(formArray, database);
 	}
 	public String dataTransferToCreateTeacherCardAndReturnId(String[] formArray) {
-		return new TeacherController().createTeacherCardSaveAndReturnId(formArray);
+		return new TeacherController().createTeacherCardSaveAndReturnId(formArray, database);
 	}
 	public String dataTransferToCreateCourseCardAndReturnId(String[] formArray, Teacher teacher) {
-		return new CourseController().createCourseCardSaveAndReturnId(formArray, teacher);
+		return new CourseController().createCourseCardSaveAndReturnId(formArray, teacher, database);
 	}
 	
 	// It's using in LoginView.java
 	public User transferIdForValidate(String userId) {
-		return (User)Database.searchIdInList(userId);
+		return (User)database.searchIdInList(userId);
 	}
 	
 	// Search user:
 	public ArrayList<Teacher> searchTeacherAndReturAllOfMatches(String firstName, 
 																	String lastName, String teacherId){
-		return Database.searchTeacherInList(firstName, lastName, teacherId);
+		return database.searchTeacherInList(firstName, lastName, teacherId);
 	}
 	
 	// It's using in CourseView.java
 	public String getCourseIdSignature() {
-		return Database.getCourseIdSignature();
+		return database.getCourseIdSignature();
 	}
 	
 	public Course searchCourseById(String courseId) {
-		return (Course)Database.searchIdInList(courseId);
+		return (Course)database.searchIdInList(courseId);
 	}
 	
 	public ArrayList<Course> searchCourseByNameAndReturnArrayList(String courseName){
-		return Database.searchCourseInListByName(courseName);
+		return database.searchCourseInListByName(courseName);
 	}
 	
 	public ArrayList<Course> searchCourseBySeveralAuthorsAndReturnArrayList(ArrayList<Teacher> teachersFoundList){
-		return Database.searchCourseBySeveralAuthors(teachersFoundList);
+		return database.searchCourseBySeveralAuthors(teachersFoundList);
 	}
 	
 	// Enroll and unenroll in course methods:
