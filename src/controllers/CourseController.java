@@ -7,7 +7,7 @@ package controllers;
 import java.util.Arrays;
 
 import tools.Cnsl;
-import database.Database;
+import database.DatabaseAddRemoveController;
 import models.Course;
 import models.Student;
 import models.Teacher;
@@ -17,9 +17,10 @@ public class CourseController {
 
 	
 //	Methods:
-	public String createCourseCardSaveAndReturnId(String[] formArray, Teacher teacher, Database database) {
+	public String createCourseCardSaveAndReturnId(String[] formArray, Teacher teacher, 
+							DatabaseAddRemoveController databaseAddRemoveController) {
 		var course = new Course(teacher, formArray[0], formArray[1]);
-		database.addCourseToList(course);
+		databaseAddRemoveController.addCourseToList(course);
 		return course.getCourseId();
 	}
 	

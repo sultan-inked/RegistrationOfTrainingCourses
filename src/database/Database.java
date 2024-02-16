@@ -28,8 +28,6 @@ public class Database {
 	
 //	Constructors:
 	public Database() {
-		
-		Cnsl.println("****Created*****");
 	}
 	
 //	Getters and Setters:
@@ -37,92 +35,51 @@ public class Database {
 		return courseIdSignature;
 	}
 	
+	public void studentListAdd(Student student) {
+		studentList.add(student);
+	}
+	public void teacherListAdd(Teacher teacher) {
+		teacherList.add(teacher);
+	}
+	public void courseListAdd(Course course) {
+		courseList.add(course);
+	}
+	
+	public int studentListSize() {
+		return studentList.size();
+	}
+	public int teacherListSize() {
+		return teacherList.size();
+	}
+	public int courseListSize() {
+		return courseList.size();
+	}
+	
+	public Student studentListGet(int index) {
+		return studentList.get(index);
+	}
+	public Teacher teacherListGet(int index) {
+		return teacherList.get(index);
+	}
+	public Course courseListGet(int index) {
+		return courseList.get(index);
+	}
+	
+	public void studentListRemove(int index) {
+		studentList.remove(index);
+	}
+	public void teacherListRemove(int index) {
+		teacherList.remove(index);
+	}
+	public void courseListRemove(int index) {
+		courseList.remove(index);
+	}
+	
+	
 //	Methods:
 	// Show lists []->{ )
 	public void showList() {
 		// TODO: Show list feature!
-	}
-	
-	// Add to list ->[]
-	public void addStudentToList(Student student) {
-		if(!listAlreadyContain(student)){
-			studentList.add(student);
-		}
-	}
-	public void addTeacherToList(Teacher teacher) {
-		if(!listAlreadyContain(teacher)) {
-			teacherList.add(teacher);
-		}
-	}
-	public void addCourseToList(Course course) {
-		if(!listAlreadyContain(course)) {
-			courseList.add(course);
-		}
-	}
-	private boolean listAlreadyContain(Object object) { // TODO:	Method requires optimization!
-		if(object instanceof Student && studentList.size() != 0) {
-			for(int i = 0; i < studentList.size(); i++) {
-				if(studentList.get(i).getUserId().equals(((Student)object).getUserId())){
-					Cnsl.println("Error: " + (Student)object + " list is already contain id" + ((Student)object).getUserId());
-					return true;
-				}
-			}
-		}
-		if(object instanceof Teacher && teacherList.size() != 0) {
-			for(int i = 0; i < teacherList.size(); i++) {
-				if(teacherList.get(i).getUserId().equals(((Teacher)object).getUserId())){
-					Cnsl.println("Error: " + (Teacher)object + " list is already contain id" + ((Teacher)object).getUserId());
-					return true;
-				}
-			}
-		}
-		if(object instanceof Course && courseList.size() != 0) {
-			for(int i = 0; i < courseList.size(); i++) {
-				if(courseList.get(i).getCourseId().equals(((Course)object).getCourseId())){
-					Cnsl.println("Error: " + (Course)object + " list is already contain id" + ((Course)object).getCourseId());
-					return true;
-				}
-			}
-		}
-		return false;
-	}
-	
-	// Remove from list X<-[]
-	public void removeStudentFromList(Student student) {
-		if(student != null && studentList.size() != 0) {
-			for(int i = 0; i < studentList.size(); i++) {
-				if(studentList.get(i).getUserId().equals(student.getUserId())) {
-					studentList.remove(i);
-					Cnsl.println(student + " with id: " + student.getUserId() + " removed!");
-				}
-			}
-		}else {
-			Cnsl.println("Error: " + student + " card or list are empty!");
-		}
-	}
-	public void removeTeacherFromList(Teacher teacher) {
-		if(teacher != null && teacherList.size() != 0) {
-			for(int i = 0; i < teacherList.size(); i++) {
-				if(teacherList.get(i).getUserId().equals(teacher.getUserId())) {
-					teacherList.remove(i);
-					Cnsl.println(teacher + " with id: " + teacher.getUserId() + " removed!");
-				}
-			}
-		}else {
-			Cnsl.println("Error: " + teacher + " card or list are empty!");
-		}
-	}
-	public void removeCourseFromList(Course course) {
-		if(course != null && courseList.size() != 0) {
-			for(int i = 0; i < courseList.size(); i++) {
-				if(courseList.get(i).getCourseId().equals(course.getCourseId())) {
-					courseList.remove(i);
-					Cnsl.println(course + " with id: " + course.getCourseId() + " removed!");
-				}
-			}
-		}else {
-			Cnsl.println("Error: " + course + " card or list are empty!");
-		}
 	}
 	
 	// Search in list and return object []->*
@@ -254,56 +211,53 @@ public class Database {
 	
 //	Create default objects:
 	public void addDefaultUserCards() {
-		addStudentToList(new Student("Jesse", "Pinkman", "1234"));
-		addStudentToList(new Student("Flin", "White", "1234"));
-		addStudentToList(new Student("Gale", "Botticher", "1234"));
-		addStudentToList(new Student("Skyler", "White", "1234"));
-		addStudentToList(new Student("Bagher", "Dude", "1234"));
-		addStudentToList(new Student("Skinny", "Pete", "1234"));
-		addStudentToList(new Student("Hector", "Salamanka", "1234"));
-		addStudentToList(new Student("Christian", "Combo", "1234"));
-		addStudentToList(new Student("Tuco", "Salamanka", "1234"));
-		addStudentToList(new Student("Sultan", "Abdrakhmanov", "12345"));
+		var d = new DatabaseAddRemoveController();
+		d.addStudentToList(new Student("Jesse", "Pinkman", "1234"));
+		d.addStudentToList(new Student("Flin", "White", "1234"));
+		d.addStudentToList(new Student("Gale", "Botticher", "1234"));
+		d.addStudentToList(new Student("Skyler", "White", "1234"));
+		d.addStudentToList(new Student("Bagher", "Dude", "1234"));
+		d.addStudentToList(new Student("Skinny", "Pete", "1234"));
+		d.addStudentToList(new Student("Hector", "Salamanka", "1234"));
+		d.addStudentToList(new Student("Christian", "Combo", "1234"));
+		d.addStudentToList(new Student("Tuco", "Salamanka", "1234"));
+		d.addStudentToList(new Student("Sultan", "Abdrakhmanov", "12345"));
 		
-		addTeacherToList(new Teacher("Walter", "White", "1234"));
-		addTeacherToList(new Teacher("Gustaf", "Fring", "1234"));
-		addTeacherToList(new Teacher("Saul", "Goodman", "1234"));
-		addTeacherToList(new Teacher("Hank", "Schrader", "1234"));
+		d.addTeacherToList(new Teacher("Walter", "White", "1234"));
+		d.addTeacherToList(new Teacher("Gustaf", "Fring", "1234"));
+		d.addTeacherToList(new Teacher("Saul", "Goodman", "1234"));
+		d.addTeacherToList(new Teacher("Hank", "Schrader", "1234"));
+		
+		d.addCourseToList(new Course(teacherList.get(0), "MethLab", "About how to cook meht."));
+		d.addCourseToList(new Course(teacherList.get(1), "MethMarket", "How to delivery meth."));
+		d.addCourseToList(new Course(teacherList.get(2), "Lawyer", "How to behave in an interrogation."));
+		d.addCourseToList(new Course(teacherList.get(3), "Raid", "How to storm the house where the meth lab is."));
+		d.addCourseToList(new Course(teacherList.get(1), "MethLab", "About how to building must of big and proffesional meth lab."));
+		d.addCourseToList(new Course(teacherList.get(0), "MethLab", "About how to create temporal meth lab in the motor-house."));
+		d.addCourseToList(new Course(teacherList.get(3), "MethLab", "How I can hate meth lab in the motor-house."));
 		
 		// Teachers and courses for course searching by id testing:
-		addTeacherToList(new Teacher("Five", "Five", "1234")); // TCH000005
-		addTeacherToList(new Teacher("nothing", "Five", "1234")); // TCH000006
-		addTeacherToList(new Teacher("Five", "nothing", "1234")); // TCH000007
-		addTeacherToList(new Teacher("Five", "Five", "1234")); // TCH000008
+		d.addTeacherToList(new Teacher("Five", "Five", "1234")); // TCH000005
+		d.addTeacherToList(new Teacher("nothing", "Five", "1234")); // TCH000006
+		d.addTeacherToList(new Teacher("Five", "nothing", "1234")); // TCH000007
+		d.addTeacherToList(new Teacher("Five", "Five", "1234")); // TCH000008
 		
-		
-	}
-	
-	public void addDefaultCoursesCards() {
-		addCourseToList(new Course(teacherList.get(0), "MethLab", "About how to cook meht."));
-		addCourseToList(new Course(teacherList.get(1), "MethMarket", "How to delivery meth."));
-		addCourseToList(new Course(teacherList.get(2), "Lawyer", "How to behave in an interrogation."));
-		addCourseToList(new Course(teacherList.get(3), "Raid", "How to storm the house where the meth lab is."));
-		addCourseToList(new Course(teacherList.get(1), "MethLab", "About how to building must of big and proffesional meth lab."));
-		addCourseToList(new Course(teacherList.get(0), "MethLab", "About how to create temporal meth lab in the motor-house."));
-		addCourseToList(new Course(teacherList.get(3), "MethLab", "How I can hate meth lab in the motor-house."));
-		
-		addCourseToList(new Course(teacherList.get(4), "1", "1"));
-		addCourseToList(new Course(teacherList.get(7), "2", "2"));
-		addCourseToList(new Course(teacherList.get(7), "3", "3"));
-		addCourseToList(new Course(teacherList.get(4), "4", "4"));
-		addCourseToList(new Course(teacherList.get(5), "5", "5"));
-		addCourseToList(new Course(teacherList.get(7), "6", "6"));
-		addCourseToList(new Course(teacherList.get(6), "7", "7"));
-		addCourseToList(new Course(teacherList.get(4), "8", "8"));
-		addCourseToList(new Course(teacherList.get(4), "1", "1"));
-		addCourseToList(new Course(teacherList.get(7), "2", "2"));
-		addCourseToList(new Course(teacherList.get(7), "3", "3"));
-		addCourseToList(new Course(teacherList.get(4), "4", "4"));
-		addCourseToList(new Course(teacherList.get(5), "5", "5"));
-		addCourseToList(new Course(teacherList.get(7), "6", "6"));
-		addCourseToList(new Course(teacherList.get(6), "7", "7"));
-		addCourseToList(new Course(teacherList.get(4), "8", "8"));
+		d.addCourseToList(new Course(teacherList.get(4), "1", "1"));
+		d.addCourseToList(new Course(teacherList.get(7), "2", "2"));
+		d.addCourseToList(new Course(teacherList.get(7), "3", "3"));
+		d.addCourseToList(new Course(teacherList.get(4), "4", "4"));
+		d.addCourseToList(new Course(teacherList.get(5), "5", "5"));
+		d.addCourseToList(new Course(teacherList.get(7), "6", "6"));
+		d.addCourseToList(new Course(teacherList.get(6), "7", "7"));
+		d.addCourseToList(new Course(teacherList.get(4), "8", "8"));
+		d.addCourseToList(new Course(teacherList.get(4), "1", "1"));
+		d.addCourseToList(new Course(teacherList.get(7), "2", "2"));
+		d.addCourseToList(new Course(teacherList.get(7), "3", "3"));
+		d.addCourseToList(new Course(teacherList.get(4), "4", "4"));
+		d.addCourseToList(new Course(teacherList.get(5), "5", "5"));
+		d.addCourseToList(new Course(teacherList.get(7), "6", "6"));
+		d.addCourseToList(new Course(teacherList.get(6), "7", "7"));
+		d.addCourseToList(new Course(teacherList.get(4), "8", "8"));
 	}
 	
 	

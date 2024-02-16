@@ -4,21 +4,23 @@
 
 package controllers;
 
-import database.Database;
+import database.DatabaseAddRemoveController;
 import models.Course;
 import models.Teacher;
 
 public class TeacherController extends UserController {
 //	Methods:
-	public String createTeacherCardSaveAndReturnId(String[] listArray, Database database) {
+	public String createTeacherCardSaveAndReturnId(String[] listArray, 
+						DatabaseAddRemoveController databaseAddRemoveController) {
 		var teacher = new Teacher(listArray[0], listArray[1], listArray[2]);
-		database.addTeacherToList(teacher);
+		databaseAddRemoveController.addTeacherToList(teacher);
 		return teacher.getUserId();
 	}
 	
-	public void createCourse(Teacher teacher, String courseName, String courseDescription, Database database) {
+	public void createCourse(Teacher teacher, String courseName, String courseDescription, 
+						DatabaseAddRemoveController databaseAddRemoveController) {
 		Course course = new Course(teacher, courseName, courseDescription);
-		database.addCourseToList(course);
+		databaseAddRemoveController.addCourseToList(course);
 	}
 	
 	public void removeCourse() {

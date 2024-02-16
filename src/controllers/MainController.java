@@ -38,7 +38,7 @@ package controllers;
 
 import java.util.ArrayList;
 
-import database.Database;
+import database.*;
 import models.*;
 import tools.Cnsl;
 
@@ -54,13 +54,13 @@ public class MainController {
 //	Methods:
 	// It's using in RegistrationView.java
 	public String dataTransferToCreateStudentCardAndReturnId(String[] formArray) {
-		return new StudentController().createStudentCardSaveAndReturnId(formArray, database);
+		return new StudentController().createStudentCardSaveAndReturnId(formArray, new DatabaseAddRemoveController());
 	}
 	public String dataTransferToCreateTeacherCardAndReturnId(String[] formArray) {
-		return new TeacherController().createTeacherCardSaveAndReturnId(formArray, database);
+		return new TeacherController().createTeacherCardSaveAndReturnId(formArray, new DatabaseAddRemoveController());
 	}
 	public String dataTransferToCreateCourseCardAndReturnId(String[] formArray, Teacher teacher) {
-		return new CourseController().createCourseCardSaveAndReturnId(formArray, teacher, database);
+		return new CourseController().createCourseCardSaveAndReturnId(formArray, teacher, new DatabaseAddRemoveController());
 	}
 	
 	// It's using in LoginView.java

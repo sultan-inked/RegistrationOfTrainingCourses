@@ -2,14 +2,16 @@ package main;
 
 import view.WelcomeView;
 
+import database.DatabaseAddRemoveController;
 import database.Database;
+import models.Course;
+import models.Student;
+import models.Teacher;
 
 public class MainApplication {
 	public static void main(String[] args) {
 		// Create default objects for test:
-		var database = new Database();
-		database.addDefaultUserCards();
-		database.addDefaultCoursesCards();
+		new Database().addDefaultUserCards();
 		
 		// Start program:
 		new WelcomeView().start();
