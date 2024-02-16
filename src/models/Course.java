@@ -2,12 +2,12 @@
  * Course - a class representing courses.
  */
 
-package model;
+package models;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import model.Teacher;
+import models.Teacher;
 import tools.Id;
 
 public class Course {

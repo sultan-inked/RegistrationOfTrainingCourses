@@ -2,10 +2,10 @@
  * StudentController - a class that handles actions related to students.
  */
 
-package controller;
+package controllers;
 
-import model.Student;
 import database.Database;
+import models.Student;
 
 public class StudentController extends UserController {
 //	Methods:

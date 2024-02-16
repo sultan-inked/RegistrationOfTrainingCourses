@@ -2,10 +2,10 @@ package courseView;
 
 import java.util.ArrayList;
 
-import controller.MainController;
-import model.Course;
-import model.Teacher;
-import model.User;
+import controllers.MainController;
+import models.Course;
+import models.Teacher;
+import models.User;
 import tools.Alerts;
 import tools.Cnsl;
 

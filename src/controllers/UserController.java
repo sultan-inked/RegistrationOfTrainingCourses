@@ -2,11 +2,11 @@
  * UserController - an abstract class that handles action related to user.
  */
 
-package controller;
+package controllers;
 
-import model.User;
-import model.Course;
-import model.Student;
+import models.Course;
+import models.Student;
+import models.User;
 import tools.Cnsl;
 
 public abstract class UserController {

@@ -3,7 +3,7 @@
  * additional attributes and methods.
  */
 
-package model;
+package models;
 
 import tools.Id;
 

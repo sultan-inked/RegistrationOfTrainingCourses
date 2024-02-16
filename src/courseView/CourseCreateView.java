@@ -1,8 +1,8 @@
 package courseView;
 
-import controller.MainController;
-import model.Teacher;
-import model.User;
+import controllers.MainController;
+import models.Teacher;
+import models.User;
 import tools.Alerts;
 import tools.Cnsl;
 

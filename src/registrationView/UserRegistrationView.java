@@ -1,6 +1,6 @@
 package registrationView;
 
-import controller.MainController;
+import controllers.MainController;
 import tools.Alerts;
 import tools.Cnsl;
 

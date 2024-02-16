@@ -1,9 +1,9 @@
 package loginView;
 
-import model.User;
+import controllers.MainController;
+import models.User;
 import tools.Alerts;
 import tools.Cnsl;
-import controller.MainController;
 
 public class idAndPassword {
 	public User takeIdValidateAndReturnUser() {

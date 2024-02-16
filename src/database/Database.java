@@ -5,12 +5,14 @@
 package database;
 
 import java.util.List;
+
+import models.Course;
+import models.Student;
+import models.Teacher;
+import models.User;
+
 import java.util.ArrayList;
 
-import model.Student;
-import model.Teacher;
-import model.User;
-import model.Course;
 import tools.Cnsl;
 
 public class Database {

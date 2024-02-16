@@ -3,14 +3,14 @@
  * between the model and the view.
  */
 
-package controller;
+package controllers;
 
 import java.util.ArrayList;
 
+import controllers.*;
 import database.Database;
-import model.*;
+import models.*;
 import tools.Cnsl;
-import controller.*;
 
 public class MainController {
 	// It's using in RegistrationView.java

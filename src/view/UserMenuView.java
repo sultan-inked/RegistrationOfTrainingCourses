@@ -1,9 +1,9 @@
 package view;
 
-import model.User;
 import courseView.CourseMenuView;
-import model.Student;
-import model.Teacher;
+import models.Student;
+import models.Teacher;
+import models.User;
 import tools.Alerts;
 import tools.Cnsl;
 

@@ -2,11 +2,11 @@
  * TeacherController - a class that handles actions related to teacher.
  */
 
-package controller;
+package controllers;
 
-import model.Teacher;
-import model.Course;
 import database.Database;
+import models.Course;
+import models.Teacher;
 
 public class TeacherController extends UserController {
 //	Methods:

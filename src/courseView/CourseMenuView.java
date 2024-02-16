@@ -5,16 +5,18 @@
 package courseView;
 
 import java.util.Arrays;
+
+import controllers.CourseController;
+import controllers.MainController;
+import controllers.StudentController;
+import controllers.TeacherController;
+import models.Course;
+import models.Student;
+import models.Teacher;
+import models.User;
+
 import java.util.ArrayList;
 
-import model.User;
-import model.Student;
-import model.Teacher;
-import model.Course;
-import controller.MainController;
-import controller.StudentController;
-import controller.TeacherController;
-import controller.CourseController;
 import tools.Alerts;
 import tools.Cnsl;
 

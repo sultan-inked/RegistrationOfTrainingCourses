@@ -1,12 +1,12 @@
 package loginView;
 
-import controller.MainController;
 import tools.Alerts;
 import tools.Cnsl;
 import view.UserMenuView;
-import model.User;
-import model.Student;
-import model.Teacher;
+import controllers.MainController;
+import models.Student;
+import models.Teacher;
+import models.User;
 
 public class LoginView {
 //	Variables:

@@ -2,16 +2,16 @@
  * CourseController - a class that handles actions related to course.
  */
 
-package controller;
+package controllers;
 
 import java.util.Arrays;
 
-import model.User;
 import tools.Cnsl;
-import model.Student;
-import model.Teacher;
-import model.Course;
 import database.Database;
+import models.Course;
+import models.Student;
+import models.Teacher;
+import models.User;
 
 public class CourseController {
 
