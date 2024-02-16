@@ -3,7 +3,7 @@
  * between the model and the view.
  */
 
-package controllers;
+package mainController;
 
 import java.util.ArrayList;
 

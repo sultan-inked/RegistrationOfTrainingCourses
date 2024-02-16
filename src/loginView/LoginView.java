@@ -3,7 +3,7 @@ package loginView;
 import tools.Alerts;
 import tools.Cnsl;
 import view.UserMenuView;
-import controllers.MainController;
+import mainController.MainController;
 import models.Student;
 import models.Teacher;
 import models.User;

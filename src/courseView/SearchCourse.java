@@ -2,7 +2,7 @@ package courseView;
 
 import java.util.ArrayList;
 
-import controllers.MainController;
+import mainController.MainController;
 import models.Course;
 import models.Teacher;
 import models.User;

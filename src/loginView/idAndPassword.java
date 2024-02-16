@@ -1,6 +1,6 @@
 package loginView;
 
-import controllers.MainController;
+import mainController.MainController;
 import models.User;
 import tools.Alerts;
 import tools.Cnsl;

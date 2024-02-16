@@ -7,9 +7,9 @@ package courseView;
 import java.util.Arrays;
 
 import controllers.CourseController;
-import controllers.MainController;
 import controllers.StudentController;
 import controllers.TeacherController;
+import mainController.MainController;
 import models.Course;
 import models.Student;
 import models.Teacher;
