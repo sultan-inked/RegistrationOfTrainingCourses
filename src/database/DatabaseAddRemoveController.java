@@ -15,7 +15,7 @@ public class DatabaseAddRemoveController {
 	}
 	
 //	Methods:
-	// Add to list ->[]
+	// Add objects to list ->[]
 		public void addStudentToList(Student student) {
 			if(!listAlreadyContain(student)){
 				database.studentListAdd(student);
@@ -59,7 +59,7 @@ public class DatabaseAddRemoveController {
 			return false;
 		}
 		
-		// Remove from list X<-[]
+		// Remove objects from list X<-[]
 		public void removeStudentFromList(Student student) {
 			if(student != null && database.studentListSize() != 0) {
 				for(int i = 0; i < database.studentListSize(); i++) {

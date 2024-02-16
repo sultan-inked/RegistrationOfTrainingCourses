@@ -123,6 +123,7 @@ public class SearchCourse {
 			Cnsl.println("No such author was found!");
 			Alerts.tryAgainOrBack();
 			searchCourseByAuthor(user);
+			return;
 		}
 		
 		// Search for courses by several authors:

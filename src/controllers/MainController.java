@@ -65,13 +65,13 @@ public class MainController {
 	
 	// It's using in LoginView.java
 	public User transferIdForValidate(String userId) {
-		return (User)database.searchIdInList(userId);
+		return (User)new DatabaseSearchController().searchIdInList(userId);
 	}
 	
 	// Search user:
 	public ArrayList<Teacher> searchTeacherAndReturAllOfMatches(String firstName, 
 																	String lastName, String teacherId){
-		return database.searchTeacherInList(firstName, lastName, teacherId);
+		return new DatabaseSearchController().searchTeacherInList(firstName, lastName, teacherId);
 	}
 	
 	// It's using in CourseView.java
@@ -80,15 +80,15 @@ public class MainController {
 	}
 	
 	public Course searchCourseById(String courseId) {
-		return (Course)database.searchIdInList(courseId);
+		return (Course)new DatabaseSearchController().searchIdInList(courseId);
 	}
 	
 	public ArrayList<Course> searchCourseByNameAndReturnArrayList(String courseName){
-		return database.searchCourseInListByName(courseName);
+		return new DatabaseSearchController().searchCourseInListByName(courseName);
 	}
 	
 	public ArrayList<Course> searchCourseBySeveralAuthorsAndReturnArrayList(ArrayList<Teacher> teachersFoundList){
-		return database.searchCourseBySeveralAuthors(teachersFoundList);
+		return new DatabaseSearchController().searchCourseBySeveralAuthors(teachersFoundList);
 	}
 	
 	// Enroll and unenroll in course methods:
