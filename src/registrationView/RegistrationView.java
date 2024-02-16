@@ -6,7 +6,7 @@ package registrationView;
 
 import java.util.Arrays;
 
-import mainController.MainController;
+import controllers.MainController;
 import tools.Alerts;
 import tools.Cnsl;
 import view.WelcomeView;

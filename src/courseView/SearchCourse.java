@@ -2,7 +2,7 @@ package courseView;
 
 import java.util.ArrayList;
 
-import mainController.MainController;
+import controllers.MainController;
 import models.Course;
 import models.Teacher;
 import models.User;
@@ -90,8 +90,6 @@ public class SearchCourse {
 			}
 			else if(coursesFoundList.size() == 0) {
 				Alerts.tryAgainOrBack();
-//				searchCourseByName(user); //**************
-//				return;
 			}
 		}
 	}

@@ -3,7 +3,7 @@ package courseView;
 import java.util.ArrayList;
 
 import controllers.CourseController;
-import mainController.MainController;
+import controllers.MainController;
 import models.Course;
 import models.Teacher;
 import models.User;

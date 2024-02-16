@@ -217,8 +217,8 @@ public class Database {
 		return null;
 	}
 	public static ArrayList<Course> searchCourseInListByName(String courseName){
+		if(courseListIsEmpty() || courseName.equals("")) return null;
 		ArrayList<Course> coursesFoundList = new ArrayList<>();
-		if(courseListIsEmpty()) return null;
 		for(int i = 0; i < courseList.size(); i++) {
 			if(courseList.get(i).getCourseName().equals(courseName)) {
 				coursesFoundList.add(courseList.get(i));
