@@ -5,6 +5,23 @@
 package tools;
 
 public class Alerts {
+	
+	public static void separator() {
+		Cnsl.println("_____________________________________");
+	}
+	
+	public static void ftrNotYet() {
+		Cnsl.println("This feature has not yet been developed.");
+	}
+	
+	public static void wrtHere() {
+		Cnsl.print("Write here: ");
+	}
+	
+	public static void tryAgainOrBack() {
+		Cnsl.println("Try again or write \'back\'.");
+	}
+	
 	public static void wrtNmbr() {
 		Cnsl.println("Just write number with your choice.");
 	}
@@ -14,11 +31,13 @@ public class Alerts {
 	public static void wrtNmbrOrExit() {
 		Cnsl.println("Just write number with your choice or 'exit'.");
 	}
+	
 	public String wrtNmbrScan(int numberOfChoices, String backOrExit) {
 		while(true) {
 			String choice = Cnsl.scanWrtHere();
 			for(int i = 1; i <= numberOfChoices; i++) {
-				if(choice.matches("[0-9]+") ? Integer.parseInt(choice) == i : choice.equals("back")) {
+				if(choice.matches("[0-9]+") ? Integer.parseInt(choice) == i : 
+						!choice.equals("") ? choice.equals(backOrExit) : false) {
 					return choice;
 				}
 			}
@@ -37,26 +56,10 @@ public class Alerts {
 		}
 	}
 	
-	public static void separator() {
-		Cnsl.println("_____________________________________");
-	}
-	
-	public static void ftrNotYet() {
-		Cnsl.println("This feature has not yet been developed.");
-	}
-	
-	public static void wrtHere() {
-		Cnsl.print("Write here: ");
-	}
-	
-	public static void tryAgainOrBack() {
-		Cnsl.println("Try again or write \'back\'");
-	}
-	
 	public String confirmChangeOrBack() {
 		while(true) {
 			Cnsl.println("\'confirm\', \'change' or \'back\'");
-			Cnsl.print("Write:");
+			wrtHere();
 			String answer = Cnsl.scan();
 			switch(answer) {
 			case "confirm":

@@ -25,35 +25,29 @@ public class CourseActionView {
 		if(user instanceof Teacher && course.getCourseCreator().equals(user)) {
 			Cnsl.println("3. Delete course");
 		}
-		Cnsl.println("\'back\'");
 		
-		// Loop for handling input exception:
-		while(true) {
-			Alerts.wrtHere();
-			String choice = Cnsl.scan();
-			switch(choice) {
-			case "1":
-				mainController.enrollInCourse(user, course);
+		String choice = new Alerts().wrtNmbrScan(3, "back");
+		switch(choice) {
+		case "1":
+			mainController.enrollInCourse(user, course);
+			whatToDoWithTheCourse(course, user, mainController);
+			return;
+		case "2":
+			mainController.unenrollInCourse(user, course);
+			whatToDoWithTheCourse(course, user, mainController);
+			return;
+		case "3":
+			if(user instanceof Teacher) {
+				// TODO: Make course delete feature
+				Alerts.ftrNotYet();
 				whatToDoWithTheCourse(course, user, mainController);
-				return;
-			case "2":
-				mainController.unenrollInCourse(user, course);
-				whatToDoWithTheCourse(course, user, mainController);
-				return;
-			case "3":
-				if(user instanceof Teacher) {
-					// TODO: Make course delete feature
-					Alerts.ftrNotYet();
-					break;
-				}else {
-					Alerts.wrtNmbr();
-					break;
-				}
-			case "back":
-				return;
-				default:
-					Alerts.wrtNmbr();
+				break;
+			}else {
+				Alerts.tryAgainOrBack();
+				break;
 			}
+		case "back":
+			return;
 		}
 	}
 	

@@ -24,7 +24,6 @@ public class RegistrationView {
 		Cnsl.println("Sign up");
 		Cnsl.println("1. Student");
 		Cnsl.println("2. Teacher");
-		Cnsl.println("\'back\'");
 		
 		String choice = new Alerts().wrtNmbrScan(2, "back");
 		switch(choice) {

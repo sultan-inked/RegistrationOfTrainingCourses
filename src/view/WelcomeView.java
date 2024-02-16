@@ -13,21 +13,19 @@ public class WelcomeView {
 		Cnsl.println("Hello there!");
 		Cnsl.println("1. Login");
 		Cnsl.println("2. Sign up");
-		while(true) {
-			Alerts.wrtHere();
-			String choice = Cnsl.scan();
-			switch(choice) {
-			case "1":
-				new LoginView(new idAndPassword()).login();
-				start();
-				return;
-			case "2":
-				new RegistrationView(new UserRegistrationView(new FormView(), new KeyWordValidatorView())).registration();
-				start();
-				return;
-			case "exit":
-				return;
-			}
+		
+		String choice = new Alerts().wrtNmbrScan(2, "exit");
+		switch(choice) {
+		case "1":
+			new LoginView(new idAndPassword()).login();
+			start();
+			return;
+		case "2":
+			new RegistrationView(new UserRegistrationView(new FormView(), new KeyWordValidatorView())).registration();
+			start();
+			return;
+		case "exit":
+			return;
 		}
 	}
 }

@@ -28,28 +28,23 @@ public class CourseSearchMenuView {
 		Cnsl.println("1. by id");
 		Cnsl.println("2. by name");
 		Cnsl.println("3. by author");
-		Cnsl.println("\'back\'");
-		while(true) {
-			Alerts.wrtHere();
-			String choice = Cnsl.scan();
-			switch(choice) {
-			case "1":
-				searchCourse.searchCourseById(user);
-				courseSearchMenu(user);
-				return;
-			case "2":
-				searchCourse.searchCourseByName(user);
-				courseSearchMenu(user);
-				return;
-			case "3":
-				searchCourse.searchCourseByAuthor(user);
-				courseSearchMenu(user);
-				return;
-			case "back":
-				return;
-				default:
-					Alerts.wrtNmbr();
-			}
+		
+		String choice = new Alerts().wrtNmbrScan(3, "back");
+		switch(choice) {
+		case "1":
+			searchCourse.searchCourseById(user);
+			courseSearchMenu(user);
+			return;
+		case "2":
+			searchCourse.searchCourseByName(user);
+			courseSearchMenu(user);
+			return;
+		case "3":
+			searchCourse.searchCourseByAuthor(user);
+			courseSearchMenu(user);
+			return;
+		case "back":
+			return;
 		}
 	}
 }

@@ -32,7 +32,7 @@ public class SearchCourse {
 			String courseId = Cnsl.scan();
 			
 			// Checking for matching the id template
-			if(courseId.substring(0, 3).equals(mainController.getCourseIdSignature()) 
+			if(courseId.length() > 2 && courseId.substring(0, 3).equals(mainController.getCourseIdSignature()) 
 					&& courseId != null && !courseId.equals("") && courseId.length() == 9) {
 				
 				course = mainController.searchCourseById(courseId);
@@ -58,36 +58,40 @@ public class SearchCourse {
 	public void searchCourseByName(User user) {
 		Alerts.separator();
 		Cnsl.println("Search course by name");
-		Cnsl.print("Name: ");
-		String courseName = Cnsl.scan();
 		
-		if(courseName.equals("back")) {
-			return;
-		}
-		
-		ArrayList<Course> coursesFoundList = mainController.searchCourseByNameAndReturnArrayList(courseName);
-		
-		if(coursesFoundList.size() == 0) {
-			Alerts.tryAgainOrBack();
-			searchCourseByName(user);
-			return;
-		}
-		if(coursesFoundList.size() == 1) {
-			Alerts.separator();
-			Cnsl.println("1 course founded with that name!");
-			courseActionView.whatToDoWithTheCourse(coursesFoundList.get(0), user, mainController);
-			return;
-		}
-		if(coursesFoundList.size() > 1) {
-			Cnsl.println(coursesFoundList.size() + " courses with the name \'" + coursesFoundList.get(0).getCourseName()
-					+ "\' founded!");
-			Course course = courseActionView.choiceCourseInList(coursesFoundList);
-			if(course != null) {
+		// Loop for handling input exception:
+		while(true) {
+			Cnsl.print("Name: ");
+			String courseName = Cnsl.scan();
+			
+			if(courseName.equals("back")) {
+				return;
+			}
+			
+			ArrayList<Course> coursesFoundList = mainController.searchCourseByNameAndReturnArrayList(courseName);
+			
+			if(coursesFoundList.size() == 1) {
 				Alerts.separator();
-				Cnsl.println("Your choice course");
-				courseActionView.whatToDoWithTheCourse(course, user, mainController);
-			}else {
-				Cnsl.println("Error: Course card is empty(SearchCourse.java :90");
+				Cnsl.println("1 course founded with that name!");
+				courseActionView.whatToDoWithTheCourse(coursesFoundList.get(0), user, mainController);
+				return;
+			}
+			else if(coursesFoundList.size() > 1) {
+				Cnsl.println(coursesFoundList.size() + " courses with the name \'" + coursesFoundList.get(0).getCourseName()
+						+ "\' founded!");
+				Course course = courseActionView.choiceCourseInList(coursesFoundList);
+				if(course != null) {
+					Alerts.separator();
+					Cnsl.println("Your choice course");
+					courseActionView.whatToDoWithTheCourse(course, user, mainController);
+				}else {
+					Cnsl.println("Error: Course card is empty(SearchCourse.java :90");
+				}
+			}
+			else if(coursesFoundList.size() == 0) {
+				Alerts.tryAgainOrBack();
+//				searchCourseByName(user); //**************
+//				return;
 			}
 		}
 	}

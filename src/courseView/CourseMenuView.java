@@ -27,34 +27,32 @@ public class CourseMenuView {
 		if(user instanceof Teacher) {
 			Cnsl.println("3. Create course");
 		}
-		Cnsl.println("\'back\'");
-		while(true) {
-			Alerts.wrtHere();
-			String choice = Cnsl.scan();
-			switch(choice) {
-			case "1":
-				new CourseSearchMenuView(new CourseActionView(), 
-						new SearchCourse(new CourseActionView(), new MainController())).courseSearchMenu(user);
+		
+		String choice = new Alerts().wrtNmbrScan(3, "back");
+		switch(choice) {
+		case "1":
+			new CourseSearchMenuView(new CourseActionView(), 
+					new SearchCourse(new CourseActionView(), new MainController())).courseSearchMenu(user);
+			courseMenu(user);
+			return;
+		case "2":
+			// TODO: Make show course list feature
+			Alerts.ftrNotYet();
+			courseMenu(user);
+			break;
+		case "3":
+			if(user instanceof Teacher) {
+				new CourseCreateView(new MainController()).createCourseMenu((Teacher)user);
 				courseMenu(user);
 				return;
-			case "2":
-				// TODO: Make show course list feature
-				Alerts.ftrNotYet();
+			}else {
+				Alerts.wrtNmbr();
 				break;
-			case "3":
-				if(user instanceof Teacher) {
-					new CourseCreateView(new MainController()).createCourseMenu((Teacher)user);
-					courseMenu(user);
-					return;
-				}else {
-					Alerts.wrtNmbr();
-					break;
-				}
-			case "back":
-				return;
-				default:
-					Alerts.wrtNmbr();
 			}
+		case "back":
+			return;
+			default:
+				Alerts.wrtNmbr();
 		}
 	}
 }
