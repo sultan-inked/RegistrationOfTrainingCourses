@@ -17,13 +17,13 @@ public class CourseController {
 
 	
 //	Methods:
-	public static String createCourseCardSaveAndReturnId(String[] formArray, Teacher teacher) {
+	public String createCourseCardSaveAndReturnId(String[] formArray, Teacher teacher) {
 		var course = new Course(teacher, formArray[0], formArray[1]);
 		Database.addCourseToList(course);
 		return course.getCourseId();
 	}
 	
-	public static String[] getCourseInfoArray(Course course) {
+	public String[] getCourseInfoArray(Course course) {
 		var courseInfoArray = new String[4];
 		courseInfoArray[0] = "Author: " + course.getCourseCreator().getFirstName() + " " + course.getCourseCreator().getLastName();
 		courseInfoArray[1] = "Name: " + course.getCourseName();

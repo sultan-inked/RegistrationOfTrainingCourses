@@ -14,7 +14,7 @@ public class CourseActionView {
 	public void whatToDoWithTheCourse(Course course, User user, MainController mainController) {
 		Cnsl.println();
 		Cnsl.println("You choice this course:");
-		String[] courseInfoArray = CourseController.getCourseInfoArray(course);
+		String[] courseInfoArray = new CourseController().getCourseInfoArray(course);
 		for(String info: courseInfoArray) {
 			Cnsl.println(info);
 		}

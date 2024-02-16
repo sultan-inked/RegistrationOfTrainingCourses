@@ -23,7 +23,7 @@ public class MainController {
 		return teacherController.createTeacherCardSaveAndReturnId(formArray);
 	}
 	public String dataTransferToCreateCourseCardAndReturnId(String[] formArray, Teacher teacher) {
-		return CourseController.createCourseCardSaveAndReturnId(formArray, teacher);
+		return new CourseController().createCourseCardSaveAndReturnId(formArray, teacher);
 	}
 	
 	// It's using in LoginView.java
@@ -92,7 +92,7 @@ public class MainController {
 	}
 	public void unenrollInCourse(User user, Course course) {
 		if(user == null || course == null) {
-			Cnsl.println("Error: User or Course is empty(null)");
+			Cnsl.println("Error: User or Course is empty(MainController.java :95)");
 			return;
 		}
 		if(user instanceof Student) {
