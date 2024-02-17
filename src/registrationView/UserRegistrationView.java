@@ -1,6 +1,8 @@
 package registrationView;
 
-import controllers.MainController;
+import controllers.StudentController;
+import controllers.TeacherController;
+import database.DatabaseAddRemoveController;
 import tools.Alerts;
 import tools.Cnsl;
 
@@ -41,8 +43,8 @@ public class UserRegistrationView {
 		
 		// Take user Id for show to user
 		String userId = userTypeString.equals("Student") ?
-				new MainController().dataTransferToCreateStudentCardAndReturnId(userRegistrationFormArray):
-					new MainController().dataTransferToCreateTeacherCardAndReturnId(userRegistrationFormArray);
+				new StudentController().createStudentCardSaveAndReturnId(userRegistrationFormArray):
+					new TeacherController().createTeacherCardSaveAndReturnId(userRegistrationFormArray);
 		Cnsl.println(userTypeString + " card created!");
 		Cnsl.println("Your id: " + userId);
 		

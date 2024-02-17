@@ -3,15 +3,17 @@ package courseView;
 import java.util.ArrayList;
 
 import controllers.CourseController;
-import controllers.MainController;
+import controllers.StudentController;
+import controllers.TeacherController;
 import models.Course;
+import models.Student;
 import models.Teacher;
 import models.User;
 import tools.Alerts;
 import tools.Cnsl;
 
 public class CourseActionView {
-	public void whatToDoWithTheCourse(Course course, User user, MainController mainController) {
+	public void whatToDoWithTheCourse(Course course, User user) {
 		Cnsl.println();
 		Cnsl.println("You choice this course:");
 		String[] courseInfoArray = new CourseController().getCourseInfoArray(course);
@@ -29,18 +31,18 @@ public class CourseActionView {
 		String choice = new Alerts().wrtNmbrScan(3, "back");
 		switch(choice) {
 		case "1":
-			mainController.enrollInCourse(user, course);
-			whatToDoWithTheCourse(course, user, mainController);
+			enrollInCourse(user, course);
+			whatToDoWithTheCourse(course, user);
 			return;
 		case "2":
-			mainController.unenrollInCourse(user, course);
-			whatToDoWithTheCourse(course, user, mainController);
+			unenrollInCourse(user, course);
+			whatToDoWithTheCourse(course, user);
 			return;
 		case "3":
 			if(user instanceof Teacher) {
 				// TODO: Make course delete feature
 				Alerts.ftrNotYet();
-				whatToDoWithTheCourse(course, user, mainController);
+				whatToDoWithTheCourse(course, user);
 				break;
 			}else {
 				Alerts.tryAgainOrBack();
@@ -48,6 +50,22 @@ public class CourseActionView {
 			}
 		case "back":
 			return;
+		}
+	}
+	public void enrollInCourse(User user, Course course) {
+		if(user instanceof Student) {
+			new StudentController().enrollInCourse(new CourseController(), course, user);
+		}
+		if(user instanceof Teacher) {
+			new TeacherController().enrollInCourse(new CourseController(), course, user);
+		}
+	}
+	public void unenrollInCourse(User user, Course course) {
+		if(user instanceof Student) {
+			new StudentController().unenrollInCourse(new CourseController(), course, user);	
+		}
+		if(user instanceof Teacher) {
+			new TeacherController().unenrollInCourse(new CourseController(), course, user);
 		}
 	}
 	

@@ -2,22 +2,21 @@ package courseView;
 
 import java.util.ArrayList;
 
-import controllers.MainController;
+import database.DatabaseSearchController;
+import database.DatabaseShowListController;
 import models.Course;
 import models.Teacher;
 import models.User;
 import tools.Alerts;
 import tools.Cnsl;
 
-public class SearchCourse {
+public class SearchCourseView {
 //	Variables:
 	private final CourseActionView courseActionView;
-	private final MainController mainController;
 	
 //	Constructors:
-	public SearchCourse(CourseActionView courseActionView, MainController mainController) {
+	public SearchCourseView(CourseActionView courseActionView) {
 		this.courseActionView = courseActionView;
-		this.mainController = mainController;
 	}
 	
 //	Methods:
@@ -32,14 +31,15 @@ public class SearchCourse {
 			String courseId = Cnsl.scan();
 			
 			// Checking for matching the id template
-			if(courseId.length() > 2 && courseId.substring(0, 3).equals(mainController.getCourseIdSignature()) 
+			if(courseId.length() > 2 && 
+					courseId.substring(0, 3).equals(new DatabaseShowListController().getCourseIdSignature()) 
 					&& courseId != null && !courseId.equals("") && courseId.length() == 9) {
 				
-				course = mainController.searchCourseById(courseId);
+				course = (Course)new DatabaseSearchController().searchIdInList(courseId);
 				if(course != null) {
 					Alerts.separator();
 					Cnsl.println("Course found!");
-					courseActionView.whatToDoWithTheCourse(course, user, mainController);
+					courseActionView.whatToDoWithTheCourse(course, user);
 					searchCourseById(user);
 					return;
 				}
@@ -68,12 +68,12 @@ public class SearchCourse {
 				return;
 			}
 			
-			ArrayList<Course> coursesFoundList = mainController.searchCourseByNameAndReturnArrayList(courseName);
+			ArrayList<Course> coursesFoundList = new DatabaseSearchController().searchCourseInListByName(courseName);
 			
 			if(coursesFoundList.size() == 1) {
 				Alerts.separator();
 				Cnsl.println("1 course founded with that name!");
-				courseActionView.whatToDoWithTheCourse(coursesFoundList.get(0), user, mainController);
+				courseActionView.whatToDoWithTheCourse(coursesFoundList.get(0), user);
 				return;
 			}
 			else if(coursesFoundList.size() > 1) {
@@ -83,7 +83,7 @@ public class SearchCourse {
 				if(course != null) {
 					Alerts.separator();
 					Cnsl.println("Your choice course");
-					courseActionView.whatToDoWithTheCourse(course, user, mainController);
+					courseActionView.whatToDoWithTheCourse(course, user);
 				}else {
 					Cnsl.println("Error: Course card is empty(SearchCourse.java :90");
 				}
@@ -117,8 +117,8 @@ public class SearchCourse {
 		}
 		
 		// Search for all matching authors:
-		ArrayList<Teacher> teachersFoundList = 
-				mainController.searchTeacherAndReturAllOfMatches(firstName, lastName, authorId);
+		ArrayList<Teacher> teachersFoundList = new DatabaseSearchController().searchTeacherInList(firstName, 
+																							lastName, authorId);
 		if(teachersFoundList.size() == 0) {
 			Cnsl.println("No such author was found!");
 			Alerts.tryAgainOrBack();
@@ -127,7 +127,7 @@ public class SearchCourse {
 		}
 		
 		// Search for courses by several authors:
-		ArrayList<Course> coursesFoundList = mainController.searchCourseBySeveralAuthorsAndReturnArrayList(teachersFoundList);
+		ArrayList<Course> coursesFoundList = new DatabaseSearchController().searchCourseBySeveralAuthors(teachersFoundList);
 		if(coursesFoundList.size() == 0) {
 			Cnsl.println("Not found a course with that aouthor!");
 			Alerts.tryAgainOrBack();
@@ -136,14 +136,14 @@ public class SearchCourse {
 		if(coursesFoundList.size() == 1) {
 			Alerts.separator();
 			Cnsl.println("1 cours founded with that author!");
-			courseActionView.whatToDoWithTheCourse(coursesFoundList.get(0), user, mainController);
+			courseActionView.whatToDoWithTheCourse(coursesFoundList.get(0), user);
 		}
 		if(coursesFoundList.size() > 1) {
 			Alerts.separator();
 			Cnsl.println(coursesFoundList.size() + " courses by that authors founded!");
 			Course course = courseActionView.choiceCourseInList(coursesFoundList);
 			if(course != null) {
-				courseActionView.whatToDoWithTheCourse(course, user, mainController);
+				courseActionView.whatToDoWithTheCourse(course, user);
 			}else {
 				Cnsl.println("Error: Course card is empty(SearchCourse.java :145");
 			}

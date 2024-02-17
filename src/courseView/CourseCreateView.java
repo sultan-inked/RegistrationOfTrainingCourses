@@ -1,6 +1,6 @@
 package courseView;
 
-import controllers.MainController;
+import controllers.CourseController;
 import models.Teacher;
 import models.User;
 import tools.Alerts;
@@ -8,11 +8,11 @@ import tools.Cnsl;
 
 public class CourseCreateView {
 //	Variables:
-	private final MainController mainController;
+
 	
 //	Constructor:
-	public CourseCreateView(MainController mainController) {
-		this.mainController = mainController;
+	public CourseCreateView() {
+		
 	}
 	
 //	Methods:
@@ -23,7 +23,7 @@ public class CourseCreateView {
 		
 		if(courseCreateFormArray == null) return;
 		
-		String courseId = mainController.dataTransferToCreateCourseCardAndReturnId(courseCreateFormArray, teacher);
+		String courseId = new CourseController().createCourseCardSaveAndReturnId(courseCreateFormArray, teacher);
 		Cnsl.println("Course with id: " + courseId + " created!");
 	}
 	public String[] takeDataForCourseCreateForm(Teacher teacher) {

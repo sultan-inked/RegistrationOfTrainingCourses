@@ -1,6 +1,6 @@
 package loginView;
 
-import controllers.MainController;
+import database.DatabaseSearchController;
 import models.User;
 import tools.Alerts;
 import tools.Cnsl;
@@ -13,7 +13,7 @@ public class idAndPassword {
 			if(userId.equals("back")) {
 				return null;
 			}else {
-				User user = new MainController().transferIdForValidate(userId);
+				User user = (User)new DatabaseSearchController().searchIdInList(userId);
 				if(user != null) {
 					return user;
 				}else {

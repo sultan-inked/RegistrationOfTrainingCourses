@@ -10,10 +10,9 @@ import models.Teacher;
 
 public class TeacherController extends UserController {
 //	Methods:
-	public String createTeacherCardSaveAndReturnId(String[] listArray, 
-						DatabaseAddRemoveController databaseAddRemoveController) {
+	public String createTeacherCardSaveAndReturnId(String[] listArray) {
 		var teacher = new Teacher(listArray[0], listArray[1], listArray[2]);
-		databaseAddRemoveController.addTeacherToList(teacher);
+		new DatabaseAddRemoveController().addTeacherToList(teacher);
 		return teacher.getUserId();
 	}
 	

@@ -3,7 +3,6 @@ package courseView;
 import java.util.ArrayList;
 
 import controllers.CourseController;
-import controllers.MainController;
 import models.Course;
 import models.Teacher;
 import models.User;
@@ -13,12 +12,12 @@ import tools.Cnsl;
 public class CourseSearchMenuView {
 //	Variables:
 	private final CourseActionView courseActionView;
-	private final SearchCourse searchCourse;
+	private final SearchCourseView searchCourseView;
 	
 //	Constructors:
-	public CourseSearchMenuView(CourseActionView courseActionView, SearchCourse searchCourse) {
+	public CourseSearchMenuView(CourseActionView courseActionView, SearchCourseView searchCourse) {
 		this.courseActionView = courseActionView;
-		this.searchCourse = searchCourse;
+		this.searchCourseView = searchCourse;
 	}
 	
 //	Search course:
@@ -32,15 +31,15 @@ public class CourseSearchMenuView {
 		String choice = new Alerts().wrtNmbrScan(3, "back");
 		switch(choice) {
 		case "1":
-			searchCourse.searchCourseById(user);
+			searchCourseView.searchCourseById(user);
 			courseSearchMenu(user);
 			return;
 		case "2":
-			searchCourse.searchCourseByName(user);
+			searchCourseView.searchCourseByName(user);
 			courseSearchMenu(user);
 			return;
 		case "3":
-			searchCourse.searchCourseByAuthor(user);
+			searchCourseView.searchCourseByAuthor(user);
 			courseSearchMenu(user);
 			return;
 		case "back":
