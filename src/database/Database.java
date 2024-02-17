@@ -22,9 +22,9 @@ public class Database {
 	private static List<Teacher> teacherList = new ArrayList<>();
 	private static List<Course> courseList = new ArrayList<>();
 	
-	private static String studentIdSignature = new Student().getStudentIdSignature().substring(0, 3);
-	private static String teacherIdSignature = new Teacher().getTeacherIdSignature().substring(0, 3);
-	private static String courseIdSignature = new Course().getCourseIdSignature().substring(0, 3);
+	private String studentIdSignature = new Student().getStudentIdSignature().substring(0, 3);
+	private String teacherIdSignature = new Teacher().getTeacherIdSignature().substring(0, 3);
+	private String courseIdSignature = new Course().getCourseIdSignature().substring(0, 3);
 	
 //	Constructors:
 	public Database() {
