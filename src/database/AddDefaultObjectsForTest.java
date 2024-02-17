@@ -4,7 +4,7 @@ import models.Course;
 import models.Student;
 import models.Teacher;
 
-public class AddDefaultObjects {
+public class AddDefaultObjectsForTest {
 //	Create default objects:
 	public void add() {
 		var d = new DatabaseAddRemoveController();

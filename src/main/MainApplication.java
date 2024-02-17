@@ -1,12 +1,12 @@
 package main;
 
 import view.WelcomeView;
-import database.AddDefaultObjects;
+import database.AddDefaultObjectsForTest;
 
 public class MainApplication {
 	public static void main(String[] args) {
 		// Create default objects for test:
-		new AddDefaultObjects().add();
+		new AddDefaultObjectsForTest().add();
 		
 		// Start program:
 		new WelcomeView().start();
