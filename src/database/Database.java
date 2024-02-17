@@ -41,6 +41,16 @@ public class Database {
 		return courseIdSignature;
 	}
 	
+	public Student[] getStudentListArray(){
+		return studentList.toArray(new Student[studentList.size()]);
+	}
+	public Teacher[] getTeacherListArray() {
+		return teacherList.toArray(new Teacher[teacherList.size()]);
+	}
+	public Course[] getCourseListArray() {
+		return courseList.toArray(new Course[courseList.size()]);
+	}
+	
 //	Lists actions:
 	public void studentListAdd(Student student) {
 		studentList.add(student);

@@ -31,29 +31,38 @@ public class DatabaseAddRemoveController {
 				database.courseListAdd(course);
 			}
 		}
-		private boolean listAlreadyContain(Object object) { // TODO:	Method requires optimization!
-			if(object instanceof Student && database.studentListSize() != 0) {
-				for(int i = 0; i < database.studentListSize(); i++) {
-					if(database.studentListGet(i).getUserId().equals(((Student)object).getUserId())){
-						Cnsl.println("Error: " + (Student)object + " list is already contain id" + ((Student)object).getUserId());
-						return true;
-					}
-				}
+		
+		private boolean listAlreadyContain(Object object) {
+			Object[] objectArray = null;
+			String objectId = "";
+			String objectTypeName = "";
+			
+			if(object instanceof Student) {
+				objectArray = database.getStudentListArray();
+				objectTypeName = ((Student)object).toString();
+				objectId = ((Student)object).getUserId();
 			}
-			if(object instanceof Teacher && database.teacherListSize() != 0) {
-				for(int i = 0; i < database.teacherListSize(); i++) {
-					if(database.teacherListGet(i).getUserId().equals(((Teacher)object).getUserId())){
-						Cnsl.println("Error: " + (Teacher)object + " list is already contain id" + ((Teacher)object).getUserId());
-						return true;
-					}
-				}
+			
+			if(object instanceof Teacher) {
+				objectArray = database.getTeacherListArray();
+				objectTypeName = ((Teacher)object).toString();
+				objectId = ((Teacher)object).getUserId();
 			}
-			if(object instanceof Course && database.courseListSize() != 0) {
-				for(int i = 0; i < database.courseListSize(); i++) {
-					if(database.courseListGet(i).getCourseId().equals(((Course)object).getCourseId())){
-						Cnsl.println("Error: " + (Course)object + " list is already contain id" + ((Course)object).getCourseId());
-						return true;
-					}
+			
+			if(object instanceof Course) {
+				objectArray = database.getCourseListArray();
+				objectTypeName = ((Course)object).toString();
+				objectId = ((Course)object).getCourseId();
+			}
+			
+			return listContainObject(object, objectArray, objectTypeName, objectId);
+		}
+		private boolean listContainObject(Object object, Object[] objectArray, 
+											String objectTypeName, String objectId) {
+			for(int i = 0; i < objectArray.length; i++) {
+				if(objectArray[i].equals(object)) {
+					Cnsl.println("Error: " + objectTypeName + " list is already contain id: " + objectId);
+					return true;
 				}
 			}
 			return false;
