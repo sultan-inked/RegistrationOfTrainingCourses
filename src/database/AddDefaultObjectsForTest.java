@@ -7,7 +7,7 @@ import models.Teacher;
 public class AddDefaultObjectsForTest {
 //	Create default objects:
 	public void add() {
-		var d = new DatabaseAddRemoveController();
+		var d = new DatabaseAddController();
 		var db = new Database();
 		d.addStudentToList(new Student("Jesse", "Pinkman", "1234"));
 		d.addStudentToList(new Student("Flin", "White", "1234"));

@@ -2,7 +2,7 @@ package registrationView;
 
 import controllers.StudentController;
 import controllers.TeacherController;
-import database.DatabaseAddRemoveController;
+import database.DatabaseAddController;
 import tools.Alerts;
 import tools.Cnsl;
 
