@@ -117,9 +117,9 @@ public class SearchCourseView {
 		}
 		
 		// Search for all matching authors:
-		ArrayList<Teacher> teachersFoundList = new DatabaseSearchController().searchTeacherInList(firstName, 
+		Teacher[] teachersFoundListArray = new DatabaseSearchController().searchTeacherInList(firstName, 
 																							lastName, authorId);
-		if(teachersFoundList.size() == 0) {
+		if(teachersFoundListArray.length == 0) {
 			Cnsl.println("No such author was found!");
 			Alerts.tryAgainOrBack();
 			searchCourseByAuthor(user);
@@ -127,7 +127,7 @@ public class SearchCourseView {
 		}
 		
 		// Search for courses by several authors:
-		ArrayList<Course> coursesFoundList = new DatabaseSearchController().searchCourseBySeveralAuthors(teachersFoundList);
+		ArrayList<Course> coursesFoundList = new DatabaseSearchController().searchCourseBySeveralAuthors(teachersFoundListArray);
 		if(coursesFoundList.size() == 0) {
 			Cnsl.println("Not found a course with that aouthor!");
 			Alerts.tryAgainOrBack();
