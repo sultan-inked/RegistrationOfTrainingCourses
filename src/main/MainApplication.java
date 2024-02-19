@@ -1,25 +1,22 @@
 package main;
 
 import view.WelcomeView;
-
-import database.Database;
+import database.AddDefaultObjectsForTest;
 
 public class MainApplication {
 	public static void main(String[] args) {
-		// Add default users and courses for test:
-		Database.addDefaultUserCards();
-		Database.addDefaultCoursesCards();
+		// Create default objects for test:
+		new AddDefaultObjectsForTest().add();
 		
 		// Start program:
-		var welcomeView = new WelcomeView();
-		welcomeView.start();
+		new WelcomeView().start();
 	}
 }
 
 /*
 * TODO:
-* 1. Optimize and remove static methods
-* 2. Optimize and remove infinite loops
+* 1. Optimize and remove static methods ---
+* 2. Optimize and remove infinite loops ---
 * 3. Add feature with course: search, show list and create
 * 		(Show who enrolled in every course by request)
 * 

@@ -7,7 +7,6 @@ package courseView;
 import java.util.Arrays;
 
 import controllers.CourseController;
-import controllers.MainController;
 import controllers.StudentController;
 import controllers.TeacherController;
 import models.Course;
@@ -34,7 +33,7 @@ public class CourseMenuView {
 		switch(choice) {
 		case "1":
 			new CourseSearchMenuView(new CourseActionView(), 
-					new SearchCourse(new CourseActionView(), new MainController())).courseSearchMenu(user);
+					new SearchCourseView(new CourseActionView())).courseSearchMenu(user);
 			courseMenu(user);
 			return;
 		case "2":
@@ -44,7 +43,7 @@ public class CourseMenuView {
 			break;
 		case "3":
 			if(user instanceof Teacher) {
-				new CourseCreateView(new MainController()).createCourseMenu((Teacher)user);
+				new CourseCreateView().createCourseMenu((Teacher)user);
 				courseMenu(user);
 				return;
 			}else {
