@@ -64,33 +64,34 @@ public class DatabaseSearchController {
 		return null;
 	}
 	// Search for teachers in the list by matches:
-	public Teacher[] searchTeacherInList(String firstName, String lastName, String teacherId){
+	public Teacher[] searchTeachersInList(String firstName, String lastName, String teacherId){
+		
+		if(teacherListIsEmpty()) return null;
+		
 		ArrayList<Teacher> teachersFoundListThreeMatches = new ArrayList<>();
 		ArrayList<Teacher> teachersFoundListTwoMatches = new ArrayList<>();
 		ArrayList<Teacher> teachersFoundListOneMatches = new ArrayList<>();
-		ArrayList<Teacher> teachersFoundListCommon = new ArrayList<>();
-		if(teacherListIsEmpty()) return null;
+		
 		for(int i = 0; i < database.teacherListSize(); i++) {
+			Teacher teacher = database.teacherListGet(i);
 			int matchesCounter = 0;
-			if(firstName != null && database.teacherListGet(i).getFirstName().equals(firstName)) matchesCounter++;
-			if(lastName != null && database.teacherListGet(i).getLastName().equals(lastName)) matchesCounter++;
-			if(teacherId != null && database.teacherListGet(i).getUserId().equals(teacherId)) matchesCounter++;
+			if(firstName != null && teacher.getFirstName().equals(firstName)) matchesCounter++;
+			if(lastName != null && teacher.getLastName().equals(lastName)) matchesCounter++;
+			if(teacherId != null && teacher.getUserId().equals(teacherId)) matchesCounter++;
 			
 			if(matchesCounter == 3) teachersFoundListThreeMatches.add(database.teacherListGet(i));
 			else if(matchesCounter == 2) teachersFoundListTwoMatches.add(database.teacherListGet(i));
 			else if(matchesCounter == 1) teachersFoundListOneMatches.add(database.teacherListGet(i));
 		}
-		for(Teacher teacher: teachersFoundListThreeMatches) {
-			teachersFoundListCommon.add(teacher);
-		}
-		for(Teacher teacher: teachersFoundListTwoMatches) {
-			teachersFoundListCommon.add(teacher);
-		}
-		for(Teacher teacher: teachersFoundListOneMatches) {
-			teachersFoundListCommon.add(teacher);
-		}
+		
+		ArrayList<Teacher> teachersFoundListCommon = new ArrayList<>();
+		teachersFoundListCommon.addAll(teachersFoundListThreeMatches);
+		teachersFoundListCommon.addAll(teachersFoundListTwoMatches);
+		teachersFoundListCommon.addAll(teachersFoundListOneMatches);
+		
 		return teachersFoundListCommon.toArray(new Teacher[teachersFoundListCommon.size()]);
 	}
+	// Check Teachers list:
 	private boolean teacherListIsEmpty() {
 		if(database.teacherListSize() == 0) {
 			Cnsl.println("Teacher list is empty!");

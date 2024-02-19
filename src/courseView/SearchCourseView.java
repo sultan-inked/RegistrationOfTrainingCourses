@@ -117,7 +117,7 @@ public class SearchCourseView {
 		}
 		
 		// Search for all matching authors:
-		Teacher[] teachersFoundListArray = new DatabaseSearchController().searchTeacherInList(firstName, 
+		Teacher[] teachersFoundListArray = new DatabaseSearchController().searchTeachersInList(firstName, 
 																							lastName, authorId);
 		if(teachersFoundListArray.length == 0) {
 			Cnsl.println("No such author was found!");
