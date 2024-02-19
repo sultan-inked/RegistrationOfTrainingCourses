@@ -34,7 +34,8 @@ public class UserRegistrationView {
 		Alerts.separator();
 		Cnsl.println(userTypeString + " registration");
 		
-		String[] userRegistrationFormArray = new FormView().userRegistrationFormOne();
+		// Taking user info for registration:
+		String[] userRegistrationFormArray = formView.userRegistrationFormOne();
 		
 		// If user write 'back' formView return 'null' to back to registration()
 		if(userRegistrationFormArray == null) {

@@ -1,5 +1,6 @@
 package registrationView;
 
+import tools.Alerts;
 import tools.Cnsl;
 
 public class KeyWordValidatorView {
@@ -15,7 +16,7 @@ public class KeyWordValidatorView {
 			case "back":
 				return false;
 				default:
-					Cnsl.println("Wrong, try again or write \'back\'");
+					Alerts.tryAgainOrBack();
 			}
 		}
 	}

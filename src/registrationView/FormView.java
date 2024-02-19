@@ -7,15 +7,11 @@ public class FormView {
 	public String[] userRegistrationFormOne() {
 		var userRegistrationFormArray = new String[3];
 		while(true) {
-			Cnsl.print("First name:");
-			userRegistrationFormArray[0] = Cnsl.scan();
-			Cnsl.print("Last name:");
-			userRegistrationFormArray[1] = Cnsl.scan();
-			Cnsl.print("Password:");
-			userRegistrationFormArray[2] = Cnsl.scan();
+			userRegistrationFormArray[0] = takeAndCheckName("First");
+			userRegistrationFormArray[1] = takeAndCheckName("Last");
+			userRegistrationFormArray[2] = takeAndCheckPassword();
 			
 			String answer = new Alerts().confirmChangeOrBack();
-			
 			switch(answer) {
 			case "confirm":
 				return userRegistrationFormArray;
@@ -26,16 +22,21 @@ public class FormView {
 			}
 		}
 	}
-	public String confirmChangeOrBack() {
+	private String takeAndCheckName(String firstOrLastName) {
 		while(true) {
-			Cnsl.println("\'confirm\', \'change' or \'back\'");
-			Cnsl.print("Write:");
-			String answer = Cnsl.scan();
-			switch(answer) {
-			case "confirm":
-			case "change":
-			case "back":
-				return answer;
+			Cnsl.print(firstOrLastName + " name:");
+			String name = Cnsl.scan();
+			if(new NameVerificationByTemplate().nameCheckForLettersOnly(name)) {
+				return name.substring(0, 1).toUpperCase() + name.substring(1);
+			}
+		}
+	}
+	private String takeAndCheckPassword() {
+		while(true) {
+			Cnsl.println("Password: ");
+			String password = Cnsl.scan();
+			if(new PasswordVeryficationByTemplate().checkPassword(password)) {
+				return password;
 			}
 		}
 	}

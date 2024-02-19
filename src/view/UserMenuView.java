@@ -10,7 +10,7 @@ import tools.Cnsl;
 public class UserMenuView {
 	public void userMenu(User user) {
 		Alerts.separator();
-		Cnsl.println("Hello " + user.getFirstName());
+		Cnsl.println("Hello " + user.getFirstName() + " " + user.getLastName());
 		Cnsl.println(user + " menu");
 		Cnsl.println("1. Courses");
 		Cnsl.println("2. Students");
