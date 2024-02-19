@@ -54,7 +54,9 @@ public class DatabaseSearchController {
 	
 	// Search Teacher by Id:
 	public Teacher searchTeacherInList(String teacherId) {
+		
 		if(teacherListIsEmpty()) return null;
+		
 		for(int i = 0; i < database.teacherListSize(); i++) {
 			if(database.teacherListGet(i).getUserId().equals(teacherId)) {
 				return database.teacherListGet(i);
@@ -72,9 +74,9 @@ public class DatabaseSearchController {
 		ArrayList<Teacher> teachersFoundListTwoMatches = new ArrayList<>();
 		ArrayList<Teacher> teachersFoundListOneMatches = new ArrayList<>();
 		
-		for(int i = 0; i < database.teacherListSize(); i++) {
-			Teacher teacher = database.teacherListGet(i);
+		for(Teacher teacher: database.getTeacherListArray()) {
 			int matchesCounter = 0;
+			
 			if(firstName != null && teacher.getFirstName().equals(firstName)) matchesCounter++;
 			if(lastName != null && teacher.getLastName().equals(lastName)) matchesCounter++;
 			if(teacherId != null && teacher.getUserId().equals(teacherId)) matchesCounter++;
