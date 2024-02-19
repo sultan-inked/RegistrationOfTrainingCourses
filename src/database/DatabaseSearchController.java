@@ -19,7 +19,8 @@ public class DatabaseSearchController {
 //	Methods:
 	// Search in list and return object []->*
 	public Object searchIdInList(String objectId) {
-		if(objectId.length() < 3) {
+		
+		if(!objectId.matches("[A-Z]{3}\\d{6}")) {
 			Cnsl.println("Incorrect id!");
 			return null;
 		}

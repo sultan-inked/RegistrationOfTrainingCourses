@@ -31,9 +31,6 @@ public class SearchCourseView {
 			String courseId = Cnsl.scan();
 			
 			// Checking for matching the id template
-//			if(courseId.length() > 2 && 
-//					courseId.substring(0, 3).equals(new DatabaseShowListController().getCourseIdSignature()) 
-//					&& courseId != null && !courseId.equals("") && courseId.length() == 9) {
 			String courseIdSignature = new DatabaseShowListController().getCourseIdSignature();
 			if(courseId.matches(courseIdSignature + "\\d{6}")) {
 				
