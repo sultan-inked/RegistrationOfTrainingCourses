@@ -81,9 +81,9 @@ public class DatabaseSearchController {
 			if(lastName != null && teacher.getLastName().equals(lastName)) matchesCounter++;
 			if(teacherId != null && teacher.getUserId().equals(teacherId)) matchesCounter++;
 			
-			if(matchesCounter == 3) teachersFoundListThreeMatches.add(database.teacherListGet(i));
-			else if(matchesCounter == 2) teachersFoundListTwoMatches.add(database.teacherListGet(i));
-			else if(matchesCounter == 1) teachersFoundListOneMatches.add(database.teacherListGet(i));
+			if(matchesCounter == 3) teachersFoundListThreeMatches.add(teacher);
+			else if(matchesCounter == 2) teachersFoundListTwoMatches.add(teacher);
+			else if(matchesCounter == 1) teachersFoundListOneMatches.add(teacher);
 		}
 		
 		ArrayList<Teacher> teachersFoundListCommon = new ArrayList<>();
