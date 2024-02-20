@@ -2,6 +2,7 @@ package registrationView;
 
 import tools.Cnsl;
 import tools.Alerts;
+import tools.HashCode;
 
 public class FormView {
 	public String[] userRegistrationFormOne() {
@@ -36,7 +37,7 @@ public class FormView {
 			Cnsl.println("Password: ");
 			String password = Cnsl.scan();
 			if(new PasswordVeryficationByTemplate().checkPassword(password)) {
-				return password;
+				return new HashCode().makeHashCode(password);
 			}
 		}
 	}
