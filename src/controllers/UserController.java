@@ -27,9 +27,9 @@ public abstract class UserController {
     }
 	
 	public void enrollInCourse(CourseController courseController, Course course, User user){
-    	if(user.getCourseEnrollmentList().size() != 0) {
-    		for(int i = 0; i < user.getCourseEnrollmentList().size(); i++) {
-        		if(user.getCourseEnrollmentList().get(i).equals(course)) {
+    	if(user.getCourseEnrollmentListArray().length != 0) {
+    		for(int i = 0; i < user.getCourseEnrollmentListArray().length; i++) {
+        		if(user.getCourseEnrollmentListArray()[i].equals(course)) {
         			Cnsl.println("You are already enrolling on that course!");
         			return;
         		}
@@ -41,9 +41,9 @@ public abstract class UserController {
     }
 	
 	public void unenrollInCourse(CourseController courseController, Course course, User user) {
-    	if(user.getCourseEnrollmentList().size() != 0) {
-    		for(int i = 0; i < user.getCourseEnrollmentList().size(); i++) {
-        		if(user.getCourseEnrollmentList().get(i).getCourseId().equals(course.getCourseId())) {
+    	if(user.getCourseEnrollmentListArray().length != 0) {
+    		for(int i = 0; i < user.getCourseEnrollmentListArray().length; i++) {
+        		if(user.getCourseEnrollmentListArray()[i].getCourseId().equals(course.getCourseId())) {
         			user.removeCourseEnrollentList(course);
         			courseController.unregisterUser(course, user);
         			

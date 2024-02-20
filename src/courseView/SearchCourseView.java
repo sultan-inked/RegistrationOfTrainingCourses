@@ -55,11 +55,11 @@ public class SearchCourseView {
 	}
 	
 	public void searchCourseByName(User user) {
-		Alerts.separator();
-		Cnsl.println("Search course by name");
 		
 		// Loop for handling input exception:
 		while(true) {
+			Alerts.separator();
+			Cnsl.println("Search course by name");
 			Cnsl.print("Name: ");
 			String courseName = Cnsl.scan();
 			
@@ -67,16 +67,16 @@ public class SearchCourseView {
 				return;
 			}
 			
-			ArrayList<Course> coursesFoundList = new DatabaseSearchController().searchCourseInListByName(courseName);
+			Course[] coursesFoundList = new DatabaseSearchController().searchCourseInListByName(courseName);
 			
-			if(coursesFoundList.size() == 1) {
+			if(coursesFoundList.length == 1) {
 				Alerts.separator();
 				Cnsl.println("1 course founded with that name!");
-				courseActionView.whatToDoWithTheCourse(coursesFoundList.get(0), user);
+				courseActionView.whatToDoWithTheCourse(coursesFoundList[0], user);
 				return;
 			}
-			else if(coursesFoundList.size() > 1) {
-				Cnsl.println(coursesFoundList.size() + " courses with the name \'" + coursesFoundList.get(0).getCourseName()
+			else if(coursesFoundList.length > 1) {
+				Cnsl.println(coursesFoundList.length + " courses with the name \'" + coursesFoundList[0].getCourseName()
 						+ "\' founded!");
 				Course course = courseActionView.choiceCourseInList(coursesFoundList);
 				if(course != null) {
@@ -87,7 +87,7 @@ public class SearchCourseView {
 					Cnsl.println("Error: Course card is empty(SearchCourse.java :90");
 				}
 			}
-			else if(coursesFoundList.size() == 0) {
+			else if(coursesFoundList.length == 0) {
 				Alerts.tryAgainOrBack();
 			}
 		}
@@ -126,20 +126,20 @@ public class SearchCourseView {
 		}
 		
 		// Search for courses by several authors:
-		ArrayList<Course> coursesFoundList = new DatabaseSearchController().searchCourseBySeveralAuthors(teachersFoundListArray);
-		if(coursesFoundList.size() == 0) {
+		Course[] coursesFoundList = new DatabaseSearchController().searchCourseBySeveralAuthors(teachersFoundListArray);
+		if(coursesFoundList.length == 0) {
 			Cnsl.println("Not found a course with that aouthor!");
 			Alerts.tryAgainOrBack();
 			searchCourseByAuthor(user);
 		}
-		if(coursesFoundList.size() == 1) {
+		if(coursesFoundList.length == 1) {
 			Alerts.separator();
 			Cnsl.println("1 cours founded with that author!");
-			courseActionView.whatToDoWithTheCourse(coursesFoundList.get(0), user);
+			courseActionView.whatToDoWithTheCourse(coursesFoundList[0], user);
 		}
-		if(coursesFoundList.size() > 1) {
+		if(coursesFoundList.length > 1) {
 			Alerts.separator();
-			Cnsl.println(coursesFoundList.size() + " courses by that authors founded!");
+			Cnsl.println(coursesFoundList.length + " courses by that authors founded!");
 			Course course = courseActionView.choiceCourseInList(coursesFoundList);
 			if(course != null) {
 				courseActionView.whatToDoWithTheCourse(course, user);

@@ -69,27 +69,32 @@ public class CourseActionView {
 		}
 	}
 	
-	public Course choiceCourseInList(ArrayList<Course> coursesFoundList) {
-		for(int i = 0; i < coursesFoundList.size(); i++) {
-			Cnsl.println((i+1) + ". Id: " + coursesFoundList.get(i).getCourseId() + "\n"
-					+ "   Name: " + coursesFoundList.get(i).getCourseName() + "\n"
-					+ "   Author: " + coursesFoundList.get(i).getCourseCreator().getFirstName()
-					+ " " + coursesFoundList.get(i).getCourseCreator().getLastName());
-			Cnsl.println("   Descriprion: " + coursesFoundList.get(i).getCourseDescription());
+	public Course choiceCourseInList(Course[] coursesFoundListArray) {
+		if(coursesFoundListArray.length == 0) {
+			Cnsl.println("Course list is empty.");
+			return null;
+		}
+		for(int i = 0; i < coursesFoundListArray.length; i++) {
+			Cnsl.println((i+1) + ". Id: " + coursesFoundListArray[i].getCourseId() + "\n"
+					+ "   Name: " + coursesFoundListArray[i].getCourseName() + "\n"
+					+ "   Author: " + coursesFoundListArray[i].getCourseCreator().getFirstName()
+					+ " " + coursesFoundListArray[i].getCourseCreator().getLastName());
+			Cnsl.println("   Descriprion: " + coursesFoundListArray[i].getCourseDescription());
 		}
 		
 		// Loop for handling input exception:
 		while(true) {
 			Cnsl.print("Write number with your course:");
 			String choice = Cnsl.scan();
+			if(choice.equals("back")) return null;
 			int choiceInt = 0;
 			if(choice.matches("[0-9]+")) {
 				choiceInt = Integer.parseInt(choice);
 			}
-			if(choiceInt > 0 && choiceInt <= coursesFoundList.size()) {
-				return coursesFoundList.get(choiceInt -1);
+			if(choiceInt > 0 && choiceInt <= coursesFoundListArray.length) {
+				return coursesFoundListArray[choiceInt -1];
 			}else {
-				Cnsl.println("Wrong, write number between: 1 to " + coursesFoundList.size());
+				Cnsl.println("Wrong, write number between: 1 to " + coursesFoundListArray.length + " or write \'back\'");
 			}
 		}
 	}

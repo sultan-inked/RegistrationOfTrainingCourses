@@ -37,8 +37,7 @@ public class CourseMenuView {
 			courseMenu(user);
 			return;
 		case "2":
-			// TODO: Make show course list feature
-			Alerts.ftrNotYet();
+			new CourseShowListMenuView().courseShowListMenu(user);
 			courseMenu(user);
 			break;
 		case "3":

@@ -18,7 +18,7 @@ public class DatabaseShowListController {
 	}
 	
 	// Show lists []->{ )
-	public void showList() {
+	public void showListOfFiveItems() {
 		// TODO: Show list feature!
 	}
 }

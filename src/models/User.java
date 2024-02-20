@@ -50,8 +50,8 @@ public abstract class User {
 		this.password = password;
 	}
 
-	public List<Course> getCourseEnrollmentList() {
-		return courseEnrollmentList;
+	public Course[] getCourseEnrollmentListArray() {
+		return courseEnrollmentList.toArray(new Course[courseEnrollmentList.size()]);
 	}
 
 //	public void setCourseEnrollmentList(List<Course> courseEnrollmentList) {

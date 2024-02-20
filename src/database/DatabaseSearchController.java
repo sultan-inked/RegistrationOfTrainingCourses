@@ -116,7 +116,7 @@ public class DatabaseSearchController {
 		Cnsl.println("Not found a course with the id: " + courseId);
 		return null;
 	}	
-	public ArrayList<Course> searchCourseInListByName(String courseName){
+	public Course[] searchCourseInListByName(String courseName){
 		if(courseListIsEmpty()) return null;
 		ArrayList<Course> coursesFoundList = new ArrayList<>();
 		for(int i = 0; i < database.courseListSize(); i++) {
@@ -127,19 +127,19 @@ public class DatabaseSearchController {
 		if(coursesFoundList.size() == 0) {
 			Cnsl.println("Not found a course with the name: " + courseName);
 		}
-		return coursesFoundList;
+		return coursesFoundList.toArray(new Course[coursesFoundList.size()]);
 	}
-	public ArrayList<Course> searchCourseBySeveralAuthors(Teacher[] teachersFoundListArray){
+	public Course[] searchCourseBySeveralAuthors(Teacher[] teachersFoundListArray){
 		if(courseListIsEmpty()) return null;
-		ArrayList<Course> coursesFoundArray = new ArrayList<>();
+		ArrayList<Course> coursesFoundList = new ArrayList<>();
 		for(int i = 0; i < database.courseListSize(); i++) {
 			for(int j = 0; j < teachersFoundListArray.length; j++) {
 				if(teachersFoundListArray[j] == database.courseListGet(i).getCourseCreator()) {
-					coursesFoundArray.add(database.courseListGet(i));
+					coursesFoundList.add(database.courseListGet(i));
 				}
 			}
 		}
-		return coursesFoundArray;
+		return coursesFoundList.toArray(new Course[coursesFoundList.size()]);
 	}
 	private boolean courseListIsEmpty() {
 		if(database.courseListSize() == 0) {

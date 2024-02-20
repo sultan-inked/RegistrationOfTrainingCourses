@@ -30,7 +30,6 @@ public class CourseController {
 		courseInfoArray[2] = "Id: " + course.getCourseId();
 		courseInfoArray[3] = "Description: " + course.getCourseDescription();
 		return courseInfoArray;
-		
 	}
 	
 	public void registerUser(Course course, User user) {
