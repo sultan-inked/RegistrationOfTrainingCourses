@@ -4,6 +4,7 @@ import database.DatabaseSearchController;
 import models.User;
 import tools.Alerts;
 import tools.Cnsl;
+import tools.HashCode;
 
 public class idAndPassword {
 	public User takeIdValidateAndReturnUser() {
@@ -28,7 +29,8 @@ public class idAndPassword {
 			Cnsl.print("Password: ");
 			String userPassword = Cnsl.scan();
 			if(userPassword.equals("back")) return false;
-			else if(userPassword.equals(user.getPassword())) {
+			String userPasswordHash = new HashCode().makeHashCode(userPassword);
+			if(userPasswordHash.equals(user.getPassword())) {
 				return true;
 			}
 			else {

@@ -4,7 +4,11 @@ import tools.Cnsl;
 
 public class PasswordVeryficationByTemplate {
 	public boolean checkPassword(String password) {
-		if(!password.matches(".{8,16}")) {
+		if(password.matches(".* .*")) {
+			Cnsl.println("The password must be without spases.");
+			return false;
+		}
+		else if(!password.matches(".{8,16}")) {
 			Cnsl.println("The password must contain 8 to 16 characters.");
 			return false;
 		}
