@@ -11,7 +11,7 @@ public class UserActionView {
 	
 	public Object choiceUserInList(User[] usersFoundListArray) {
 		if(usersFoundListArray.length == 0) {
-			Cnsl.println(" list is empty.");
+			Cnsl.println("User list is empty.");
 			return null;
 		}
 		for(int i = 0; i < usersFoundListArray.length; i++) {

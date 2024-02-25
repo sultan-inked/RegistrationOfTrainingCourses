@@ -19,6 +19,10 @@ public class SearchTeacherMenuView {
 		Teacher[] teachersFoundListArray = new DatabaseSearchController().searchTeachersInList(teacherFormArray[0], 
 				teacherFormArray[1], teacherFormArray[2]);
 		
+		if(teachersFoundListArray.length == 0) {
+			Cnsl.println("Not found!");
+		}
+		
 		Teacher teacher = (Teacher) new UserActionView().choiceUserInList(teachersFoundListArray);
 		
 		

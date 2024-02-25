@@ -117,7 +117,7 @@ public class SearchCourseView {
 //			return;
 //		}
 		
-		String[] authorFormArray = new FormForUserSearch().formForStudentOrTeacherSearch("Author");
+		String[] authorFormArray = new FormForUserSearch().formForAuthorSearch();
 		
 		// Search for all matching authors:
 		Teacher[] teachersFoundListArray = new DatabaseSearchController().searchTeachersInList(authorFormArray[0], 
