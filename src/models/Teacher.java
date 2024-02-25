@@ -15,7 +15,7 @@ public class Teacher extends User {
 	private static int teacherIdCounter = 0;
 	private String teacherIdSignature = "TCH000000";
 	
-	private List<Course> createdCourse = new ArrayList<>();
+	private List<Course> createdCourseList = new ArrayList<>();
 	
 //	Constructors:
 	public Teacher() {
@@ -32,6 +32,10 @@ public class Teacher extends User {
 //	Getters and Setters:
 	public String getTeacherIdSignature() {
 		return teacherIdSignature;
+	}
+	
+	public Course[] getCreatedCourseListArray() {
+		return createdCourseList.toArray(new Course[createdCourseList.size()]);
 	}
 	
 //	Methods:

@@ -51,6 +51,43 @@ public class DatabaseSearchController {
 		Cnsl.println("Not found a student with the id: " + studentId);
 		return null;
 	}
+	// Search for students in the list by matches:
+		public Student[] searchStudentsInList(String firstName, String lastName, String teacherId){
+			
+			if(studentListIsEmpty()) return null;
+			
+			ArrayList<Student> studentsFoundListThreeMatches = new ArrayList<>();
+			ArrayList<Student> studentsFoundListTwoMatches = new ArrayList<>();
+			ArrayList<Student> studentsFoundListOneMatches = new ArrayList<>();
+			
+			for(Student student: database.getStudentListArray()) {
+				int matchesCounter = 0;
+				
+				if(firstName != null && student.getFirstName().equals(firstName)) matchesCounter++;
+				if(lastName != null && student.getLastName().equals(lastName)) matchesCounter++;
+				if(teacherId != null && student.getUserId().equals(teacherId)) matchesCounter++;
+				
+				if(matchesCounter == 3) studentsFoundListThreeMatches.add(student);
+				else if(matchesCounter == 2) studentsFoundListTwoMatches.add(student);
+				else if(matchesCounter == 1) studentsFoundListOneMatches.add(student);
+			}
+			
+			ArrayList<Student> studentsFoundListCommon = new ArrayList<>();
+			studentsFoundListCommon.addAll(studentsFoundListThreeMatches);
+			studentsFoundListCommon.addAll(studentsFoundListTwoMatches);
+			studentsFoundListCommon.addAll(studentsFoundListOneMatches);
+			
+			return studentsFoundListCommon.toArray(new Student[studentsFoundListCommon.size()]);
+		}
+		// Check Teachers list:
+		private boolean studentListIsEmpty() {
+			if(database.studentListSize() == 0) {
+				Cnsl.println("Student list is empty!");
+				return true;
+			}else {
+				return false;
+			}
+		}
 	
 	
 	// Search Teacher by Id:

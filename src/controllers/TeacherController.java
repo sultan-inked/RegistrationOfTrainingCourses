@@ -25,4 +25,14 @@ public class TeacherController extends UserController {
 	public void removeCourse() {
 		// TODO: Make course remove feature!
 	}
+	
+//	public void showCreatedCourseList(Teacher teacher) {
+//		Course[] courses = teacher.getCreatedCourseListArray();
+//		for(Course course: courses) {
+//			String[] courseInfo = new CourseController().getCourseInfoArray(course);
+//			for(String info: courseInfo) {
+//				Cnsl.println(info);
+//			}
+//		}
+//	}
 }

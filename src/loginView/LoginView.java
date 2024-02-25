@@ -2,7 +2,7 @@ package loginView;
 
 import tools.Alerts;
 import tools.Cnsl;
-import view.UserMenuView;
+import userMenuView.UserMenuView;
 import models.Student;
 import models.Teacher;
 import models.User;

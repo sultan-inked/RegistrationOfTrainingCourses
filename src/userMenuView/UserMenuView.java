@@ -1,4 +1,4 @@
-package view;
+package userMenuView;
 
 import courseView.CourseMenuView;
 import models.Student;
@@ -19,19 +19,15 @@ public class UserMenuView {
 		String choice = new Alerts().wrtNmbrScan(3, "exit");
 		switch(choice) {
 		case "1":
-			var courseView = new CourseMenuView();
-			courseView.courseMenu(user);
-			courseView = null;
+			new CourseMenuView().courseMenu(user);
 			userMenu(user);
 			return;
 		case "2":
-			Alerts.ftrNotYet();
-			// TODO: Make feature with Student
+			new SearchStudentMenuView().searchStudentMenu();
 			userMenu(user);
 			break;
 		case "3":
-			Alerts.ftrNotYet();
-			// TODO: Make feature with Teacher
+			new SearchTeacherMenuView().searchTeacherMenu();
 			userMenu(user);
 			break;
 		case "exit":

@@ -10,6 +10,8 @@ import models.User;
 import tools.Alerts;
 import tools.Cnsl;
 
+import userMenuView.FormForUserSearch;
+
 public class SearchCourseView {
 //	Variables:
 	private final CourseActionView courseActionView;
@@ -97,27 +99,29 @@ public class SearchCourseView {
 		Alerts.separator();
 		Cnsl.println("Search course by author");
 		
-		Cnsl.print("First name: ");
-		String firstName = Cnsl.scan();
-		Cnsl.print("Last name: ");
-		String lastName = Cnsl.scan();
-		Cnsl.print("Author id: ");
-		String authorId = Cnsl.scan();
+//		Cnsl.print("First name: ");
+//		String firstName = Cnsl.scan();
+//		Cnsl.print("Last name: ");
+//		String lastName = Cnsl.scan();
+//		Cnsl.print("Author id: ");
+//		String authorId = Cnsl.scan();
+//		
+//		String answer = new Alerts().confirmChangeOrBack();
+//		switch(answer) {
+//		case "confirm":
+//			break;
+//		case "change":
+//			searchCourseByAuthor(user);
+//			return;
+//		case "back":
+//			return;
+//		}
 		
-		String answer = new Alerts().confirmChangeOrBack();
-		switch(answer) {
-		case "confirm":
-			break;
-		case "change":
-			searchCourseByAuthor(user);
-			return;
-		case "back":
-			return;
-		}
+		String[] authorFormArray = new FormForUserSearch().formForStudentOrTeacherSearch("Author");
 		
 		// Search for all matching authors:
-		Teacher[] teachersFoundListArray = new DatabaseSearchController().searchTeachersInList(firstName, 
-																							lastName, authorId);
+		Teacher[] teachersFoundListArray = new DatabaseSearchController().searchTeachersInList(authorFormArray[0], 
+																				authorFormArray[1], authorFormArray[2]);
 		if(teachersFoundListArray.length == 0) {
 			Cnsl.println("No such author was found!");
 			Alerts.tryAgainOrBack();

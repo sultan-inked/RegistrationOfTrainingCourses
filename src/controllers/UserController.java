@@ -22,7 +22,7 @@ public abstract class UserController {
     	Cnsl.println("Name: " + user.getFirstName());
     	Cnsl.println("Last name: " + user.getLastName());
     	if(!user.getUserId().equals(null)) {
-    		Cnsl.println("Student Id:" + user.getUserId());
+    		Cnsl.println("Id:" + user.getUserId());
     	}
     }
 	
