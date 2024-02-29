@@ -25,14 +25,13 @@ public class UserActionView {
 	
 //	Methods:
 	public User choiceUserInList(User[] usersFoundListArray) {
-		Cnsl.println(usersFoundListArray.length > 1 ? 
-				usersFoundListArray.length + " cards found!" :
-					"One card found!");
-		
 		if(usersFoundListArray.length == 0) {
 			Cnsl.println("User list is empty.");
 			return null;
 		}
+		Cnsl.println(usersFoundListArray.length > 1 ? 
+				usersFoundListArray.length + " cards found!" :
+					"One card found!");
 		for(int i = 0; i < usersFoundListArray.length; i++) {
 			Cnsl.println((i+1) + ". Name: " + usersFoundListArray[i].getFirstName() + "\n"
 					+ "   Last name: " + usersFoundListArray[i].getLastName() + "\n"
