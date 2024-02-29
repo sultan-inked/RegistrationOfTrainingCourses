@@ -33,7 +33,9 @@ public class SearchStudentMenuView {
 		
 		Student student = (Student) userActionView.choiceUserInList(studentFoundListArray);
 		
-		userActionView.whatToDoWithTheUser(studentOwner, student);
+		if(student != null) {
+			userActionView.whatToDoWithTheUser(studentOwner, student);
+		}
 		
 	}
 }

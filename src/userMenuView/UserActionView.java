@@ -91,9 +91,11 @@ public class UserActionView {
 				coursesFoundList = teacherController.getCourseEnrollmentListArray(user);
 			courseActionView.whatToDoWithTheCourse(
 					courseActionView.choiceCourseInList(coursesFoundList), userOwner);
+			whatToDoWithTheUser(userOwner, user);
 			return;
 		case "2":
 			Alerts.ftrNotYet();
+			whatToDoWithTheUser(userOwner, user);
 			return;
 		case "back":
 			return;
