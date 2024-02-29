@@ -10,7 +10,17 @@ import models.Teacher;
 import models.User;
 
 public class SearchTeacherMenuView {
-	public void searchTeacherMenu() {
+//	Variables:
+	private UserActionView userActionView;
+	
+//	Constructors:
+	public SearchTeacherMenuView() {
+		userActionView = new UserActionView();
+	}
+	
+	
+//	Methods:
+	public void searchTeacherMenu(User teacherOwner) {
 		Alerts.separator();
 		Cnsl.println("Teacher search menu");
 		
@@ -23,8 +33,8 @@ public class SearchTeacherMenuView {
 			Cnsl.println("Not found!");
 		}
 		
-		Teacher teacher = (Teacher) new UserActionView().choiceUserInList(teachersFoundListArray);
+		Teacher teacher = (Teacher) userActionView.choiceUserInList(teachersFoundListArray);
 		
-		
+		userActionView.whatToDoWithTheUser(teacherOwner, teacher);
 	}
 }

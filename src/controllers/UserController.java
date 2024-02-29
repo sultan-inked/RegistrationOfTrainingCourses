@@ -18,6 +18,10 @@ public abstract class UserController {
 	}
 	
 //	Methods:
+	public Course[] getCourseEnrollmentListArray(User user) {
+		return user.getCourseEnrollmentListArray();
+	}
+	
 	public void showUserInfo(User user) {
     	Cnsl.println("Name: " + user.getFirstName());
     	Cnsl.println("Last name: " + user.getLastName());

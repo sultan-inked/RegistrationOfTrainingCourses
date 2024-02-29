@@ -23,11 +23,11 @@ public class UserMenuView {
 			userMenu(user);
 			return;
 		case "2":
-			new SearchStudentMenuView().searchStudentMenu();
+			new SearchStudentMenuView().searchStudentMenu(user);
 			userMenu(user);
 			break;
 		case "3":
-			new SearchTeacherMenuView().searchTeacherMenu();
+			new SearchTeacherMenuView().searchTeacherMenu(user);
 			userMenu(user);
 			break;
 		case "exit":

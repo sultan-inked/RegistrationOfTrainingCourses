@@ -24,6 +24,7 @@ public class CourseController {
 	}
 	
 	public String[] getCourseInfoArray(Course course) {
+		if(course == null) return null;
 		var courseInfoArray = new String[4];
 		courseInfoArray[0] = "Author: " + course.getCourseCreator().getFirstName() + " " + course.getCourseCreator().getLastName();
 		courseInfoArray[1] = "Name: " + course.getCourseName();

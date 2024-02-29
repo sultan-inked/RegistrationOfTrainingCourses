@@ -3,11 +3,22 @@ package userMenuView;
 import tools.Alerts;
 import tools.Cnsl;
 
+import models.User;
 import models.Student;
 import database.DatabaseSearchController;
 
 public class SearchStudentMenuView {
-	public void searchStudentMenu() {
+//	Variables:
+	private UserActionView userActionView;
+	
+//	Constructors:
+	public SearchStudentMenuView() {
+		userActionView = new UserActionView();
+	}
+	
+	
+//	Methods:
+	public void searchStudentMenu(User studentOwner) {
 		Alerts.separator();
 		Cnsl.println("Student search menu");
 		
@@ -15,12 +26,14 @@ public class SearchStudentMenuView {
 		
 		Student[] studentFoundListArray = new DatabaseSearchController().searchStudentsInList(studentFormArray[0],
 				studentFormArray[1], studentFormArray[2]);
+		
 		if(studentFoundListArray.length == 0) {
 			Cnsl.println("Not found!");
 		}
 		
-		Student student = (Student) new UserActionView().choiceUserInList(studentFoundListArray);
+		Student student = (Student) userActionView.choiceUserInList(studentFoundListArray);
 		
+		userActionView.whatToDoWithTheUser(studentOwner, student);
 		
 	}
 }

@@ -14,6 +14,7 @@ import tools.Cnsl;
 
 public class CourseActionView {
 	public void whatToDoWithTheCourse(Course course, User user) {
+		if(course == null || user == null) return;
 		Cnsl.println();
 		Cnsl.println("You choice this course:");
 		String[] courseInfoArray = new CourseController().getCourseInfoArray(course);
@@ -24,11 +25,13 @@ public class CourseActionView {
 		Cnsl.println("What you can do with the course:");
 		Cnsl.println("1. Enrollincourse");
 		Cnsl.println("2. Unenrollincourse");
+		int numberOfChoices = 2;
 		if(user instanceof Teacher && course.getCourseCreator().equals(user)) {
 			Cnsl.println("3. Delete course");
+			numberOfChoices = 3;
 		}
 		
-		String choice = new Alerts().wrtNmbrScan(3, "back");
+		String choice = new Alerts().wrtNmbrScan(numberOfChoices, "back");
 		switch(choice) {
 		case "1":
 			enrollInCourse(user, course);
@@ -39,15 +42,9 @@ public class CourseActionView {
 			whatToDoWithTheCourse(course, user);
 			return;
 		case "3":
-			if(user instanceof Teacher) {
-				// TODO: Make course delete feature
-				Alerts.ftrNotYet();
-				whatToDoWithTheCourse(course, user);
-				break;
-			}else {
-				Alerts.tryAgainOrBack();
-				break;
-			}
+			Alerts.ftrNotYet();
+			whatToDoWithTheCourse(course, user);
+			break;
 		case "back":
 			return;
 		}
