@@ -76,7 +76,7 @@ public class UserActionView {
 
 		
 //		Cnsl.println("2. Send message");
-//		Cnsl.println("3. Add add a friend");
+//		Cnsl.println("3. Add as a friend");
 //		Cnsl.println("4. Remove from friends");
 		
 		String choice = new Alerts().wrtNmbrScan(numberOfChoices, "back");
