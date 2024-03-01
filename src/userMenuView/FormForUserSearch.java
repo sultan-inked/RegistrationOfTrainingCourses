@@ -19,6 +19,10 @@ public class FormForUserSearch {
 		return formForStudentOrTeacherSearch("Author");
 	}
 	
+	public String[] formForUserSearch(String userType) {
+		return formForStudentOrTeacherSearch(userType);
+	}
+	
 	private String[] formForStudentOrTeacherSearch(String studentOrTeacher) {
 		while(true) {
 			String[] userFormArray = new String[3];

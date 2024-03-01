@@ -1,8 +1,6 @@
 package userMenuView;
 
 import courseView.CourseMenuView;
-import models.Student;
-import models.Teacher;
 import models.User;
 import tools.Alerts;
 import tools.Cnsl;
@@ -23,11 +21,11 @@ public class UserMenuView {
 			userMenu(user);
 			return;
 		case "2":
-			new SearchStudentMenuView().searchStudentMenu(user);
+			new SearchUserMenuView().searchStudentMenu(user);
 			userMenu(user);
 			break;
 		case "3":
-			new SearchTeacherMenuView().searchTeacherMenu(user);
+			new SearchUserMenuView().searchTeacherMenu(user);
 			userMenu(user);
 			break;
 		case "exit":
