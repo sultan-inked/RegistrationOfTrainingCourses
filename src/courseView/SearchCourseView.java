@@ -1,7 +1,5 @@
 package courseView;
 
-import java.util.ArrayList;
-
 import database.DatabaseSearchController;
 import database.DatabaseShowListController;
 import models.Course;

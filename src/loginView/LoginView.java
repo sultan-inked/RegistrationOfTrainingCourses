@@ -3,8 +3,6 @@ package loginView;
 import tools.Alerts;
 import tools.Cnsl;
 import userMenuView.UserMenuView;
-import models.Student;
-import models.Teacher;
 import models.User;
 
 public class LoginView {

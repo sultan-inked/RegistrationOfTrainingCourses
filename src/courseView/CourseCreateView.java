@@ -2,7 +2,6 @@ package courseView;
 
 import controllers.CourseController;
 import models.Teacher;
-import models.User;
 import tools.Alerts;
 import tools.Cnsl;
 

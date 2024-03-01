@@ -1,7 +1,5 @@
 package courseView;
 
-import java.util.ArrayList;
-
 import controllers.CourseController;
 import controllers.StudentController;
 import controllers.TeacherController;

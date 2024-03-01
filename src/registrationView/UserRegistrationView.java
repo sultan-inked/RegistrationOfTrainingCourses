@@ -2,7 +2,6 @@ package registrationView;
 
 import controllers.StudentController;
 import controllers.TeacherController;
-import database.DatabaseAddController;
 import tools.Alerts;
 import tools.Cnsl;
 

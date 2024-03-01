@@ -3,7 +3,6 @@ package view;
 import registrationView.RegistrationView;
 import tools.Alerts;
 import tools.Cnsl;
-import view.*;
 import loginView.*;
 import registrationView.*;
 

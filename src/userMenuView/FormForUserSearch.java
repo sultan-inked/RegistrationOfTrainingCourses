@@ -3,8 +3,6 @@ package userMenuView;
 import tools.Alerts;
 import tools.Cnsl;
 
-import models.User;
-
 public class FormForUserSearch {
 	
 	public String[] formForStudentSearch() {

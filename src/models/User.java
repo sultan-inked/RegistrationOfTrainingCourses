@@ -7,8 +7,6 @@ package models;
 
 import java.util.List;
 
-import models.Course;
-
 import java.util.ArrayList;
 
 public abstract class User {

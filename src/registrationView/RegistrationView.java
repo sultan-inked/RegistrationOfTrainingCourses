@@ -4,10 +4,8 @@
 
 package registrationView;
 
-import java.util.Arrays;
 import tools.Alerts;
 import tools.Cnsl;
-import view.WelcomeView;
 
 public class RegistrationView {
 	

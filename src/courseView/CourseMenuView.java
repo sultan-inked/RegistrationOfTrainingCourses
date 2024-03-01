@@ -4,17 +4,8 @@
 
 package courseView;
 
-import java.util.Arrays;
-
-import controllers.CourseController;
-import controllers.StudentController;
-import controllers.TeacherController;
-import models.Course;
-import models.Student;
 import models.Teacher;
 import models.User;
-
-import java.util.ArrayList;
 
 import tools.Alerts;
 import tools.Cnsl;
@@ -32,8 +23,7 @@ public class CourseMenuView {
 		String choice = new Alerts().wrtNmbrScan(3, "back");
 		switch(choice) {
 		case "1":
-			new CourseSearchMenuView(new CourseActionView(), 
-					new SearchCourseView(new CourseActionView())).courseSearchMenu(user);
+			new CourseSearchMenuView(new SearchCourseView(new CourseActionView())).courseSearchMenu(user);
 			courseMenu(user);
 			return;
 		case "2":

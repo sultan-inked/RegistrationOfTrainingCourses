@@ -1,7 +1,5 @@
 package database;
 
-import database.Database;
-
 public class DatabaseShowListController {
 //	Variables:
 	private Database database;

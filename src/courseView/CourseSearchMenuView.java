@@ -1,22 +1,15 @@
 package courseView;
 
-import java.util.ArrayList;
-
-import controllers.CourseController;
-import models.Course;
-import models.Teacher;
 import models.User;
 import tools.Alerts;
 import tools.Cnsl;
 
 public class CourseSearchMenuView {
 //	Variables:
-	private final CourseActionView courseActionView;
 	private final SearchCourseView searchCourseView;
 	
 //	Constructors:
-	public CourseSearchMenuView(CourseActionView courseActionView, SearchCourseView searchCourse) {
-		this.courseActionView = courseActionView;
+	public CourseSearchMenuView(SearchCourseView searchCourse) {
 		this.searchCourseView = searchCourse;
 	}
 	

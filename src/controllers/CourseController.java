@@ -4,9 +4,6 @@
 
 package controllers;
 
-import java.util.Arrays;
-
-import tools.Cnsl;
 import database.DatabaseAddController;
 import models.Course;
 import models.Student;

@@ -7,7 +7,6 @@ package models;
 import java.util.ArrayList;
 import java.util.List;
 
-import models.Teacher;
 import tools.Id;
 
 public class Course {

@@ -9,11 +9,8 @@ import java.util.List;
 import models.Course;
 import models.Student;
 import models.Teacher;
-import models.User;
 
 import java.util.ArrayList;
-
-import tools.Cnsl;
 
 public class Database {
 //	Variables;
