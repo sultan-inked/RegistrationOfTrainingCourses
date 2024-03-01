@@ -4,6 +4,8 @@ import models.Course;
 import models.Student;
 import models.Teacher;
 
+import controllers.TeacherController;
+
 import tools.HashCode;
 
 public class AddDefaultObjectsForTest {
@@ -12,6 +14,7 @@ public class AddDefaultObjectsForTest {
 		var d = new DatabaseAddController();
 		var db = new Database();
 		var hc = new HashCode();
+		
 		d.addStudentToList(new Student("Jesse", "Pinkman", hc.makeHashCode("1234")));
 		d.addStudentToList(new Student("Flin", "White", hc.makeHashCode("1234")));
 		d.addStudentToList(new Student("Gale", "Botticher", hc.makeHashCode("1234")));
@@ -28,13 +31,24 @@ public class AddDefaultObjectsForTest {
 		d.addTeacherToList(new Teacher("Saul", "Goodman", hc.makeHashCode("1234")));
 		d.addTeacherToList(new Teacher("Hank", "Schrader", hc.makeHashCode("1234")));
 		
-		d.addCourseToList(new Course(db.teacherListGet(0), "MethLab", "About how to cook meht."));
-		d.addCourseToList(new Course(db.teacherListGet(1), "MethMarket", "How to delivery meth."));
-		d.addCourseToList(new Course(db.teacherListGet(2), "Lawyer", "How to behave in an interrogation."));
-		d.addCourseToList(new Course(db.teacherListGet(3), "Raid", "How to storm the house where the meth lab is."));
-		d.addCourseToList(new Course(db.teacherListGet(1), "MethLab", "About how to building must of big and proffesional meth lab."));
-		d.addCourseToList(new Course(db.teacherListGet(0), "MethLab", "About how to create temporal meth lab in the motor-house."));
-		d.addCourseToList(new Course(db.teacherListGet(3), "MethLab", "How I can hate meth lab in the motor-house."));
+//		d.addCourseToList(new Course(db.teacherListGet(0), "MethLab", "About how to cook meht."));
+//		d.addCourseToList(new Course(db.teacherListGet(1), "MethMarket", "How to delivery meth."));
+//		d.addCourseToList(new Course(db.teacherListGet(2), "Lawyer", "How to behave in an interrogation."));
+//		d.addCourseToList(new Course(db.teacherListGet(3), "Raid", "How to storm the house where the meth lab is."));
+//		d.addCourseToList(new Course(db.teacherListGet(1), "MethLab", "About how to building must of big and proffesional meth lab."));
+//		d.addCourseToList(new Course(db.teacherListGet(0), "MethLab", "About how to create temporal meth lab in the motor-house."));
+//		d.addCourseToList(new Course(db.teacherListGet(3), "MethLab", "How I can hate meth lab in the motor-house."));
+		
+		var tchC = new TeacherController();
+		var dbAdC = new DatabaseAddController();
+		tchC.createCourse(db.teacherListGet(0), "MethLab", "About how to cook meht.", dbAdC);
+		tchC.createCourse(db.teacherListGet(1), "MethMarket", "How to delivery meth.", dbAdC);
+		tchC.createCourse(db.teacherListGet(2), "Lawyer", "How to behave in an interrogation.", dbAdC);
+		tchC.createCourse(db.teacherListGet(3), "Raid", "How to storm the house where the meth lab is.", dbAdC);
+		tchC.createCourse(db.teacherListGet(1), "MethLab", "About how to building must of big and proffesional meth lab.", dbAdC);
+		tchC.createCourse(db.teacherListGet(0), "MethLab", "About how to create temporal meth lab in the motor-house.", dbAdC);
+		tchC.createCourse(db.teacherListGet(3), "MethLab", "How I can hate meth lab in the motor-house.", dbAdC);
+		
 		
 		// Teachers and courses for course searching by id testing:
 		d.addTeacherToList(new Teacher("Five", "Five", hc.makeHashCode("1234"))); // TCH000005

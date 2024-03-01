@@ -26,6 +26,8 @@ public class SearchTeacherMenuView {
 		
 		String[] teacherFormArray = new FormForUserSearch().formForTeacherSearch();
 		
+		if(teacherFormArray == null) return;
+		
 		Teacher[] teachersFoundListArray = new DatabaseSearchController().searchTeachersInList(teacherFormArray[0], 
 				teacherFormArray[1], teacherFormArray[2]);
 		

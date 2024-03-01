@@ -9,6 +9,11 @@ import models.Course;
 import models.Teacher;
 
 public class TeacherController extends UserController {
+//	Getters and Setters:
+	public Course[] getCreatedCourseListArray(Teacher teacher) {
+		return teacher.getCreatedCourseListArray();
+	}
+	
 //	Methods:
 	public String createTeacherCardSaveAndReturnId(String[] listArray) {
 		var teacher = new Teacher(listArray[0], listArray[1], listArray[2]);
@@ -20,6 +25,7 @@ public class TeacherController extends UserController {
 						DatabaseAddController databaseAddRemoveController) {
 		Course course = new Course(teacher, courseName, courseDescription);
 		databaseAddRemoveController.addCourseToList(course);
+		teacher.addToCreatedCourseList(course);
 	}
 	
 	public void removeCourse() {

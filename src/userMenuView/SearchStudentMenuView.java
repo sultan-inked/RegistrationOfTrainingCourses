@@ -24,6 +24,8 @@ public class SearchStudentMenuView {
 		
 		String[] studentFormArray = new FormForUserSearch().formForStudentSearch();
 		
+		if(studentFormArray == null) return;
+		
 		Student[] studentFoundListArray = new DatabaseSearchController().searchStudentsInList(studentFormArray[0],
 				studentFormArray[1], studentFormArray[2]);
 		

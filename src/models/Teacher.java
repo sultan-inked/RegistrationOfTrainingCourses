@@ -38,6 +38,10 @@ public class Teacher extends User {
 		return createdCourseList.toArray(new Course[createdCourseList.size()]);
 	}
 	
+	public void addToCreatedCourseList(Course course) {
+		createdCourseList.add(course);
+	}
+	
 //	Methods:
 	@Override
 	public String toString() {

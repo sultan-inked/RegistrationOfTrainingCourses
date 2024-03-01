@@ -81,24 +81,31 @@ public class UserActionView {
 		
 		String choice = new Alerts().wrtNmbrScan(numberOfChoices, "back");
 		
+		Course[] coursesFoundList = null;
+		
 		switch(choice) {
 		case "1":
-			Course[] coursesFoundList = null;
+			
 			if(user instanceof Student)
 				coursesFoundList = studentController.getCourseEnrollmentListArray(user);
 			else if(user instanceof Teacher)
 				coursesFoundList = teacherController.getCourseEnrollmentListArray(user);
+			
 			courseActionView.whatToDoWithTheCourse(
 					courseActionView.choiceCourseInList(coursesFoundList), userOwner);
+			
 			whatToDoWithTheUser(userOwner, user);
 			return;
 		case "2":
-			Alerts.ftrNotYet();
+			coursesFoundList = teacherController.getCreatedCourseListArray((Teacher)user);
+			
+			courseActionView.whatToDoWithTheCourse(
+					courseActionView.choiceCourseInList(coursesFoundList), userOwner);
+			
 			whatToDoWithTheUser(userOwner, user);
 			return;
 		case "back":
 			return;
 		}
-		
 	}
 }

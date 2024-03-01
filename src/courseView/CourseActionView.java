@@ -67,7 +67,7 @@ public class CourseActionView {
 	}
 	
 	public Course choiceCourseInList(Course[] coursesFoundListArray) {
-		if(coursesFoundListArray.length == 0) {
+		if(coursesFoundListArray == null || coursesFoundListArray.length == 0) {
 			Cnsl.println("Course list is empty.");
 			return null;
 		}
